@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://mt1pwcg02hsh"]
+[gd_scene load_steps=2 format=3 uid="uid://mt1pwcg02hsh"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://button.gd" id="1_gjg58"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 300.0
+offset_top = 200.0
+offset_right = 373.0
+offset_bottom = 231.0
+rotation = -6.54017e-05
+text = "Click Me"
+script = ExtResource("1_gjg58")
