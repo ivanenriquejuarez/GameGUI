@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ty6ca4jgo80g"]
+
+[ext_resource type="Script" path="res://Screens/Designer/designer.gd" id="1_bef0j"]
+[ext_resource type="Script" path="res://Screens/Designer/grid.gd" id="2_amt7k"]
+[ext_resource type="Script" path="res://Screens/Designer/canvas.gd" id="2_dxmnt"]
+
+[node name="Designer" type="Node2D"]
+script = ExtResource("1_bef0j")
+
+[node name="Canvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_dxmnt")
+
+[node name="Grid" type="Node2D" parent="Canvas"]
+script = ExtResource("2_amt7k")
+grid_size = 16
+
+[node name="Line2D" type="Line2D" parent="Canvas/Grid"]
+width = 1.0
+default_color = Color(0.61339, 0.61339, 0.61339, 1)

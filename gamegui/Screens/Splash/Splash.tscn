@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://qra3ywl20ry6"]
+
+[ext_resource type="Script" path="res://Screens/Splash/splash.gd" id="1_y4hqp"]
+[ext_resource type="AudioStream" uid="uid://cd73dofejp6qx" path="res://Assets/Audio/Infinity Crystal_ Awakening wavs/1 titles INITIAL.wav" id="2_7a8de"]
+
+[node name="Splash" type="Node2D"]
+script = ExtResource("1_y4hqp")
+music = ExtResource("2_7a8de")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Press Any Button To Continue"

@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="GameGUI"
+run/main_scene="res://Screens/Splash/Splash.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioManager="*res://GlobalScripts/audio_manager.gd"
 
 [dotnet]
 
