@@ -5,6 +5,7 @@ extends Node2D
 @export var main_load_scene: PackedScene = preload("res://UIElements/MainLoad/main_load.tscn")
 @export var main_settings_scene: PackedScene = preload("res://UIElements/MainSettings/main_settings.tscn")
 @onready var main_ui: Control = $main_ui
+@onready var audio_select: AudioStreamPlayer2D = $audio_select
 
 var load_panel: Control
 var settings_panel: Control
@@ -17,10 +18,12 @@ func _ready():
 	print("main scene")
 
 func _on_new_project_pressed():
+	audio_select.play()
 	get_tree().change_scene_to_packed(designer_scene)
 
 func _on_load_project_pressed():
 	# Instance and add the Load Project panel
+	audio_select.play()
 	main_ui.visible = false
 	load_panel = main_load_scene.instantiate()
 	add_child(load_panel)
@@ -28,6 +31,7 @@ func _on_load_project_pressed():
 
 func _on_settings_pressed():
 	# Instance and add the Settings panel
+	audio_select.play()
 	main_ui.visible = false
 	settings_panel = main_settings_scene.instantiate()
 	add_child(settings_panel)
