@@ -4,16 +4,16 @@ extends Node2D
 @export var music: AudioStream
 @export var main_load_scene: PackedScene = preload("res://UIElements/MainLoad/main_load.tscn")
 @export var main_settings_scene: PackedScene = preload("res://UIElements/MainSettings/main_settings.tscn")
-@onready var main_ui: Control = $main_ui
 @onready var audio_select: AudioStreamPlayer2D = $audio_select
+@onready var main_ui: MarginContainer = $Camera2D/main_ui
 
 var load_panel: Control
 var settings_panel: Control
 
 func _ready():
-	$main_ui/VBoxContainer/new_project.pressed.connect(_on_new_project_pressed)
-	$main_ui/VBoxContainer/load_project.pressed.connect(_on_load_project_pressed)
-	$main_ui/VBoxContainer/settings.pressed.connect(_on_settings_pressed)
+	$Camera2D/main_ui/HBoxContainer/VBoxContainer/new_project.pressed.connect(_on_new_project_pressed)
+	$Camera2D/main_ui/HBoxContainer/VBoxContainer/load_project.pressed.connect(_on_load_project_pressed)
+	$Camera2D/main_ui/HBoxContainer/VBoxContainer/settings.pressed.connect(_on_settings_pressed)
 	AudioManager.play_music(music)
 	print("main scene")
 

@@ -2,8 +2,8 @@ extends Button
 @onready var full: TileMapLayer = $full
 @onready var hover: TileMapLayer = $hover
 @onready var corner_hover: TileMapLayer = $corner_hover
-@onready var audio_hover: AudioStreamPlayer2D = $"../../../audio_hover"
-@onready var audio_select: AudioStreamPlayer2D = $"../../../audio_select"
+@onready var audio_hover: AudioStreamPlayer2D = $"../../../../../audio_hover"
+@onready var audio_select: AudioStreamPlayer2D = $"../../../../../audio_select"
 
 
 # Called when the node enters the scene tree for the first time.
