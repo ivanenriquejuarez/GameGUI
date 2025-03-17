@@ -8,11 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://2u1i5jmfnl2m" path="res://Assets/Audio/10_UI_Menu_SFX/001_Hover_01.wav" id="5_esgvy"]
 [ext_resource type="AudioStream" uid="uid://58g4ecpevtif" path="res://Assets/Audio/10_UI_Menu_SFX/013_Confirm_03.wav" id="6_44t26"]
 
-[sub_resource type="SystemFont" id="SystemFont_dk2c1"]
+[sub_resource type="SystemFont" id="SystemFont_wku7k"]
 subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_g7m6i"]
-font = SubResource("SystemFont_dk2c1")
+font = SubResource("SystemFont_wku7k")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
