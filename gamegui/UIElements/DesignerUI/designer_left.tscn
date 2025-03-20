@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://borghsl8ooih6"]
+[gd_scene load_steps=5 format=3 uid="uid://borghsl8ooih6"]
 
 [ext_resource type="Script" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
 [ext_resource type="Texture2D" uid="uid://cmmnqcghgy7tk" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="2_5uffw"]
+[ext_resource type="PackedScene" uid="uid://yowyw3wiunyg" path="res://UIElements/DesignerUI/collapse_contain.tscn" id="3_rbxs8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_305uf"]
 atlas = ExtResource("2_5uffw")
@@ -25,3 +26,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_305uf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollapseContain" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+layout_mode = 2
+
+[node name="CollapseContain2" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+layout_mode = 2
+
+[node name="CollapseContain3" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+layout_mode = 2

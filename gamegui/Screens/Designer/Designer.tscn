@@ -8,10 +8,7 @@
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
 
-[node name="DesignerLeft" parent="." instance=ExtResource("4_757cr")]
-
 [node name="Canvas" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,3 +24,7 @@ grid_size = 16
 [node name="Line2D" type="Line2D" parent="Canvas/Grid"]
 width = 1.0
 default_color = Color(0.61339, 0.61339, 0.61339, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DesignerLeft" parent="CanvasLayer" instance=ExtResource("4_757cr")]

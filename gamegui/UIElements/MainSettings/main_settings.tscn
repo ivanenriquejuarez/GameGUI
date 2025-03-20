@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=4 uid="uid://c81l2qyqimb1r"]
+[gd_scene load_steps=12 format=4 uid="uid://c81l2qyqimb1r"]
 
 [ext_resource type="Script" path="res://UIElements/MainSettings/main_settings.gd" id="1_t65m7"]
 [ext_resource type="Script" path="res://UIElements/MainSettings/setting_container.gd" id="2_fm0vm"]
 [ext_resource type="TileSet" uid="uid://c446f8fukuvff" path="res://Assets/UI/settings.tres" id="2_or61a"]
+[ext_resource type="Texture2D" uid="uid://u2prir4nkv05" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Handle05a.png" id="4_of65i"]
+[ext_resource type="Texture2D" uid="uid://b5quglkq67vvg" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Handle04a.png" id="5_4opj6"]
+[ext_resource type="TileSet" uid="uid://c1slwfmhusvdl" path="res://Assets/UI/Buttons.tres" id="5_xaqb4"]
+[ext_resource type="AudioStream" uid="uid://2u1i5jmfnl2m" path="res://Assets/Audio/10_UI_Menu_SFX/001_Hover_01.wav" id="6_7m65b"]
+[ext_resource type="Texture2D" uid="uid://cvqh6wsce27n7" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Bar05a.png" id="6_v2e8s"]
+[ext_resource type="AudioStream" uid="uid://58g4ecpevtif" path="res://Assets/Audio/10_UI_Menu_SFX/013_Confirm_03.wav" id="7_m2tk4"]
+
+[sub_resource type="SystemFont" id="SystemFont_dk2c1"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_t3tj0"]
+font = SubResource("SystemFont_dk2c1")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="MainSettings" type="Control"]
 layout_mode = 3
@@ -31,103 +45,189 @@ offset_bottom = 648.0
 layout_mode = 2
 script = ExtResource("2_fm0vm")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/settingContainer"]
+[node name="Control" type="Control" parent="CenterContainer/settingContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="CenterContainer/settingContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="resolution" type="Control" parent="CenterContainer/settingContainer/HBoxContainer/Control"]
+[node name="resolution" type="Control" parent="CenterContainer/settingContainer/Control"]
 z_index = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+clip_contents = true
+custom_minimum_size = Vector2(946, 445)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution"]
-layout_mode = 0
-offset_left = 703.0
-offset_top = 252.0
-offset_right = 745.0
-offset_bottom = 299.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "AUDIO:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Master: "
-
-[node name="Label2" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Music:"
-
-[node name="Label3" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "SFX:"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HSlider" type="HSlider" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="HSlider2" type="HSlider" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="HSlider3" type="HSlider" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(270, 90)
 layout_mode = 2
 text = "RESOLUTION: "
+horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(270, 90)
+layout_mode = 2
+text = "AUDIO:"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(270, 90)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Windowed:"
 
-[node name="Label2" type="Label" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2/VBoxContainer/Label"]
+[node name="Label2" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Label"]
 layout_mode = 2
 offset_top = 27.0
 offset_right = 90.0
 offset_bottom = 50.0
 text = "Full-Screen:"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+button_pressed = true
+
+[node name="CheckBox2" type="CheckBox" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 
-[node name="CheckBox2" type="CheckBox" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2"]
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(270, 90)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Master: "
+
+[node name="Label2" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Music:"
+
+[node name="Label3" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SFX:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="CenterContainer/settingContainer/HBoxContainer/Control/resolution/VBoxContainer/HBoxContainer3"]
+[node name="HSlider" type="HSlider" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+clip_contents = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_icons/grabber = ExtResource("4_of65i")
+theme_override_icons/grabber_highlight = ExtResource("5_4opj6")
+tick_count = 10
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HSlider"]
+z_index = -1
+layout_mode = 0
+offset_left = -34.0
+offset_top = -3.5
+offset_right = 206.0
+offset_bottom = 34.5
+texture = ExtResource("6_v2e8s")
+
+[node name="HSlider2" type="HSlider" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSlider3" type="HSlider" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="settings2" type="Button" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3"]
+custom_minimum_size = Vector2(256, 64)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Return"
+
+[node name="full" type="TileMapLayer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3/settings2"]
+tile_map_data = PackedByteArray("AAABAAEAAwAGAAQAAAACAAEAAwAGAAQAAAADAAEAAwAGAAQAAAAEAAEAAwAGAAQAAAAFAAEAAwAGAAQAAAAGAAEAAwAGAAQAAAAAAAEAAgAGAAQAAAAAAAAAAAAGAAQAAAAHAAAAAQAGAAQAAAAHAAEAAwAGAAQAAAABAAAAAQAGAAQAAAADAAAAAQAGAAQAAAACAAAAAQAGAAQAAAAEAAAAAQAGAAQAAAAFAAAAAQAGAAQAAAAGAAAAAQAGAAQAAAAIAAAAAQAGAAQAAAAJAAAAAQAGAAQAAAAKAAAAAQAGAAQAAAALAAAAAQAGAAQAAAANAAAAAQAGAAQAAAAMAAAAAQAGAAQAAAAOAAAAAQAGAAQAAAABAAMAAQAGAAUAAAACAAMAAQAGAAUAAAADAAMAAQAGAAUAAAAEAAMAAQAGAAUAAAAFAAMAAQAGAAUAAAAGAAMAAQAGAAUAAAAHAAMAAQAGAAUAAAAIAAMAAQAGAAUAAAAJAAMAAQAGAAUAAAAKAAMAAQAGAAUAAAALAAMAAQAGAAUAAAAMAAMAAQAGAAUAAAANAAMAAQAGAAUAAAAOAAMAAQAGAAUAAAAAAAMAAAAGAAUAAAAPAAMAAAAHAAUAAAAPAAAAAAAHAAQAAAAAAAIAAgAGAAQAAAAPAAIAAgAHAAQAAAAPAAEAAgAHAAQAAAABAAIAAwAGAAQAAAACAAIAAwAGAAQAAAADAAIAAwAGAAQAAAAEAAIAAwAGAAQAAAAFAAIAAwAGAAQAAAAGAAIAAwAGAAQAAAAHAAIAAwAGAAQAAAAIAAEAAwAGAAQAAAAIAAIAAwAGAAQAAAAJAAEAAwAGAAQAAAAJAAIAAwAGAAQAAAAKAAEAAwAGAAQAAAAKAAIAAwAGAAQAAAALAAEAAwAGAAQAAAALAAIAAwAGAAQAAAAMAAEAAwAGAAQAAAAMAAIAAwAGAAQAAAANAAEAAwAGAAQAAAANAAIAAwAGAAQAAAAOAAEAAwAGAAQAAAAOAAIAAwAGAAQAAAA=")
+tile_set = ExtResource("5_xaqb4")
+
+[node name="hover" type="TileMapLayer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3/settings2"]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAQAAAAAAAMAAAACAAUAAAAPAAMAAAADAAUAAAAPAAAAAAADAAQAAAAAAAEAAgACAAQAAAABAAMAAQACAAUAAAACAAMAAQACAAUAAAADAAMAAQACAAUAAAAEAAMAAQACAAUAAAAFAAMAAQACAAUAAAAGAAMAAQACAAUAAAAHAAMAAQACAAUAAAAIAAMAAQACAAUAAAAJAAMAAQACAAUAAAAKAAMAAQACAAUAAAALAAMAAQACAAUAAAAMAAMAAQACAAUAAAANAAMAAQACAAUAAAAOAAMAAQACAAUAAAABAAAAAQACAAQAAAACAAAAAQACAAQAAAADAAAAAQACAAQAAAAEAAAAAQACAAQAAAAFAAAAAQACAAQAAAAGAAAAAQACAAQAAAAHAAAAAQACAAQAAAAIAAAAAQACAAQAAAAJAAAAAQACAAQAAAAKAAAAAQACAAQAAAALAAAAAQACAAQAAAAMAAAAAQACAAQAAAANAAAAAQACAAQAAAAOAAAAAQACAAQAAAAAAAIAAgACAAQAAAAPAAIAAgADAAQAAAAPAAEAAgADAAQAAAABAAEAAwAGAAQAAAABAAIAAwAGAAQAAAACAAEAAwAGAAQAAAACAAIAAwAGAAQAAAADAAEAAwAGAAQAAAADAAIAAwAGAAQAAAAEAAEAAwAGAAQAAAAEAAIAAwAGAAQAAAAFAAEAAwAGAAQAAAAFAAIAAwAGAAQAAAAGAAEAAwAGAAQAAAAGAAIAAwAGAAQAAAAHAAEAAwAGAAQAAAAHAAIAAwAGAAQAAAAIAAEAAwAGAAQAAAAIAAIAAwAGAAQAAAAJAAEAAwAGAAQAAAAJAAIAAwAGAAQAAAAKAAEAAwAGAAQAAAAKAAIAAwAGAAQAAAALAAEAAwAGAAQAAAALAAIAAwAGAAQAAAAMAAEAAwAGAAQAAAAMAAIAAwAGAAQAAAANAAEAAwAGAAQAAAANAAIAAwAGAAQAAAAOAAEAAwAGAAQAAAAOAAIAAwAGAAQAAAA=")
+tile_set = ExtResource("5_xaqb4")
+
+[node name="corner_hover" type="TileMapLayer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3/settings2"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAPAAAAAAABAAAAAAAAAAMAAAAAAAEAAAAPAAMAAAABAAEAAAA=")
+tile_set = ExtResource("5_xaqb4")
+
+[node name="Label" type="Label" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3/settings2"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+text = "Return"
+label_settings = SubResource("LabelSettings_t3tj0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="CenterContainer/settingContainer/Control/resolution/VBoxContainer3/HBoxContainer3/settings2"]
+tile_map_data = PackedByteArray("AAANAAEABgAbAAYAAQANAAIABgAbAAcAAgAOAAEABgAaAAYAAQAOAAIABgAaAAcAAQA=")
+tile_set = ExtResource("5_xaqb4")
+
+[node name="audio_hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_7m65b")
+bus = &"SFX"
+
+[node name="audio_select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_m2tk4")
+bus = &"SFX"
