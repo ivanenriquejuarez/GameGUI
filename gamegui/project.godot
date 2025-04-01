@@ -22,3 +22,7 @@ AudioManager="*res://GlobalScripts/audio_manager.gd"
 [dotnet]
 
 project/assembly_name="GameGUI"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/grid_display/plugin.cfg")

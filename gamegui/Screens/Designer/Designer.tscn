@@ -1,30 +1,95 @@
 [gd_scene load_steps=5 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" path="res://Screens/Designer/designer.gd" id="1_bef0j"]
-[ext_resource type="Script" path="res://Screens/Designer/grid.gd" id="2_amt7k"]
-[ext_resource type="Script" path="res://Screens/Designer/canvas.gd" id="2_dxmnt"]
 [ext_resource type="PackedScene" uid="uid://borghsl8ooih6" path="res://UIElements/DesignerUI/designer_left.tscn" id="4_757cr"]
+[ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="5_56spr"]
+[ext_resource type="PackedScene" uid="uid://54qlgp3tcswv" path="res://UIElements/DesignerUI/designer_panel.tscn" id="6_nvek1"]
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
 
-[node name="Canvas" type="Control" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 321)
+
+[node name="DesignerLeft" parent="Camera2D" instance=ExtResource("4_757cr")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
+offset_right = 192.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="designer_panel" parent="Camera2D/MarginContainer" node_paths=PackedStringArray("designer_node") instance=ExtResource("6_nvek1")]
+layout_mode = 2
+designer_node = NodePath("../../..")
+
+[node name="GridDisplay" type="Node2D" parent="Camera2D"]
+script = ExtResource("5_56spr")
+grid_size = Vector2(31, 12)
+
+[node name="gridControls" type="Control" parent="Camera2D"]
+visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_dxmnt")
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Grid" type="Node2D" parent="Canvas"]
-script = ExtResource("2_amt7k")
-grid_size = 16
+[node name="CenterContainer" type="CenterContainer" parent="Camera2D/gridControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -326.0
+offset_right = 577.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Line2D" type="Line2D" parent="Canvas/Grid"]
-width = 1.0
-default_color = Color(0.61339, 0.61339, 0.61339, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/gridControls/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Label" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "TEST"
 
-[node name="DesignerLeft" parent="CanvasLayer" instance=ExtResource("4_757cr")]
+[node name="Label2" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox2" type="CheckBox" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="exit" type="Button" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
