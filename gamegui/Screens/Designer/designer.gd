@@ -2,9 +2,9 @@
 extends Node2D
 
 
-@onready var grid_controls: Control = $Camera2D/gridControls
-@onready var grid_display: GridDisplay = $Camera2D/GridDisplay
 @export var cell_size : Vector2 = Vector2(64, 64)  # Default cell size (e.g., 64x64)
+@onready var grid_controls: Control = $DesignerCamera/CanvasLayer/gridControls
+@onready var grid_display: GridDisplay = $GridDisplay
 
 signal button_pressed(button_name: String)
 

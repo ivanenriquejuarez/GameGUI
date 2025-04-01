@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://borghsl8ooih6"]
+[gd_scene load_steps=7 format=3 uid="uid://borghsl8ooih6"]
 
 [ext_resource type="Script" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
 [ext_resource type="Texture2D" uid="uid://cmmnqcghgy7tk" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="2_5uffw"]
 [ext_resource type="PackedScene" uid="uid://yowyw3wiunyg" path="res://UIElements/DesignerUI/collapse_contain.tscn" id="3_rbxs8"]
+[ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="4_vufug"]
+[ext_resource type="TileSet" uid="uid://c446f8fukuvff" path="res://Assets/UI/settings.tres" id="5_hxn3y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_305uf"]
 atlas = ExtResource("2_5uffw")
@@ -18,6 +20,33 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_bkryp")
 
+[node name="CollapseContain3" parent="." instance=ExtResource("3_rbxs8")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="CollapseContain2" parent="." instance=ExtResource("3_rbxs8")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="CollapseContain" parent="." instance=ExtResource("3_rbxs8")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 4.0
+
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -32,11 +61,69 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CollapseContain" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="CollapseContain2" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+[node name="CollapsibleContainer" type="Control" parent="VBoxContainer/ScrollContainer"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("4_vufug")
+folding_direction_preset = 10
+sizing_constraint = 1
+sizing_node = NodePath("..")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer/ScrollContainer/CollapsibleContainer"]
+light_mask = 9
+z_index = 10
+z_as_relative = false
+scale = Vector2(8.9561, 13.0006)
+tile_set = ExtResource("5_hxn3y")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="CollapseContain3" parent="VBoxContainer" instance=ExtResource("3_rbxs8")]
+[node name="CollapsibleContainer" type="Control" parent="VBoxContainer/ScrollContainer2"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("4_vufug")
+folding_direction_preset = 10
+sizing_constraint = 1
+sizing_node = NodePath("..")
+
+[node name="ScrollContainer3" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="CollapsibleContainer" type="Control" parent="VBoxContainer/ScrollContainer3"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("4_vufug")
+folding_direction_preset = 10
+sizing_constraint = 1
+sizing_node = NodePath("..")

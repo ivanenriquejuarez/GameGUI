@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ty6ca4jgo80g"]
+[gd_scene load_steps=6 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" path="res://Screens/Designer/designer.gd" id="1_bef0j"]
+[ext_resource type="Script" path="res://Screens/Designer/designer_camera.gd" id="2_l6knb"]
 [ext_resource type="PackedScene" uid="uid://borghsl8ooih6" path="res://UIElements/DesignerUI/designer_left.tscn" id="4_757cr"]
 [ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="5_56spr"]
 [ext_resource type="PackedScene" uid="uid://54qlgp3tcswv" path="res://UIElements/DesignerUI/designer_panel.tscn" id="6_nvek1"]
@@ -8,30 +9,39 @@
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 321)
+[node name="DesignerCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+limit_left = 0
+limit_top = 0
+script = ExtResource("2_l6knb")
 
-[node name="DesignerLeft" parent="Camera2D" instance=ExtResource("4_757cr")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="DesignerCamera"]
 
-[node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
-offset_right = 192.0
-offset_bottom = 64.0
+[node name="MarginContainer2" type="MarginContainer" parent="DesignerCamera/CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="DesignerLeft" parent="DesignerCamera/CanvasLayer/MarginContainer2" instance=ExtResource("4_757cr")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DesignerCamera/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 3
 
-[node name="designer_panel" parent="Camera2D/MarginContainer" node_paths=PackedStringArray("designer_node") instance=ExtResource("6_nvek1")]
+[node name="designer_panel" parent="DesignerCamera/CanvasLayer/MarginContainer" node_paths=PackedStringArray("designer_node") instance=ExtResource("6_nvek1")]
 layout_mode = 2
-designer_node = NodePath("../../..")
+designer_node = NodePath("../../../..")
 
-[node name="GridDisplay" type="Node2D" parent="Camera2D"]
-script = ExtResource("5_56spr")
-grid_size = Vector2(31, 12)
-
-[node name="gridControls" type="Control" parent="Camera2D"]
+[node name="gridControls" type="Control" parent="DesignerCamera/CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -39,12 +49,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="Camera2D/gridControls"]
+[node name="CenterContainer" type="CenterContainer" parent="DesignerCamera/CanvasLayer/gridControls"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,38 +72,45 @@ offset_bottom = 326.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/gridControls/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "TEST"
 
-[node name="Label2" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSlider2" type="HSlider" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="HSlider2" type="HSlider" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CheckBox2" type="CheckBox" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="CheckBox2" type="CheckBox" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="exit" type="Button" parent="Camera2D/gridControls/CenterContainer/VBoxContainer"]
+[node name="exit" type="Button" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="GridDisplay" type="Node2D" parent="."]
+script = ExtResource("5_56spr")
+grid_size = Vector2(31, 18)
+line_size = Vector2(1, 1)
+border_width = 1.0
+cell_size = Vector2(32, 32)
