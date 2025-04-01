@@ -8,6 +8,7 @@
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
+grid_size = Vector2i(500, 500)
 
 [node name="DesignerCamera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -83,34 +84,50 @@ text = "TEST"
 
 [node name="Label2" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "line width"
 
 [node name="HSlider" type="HSlider" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Label3" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HSlider2" type="HSlider" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
-layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
 
 [node name="Label4" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "cell size"
 
 [node name="OptionButton" type="OptionButton" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+item_count = 4
+popup/item_0/text = "16"
+popup/item_1/text = "32"
+popup/item_1/id = 1
+popup/item_2/text = "64"
+popup/item_2/id = 2
+popup/item_3/text = "128"
+popup/item_3/id = 3
+
+[node name="Label3" type="Label" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "visibility"
 
 [node name="CheckBox" type="CheckBox" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="CheckBox2" type="CheckBox" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
-layout_mode = 2
+button_pressed = true
 
 [node name="exit" type="Button" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "exit"
 
 [node name="GridDisplay" type="Node2D" parent="."]
 script = ExtResource("5_56spr")
-grid_size = Vector2(31, 18)
+grid_size = Vector2(500, 500)
 line_size = Vector2(1, 1)
 border_width = 1.0
-cell_size = Vector2(32, 32)
+
+[connection signal="value_changed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/HSlider" to="." method="set_line_and_border_width"]
+[connection signal="item_selected" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]
+[connection signal="toggled" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/exit" to="." method="close_ui"]

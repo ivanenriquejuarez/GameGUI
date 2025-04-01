@@ -1,31 +1,34 @@
 @tool
 extends Node2D
 
+@export var cell_size : Vector2 = Vector2(64, 64)  # Default cell size (set in the inspector)
+@export var grid_size : Vector2i = Vector2i(20, 15)  # Default number of cells (set in the inspector)
 
-@export var cell_size : Vector2 = Vector2(64, 64)  # Default cell size (e.g., 64x64)
 @onready var grid_controls: Control = $DesignerCamera/CanvasLayer/gridControls
 @onready var grid_display: GridDisplay = $GridDisplay
 
 signal button_pressed(button_name: String)
 
-
-# Define the custom signal
-signal size_updated(new_size)
-
 func _ready():
-	# Connect the size_changed signal to a method that emits the custom signal
+	# Connect the button signal
 	connect("button_pressed", Callable(self, "handle_button_press"))
-	grid_controls.visible = false  # Hide the grid controls by default
-	update_grid_size()
 	
-# Emit the custom signal when the viewport size changes
-func _on_size_changed():
-	pass
+	# Ensure grid_controls starts hidden
+	grid_controls.visible = false  
+	
+	# Apply initial settings from the inspector
+	apply_grid_settings()
 
-# Example function to change grid size
-func set_grid_size(new_size: Vector2i):
+func apply_grid_settings():
+	# Apply the preset grid size (instead of calculating it dynamically)
 	if grid_display:
-		grid_display.grid_size = new_size
+		grid_display.grid_size = grid_size
+		grid_display.cell_size = cell_size  # Ensure the cell size is applied
+
+# Example function to update cell size
+func update_cell_size(new_size: Vector2):
+	if grid_display:
+		grid_display.cell_size = new_size
 
 # Example function to toggle grid visibility
 func toggle_grid():
@@ -36,34 +39,35 @@ func toggle_grid():
 func toggle_border():
 	if grid_display:
 		grid_display.draw_border = !grid_display.draw_border
-# Define a function that reacts to the button being pressed
 
+# Handle button presses
 func handle_button_press(button_name: String):
 	match button_name:
 		"grid_controls":
-			# Handle grid controls button press
-			grid_controls.visible = true
-			# Add your logic here for handling the grid button press
+			grid_controls.visible = !grid_controls.visible  # Toggle visibility
 		"designer_settings":
-			# Handle designer settings button press
 			print("Designer settings button pressed")
-			# Add your logic here for settings
 		"save_load":
-			# Handle save/load button press
 			print("Save/Load button pressed")
-			# Add your logic here for saving/loading
+			
+# Called when the dropdown (OptionButton) changes (Cell Size)
+func set_cell_size(index: int):
+	# Get the selected cell size from the OptionButton
+	var cell_size = int($DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))  # Get the text of the selected item and convert it to an integer
 
-func update_grid_size():
-	# Get the viewport size (width and height)
-	var viewport_size = get_viewport().size
-	
-	# Calculate the number of cells needed to fill the screen (considering the cell size)
-	var grid_width = int(viewport_size.x / cell_size.x)  # Number of cells in the horizontal direction
-	var grid_height = int(viewport_size.y / cell_size.y)  # Number of cells in the vertical direction
-	
-	# Adjust the grid size for GridDisplay
-	grid_display.grid_size = Vector2(grid_width, grid_height)
+	# Update the grid's cell size based on the selected option
+	grid_display.cell_size = Vector2(cell_size, cell_size)
 
-	# Optionally, you can also adjust other properties like line size or border width if needed
-	# For example:
-	# grid_display.line_size = Vector2(1, 1)  # Example line size adjustment
+func set_line_and_border_width(value: float):
+	# Ensure the value is within 1 to 5 range
+	value = clamp(value, 1, 5)  # Clamps the value between 1 and 5
+	grid_display.line_size = Vector2(value, value)
+	grid_display.border_width = value
+
+# Closes the UI panel
+func close_ui():
+	grid_controls.hide()
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	grid_display.draw_grid = toggled_on
