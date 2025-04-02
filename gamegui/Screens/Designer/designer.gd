@@ -3,11 +3,14 @@ extends Node2D
 
 @export var cell_size : Vector2 = Vector2(64, 64)  # Default cell size (set in the inspector)
 @export var grid_size : Vector2i = Vector2i(20, 15)  # Default number of cells (set in the inspector)
+@onready var save_load: Control = $DesignerCamera/CanvasLayer/SaveLoad
+@onready var designer_settings: Control = $DesignerCamera/CanvasLayer/DesignerSettings
 
 @onready var grid_controls: Control = $DesignerCamera/CanvasLayer/gridControls
 @onready var grid_display: GridDisplay = $GridDisplay
-@onready var asset_library: Control = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
-
+@onready var asset_library := (
+	$DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
+) as AssetLibrary
 var dragging_scene: Node2D = null
 var scene_being_dragged: PackedScene = null
 
@@ -16,10 +19,15 @@ signal button_pressed(button_name: String)
 func _ready():
 	# Connect the button signal
 	connect("button_pressed", Callable(self, "handle_button_press"))
-	asset_library.asset_selected.connect(_on_asset_selected)
+	if asset_library.has_signal("asset_selected"):
+		print("Connecting signal")
+		asset_library.connect("asset_selected", Callable(self, "_on_asset_selected"))
+	else:
+		print("Signal not found!")
 	# Ensure grid_controls starts hidden
-	grid_controls.visible = false  
-	
+	grid_controls.visible = false
+	save_load.visible = false
+	designer_settings.visible = false
 	# Apply initial settings from the inspector
 	apply_grid_settings()
 
@@ -50,9 +58,9 @@ func handle_button_press(button_name: String):
 		"grid_controls":
 			grid_controls.visible = !grid_controls.visible  # Toggle visibility
 		"designer_settings":
-			print("Designer settings button pressed")
+			designer_settings.visible = true
 		"save_load":
-			print("Save/Load button pressed")
+			save_load.visible = true
 			
 # Called when the dropdown (OptionButton) changes (Cell Size)
 func set_cell_size(index: int):
@@ -90,3 +98,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Optionally snap to grid here
 		dragging_scene = null
 		scene_being_dragged = null
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):  # "Esc" key by default
+		# Hide and delete the panels when Esc is pressed
+		if grid_controls and grid_controls.visible:
+			grid_controls.visible = false
+		if save_load and save_load.visible:
+			save_load.visible = false
+		if designer_settings and designer_settings.visible:
+			designer_settings.visible = false

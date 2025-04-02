@@ -1,3 +1,4 @@
+class_name AssetLibrary
 extends Control
 
 @export var asset_paths: Array[String] # Fill this with your scene paths

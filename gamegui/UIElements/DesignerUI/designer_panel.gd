@@ -21,6 +21,7 @@ func _on_grid_controls_pressed():
 	# Emit the custom signal in the Designer node
 	if designer_node:
 		designer_node.emit_signal("button_pressed", "grid_controls")
+		print("grid menu")
 
 func _on_designer_settings_pressed():
 	# Emit the custom signal in the Designer node
