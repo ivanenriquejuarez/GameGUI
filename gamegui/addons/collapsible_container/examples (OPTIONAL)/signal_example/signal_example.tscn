@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/collapsible_container/examples (OPTIONAL)/signal_example/signal_example_script.gd" id="1_teivp"]
 [ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_nump6"]
-[ext_resource type="Texture2D" uid="uid://yji7vga2as48" path="res://icon.svg" id="3_lrcam"]
+[ext_resource type="Texture2D" uid="uid://p0oyuv314nla" path="res://icon.svg" id="3_lrcam"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

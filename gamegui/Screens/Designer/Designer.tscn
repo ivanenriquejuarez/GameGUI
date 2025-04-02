@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Screens/Designer/designer.gd" id="1_bef0j"]
 [ext_resource type="Script" path="res://Screens/Designer/designer_camera.gd" id="2_l6knb"]
-[ext_resource type="PackedScene" uid="uid://borghsl8ooih6" path="res://UIElements/DesignerUI/designer_left.tscn" id="4_757cr"]
+[ext_resource type="PackedScene" uid="uid://byuspu342y8uo" path="res://UIElements/DesignerUI/designer_left_ui.tscn" id="4_di20i"]
 [ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="5_56spr"]
 [ext_resource type="PackedScene" uid="uid://54qlgp3tcswv" path="res://UIElements/DesignerUI/designer_panel.tscn" id="6_nvek1"]
 
@@ -17,14 +17,6 @@ limit_top = 0
 script = ExtResource("2_l6knb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DesignerCamera"]
-
-[node name="MarginContainer2" type="MarginContainer" parent="DesignerCamera/CanvasLayer"]
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-
-[node name="DesignerLeft" parent="DesignerCamera/CanvasLayer/MarginContainer2" instance=ExtResource("4_757cr")]
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="DesignerCamera/CanvasLayer"]
 anchors_preset = 3
@@ -120,6 +112,8 @@ button_pressed = true
 [node name="exit" type="Button" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "exit"
+
+[node name="accordion_menu" parent="DesignerCamera/CanvasLayer" instance=ExtResource("4_di20i")]
 
 [node name="GridDisplay" type="Node2D" parent="."]
 script = ExtResource("5_56spr")

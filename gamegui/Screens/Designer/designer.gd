@@ -6,13 +6,17 @@ extends Node2D
 
 @onready var grid_controls: Control = $DesignerCamera/CanvasLayer/gridControls
 @onready var grid_display: GridDisplay = $GridDisplay
+@onready var asset_library: Control = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
+
+var dragging_scene: Node2D = null
+var scene_being_dragged: PackedScene = null
 
 signal button_pressed(button_name: String)
 
 func _ready():
 	# Connect the button signal
 	connect("button_pressed", Callable(self, "handle_button_press"))
-	
+	asset_library.asset_selected.connect(_on_asset_selected)
 	# Ensure grid_controls starts hidden
 	grid_controls.visible = false  
 	
@@ -71,3 +75,18 @@ func close_ui():
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	grid_display.draw_grid = toggled_on
+
+func _on_asset_selected(scene_path: String):
+	scene_being_dragged = load(scene_path) as PackedScene
+	dragging_scene = scene_being_dragged.instantiate() as Node2D
+	add_child(dragging_scene) # Not final placement yet
+
+func _process(delta: float) -> void:
+	if dragging_scene:
+		dragging_scene.global_position = get_global_mouse_position()
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if dragging_scene and event is InputEventMouseButton and not event.pressed:
+		# Optionally snap to grid here
+		dragging_scene = null
+		scene_being_dragged = null
