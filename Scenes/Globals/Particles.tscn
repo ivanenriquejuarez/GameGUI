@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://chl350sg4vqpp"]
+
+[ext_resource type="Texture2D" uid="uid://dcwj67ei0vbe6" path="res://Assets/background.png" id="1_7oafu"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = -1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7oafu")
+region_rect = Rect2(23, 171, 974, 673)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="NinePatchRect"]
+amount = 15000
+emission_shape = 3
+emission_rect_extents = Vector2(100000, 1000)
+direction = Vector2(-1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 868.0
+damping_min = 20.0
+damping_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(1, 0, 0, 1)

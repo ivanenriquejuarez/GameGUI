@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://e5ynm1jut8pd"
+path="res://.godot/imported/12 heart INITIAL.wav-244a5f6ac25059536b9c7933a5d5fee6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Infinity Crystal_ Awakening wavs/12 heart INITIAL.wav"
+dest_files=["res://.godot/imported/12 heart INITIAL.wav-244a5f6ac25059536b9c7933a5d5fee6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

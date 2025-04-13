@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqd5xakf1hqbj"]
+
+[ext_resource type="Texture2D" uid="uid://bus2qpv3v6qwt" path="res://Assets/Sprites/Player Sprites/_Dash.png" id="1_rjmem"]
+
+[sub_resource type="Resource" id="Resource_js7m8"]
+metadata/__load_path__ = "res://Player/Level/ghost.gd"
+
+[node name="Ghost" type="Sprite2D"]
+modulate = Color(0.419813, 0.419813, 0.419813, 1)
+show_behind_parent = true
+position = Vector2(0, -40)
+texture = ExtResource("1_rjmem")
+hframes = 2
+script = SubResource("Resource_js7m8")

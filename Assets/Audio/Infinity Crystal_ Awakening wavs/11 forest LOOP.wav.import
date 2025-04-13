@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3k67m2htdjq2"
+path="res://.godot/imported/11 forest LOOP.wav-de311cebea089f5d7956683e0d5131d1.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Infinity Crystal_ Awakening wavs/11 forest LOOP.wav"
+dest_files=["res://.godot/imported/11 forest LOOP.wav-de311cebea089f5d7956683e0d5131d1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

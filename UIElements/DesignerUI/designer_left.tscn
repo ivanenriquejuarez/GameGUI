@@ -1,0 +1,140 @@
+[gd_scene load_steps=4 format=3 uid="uid://borghsl8ooih6"]
+
+[ext_resource type="Script" uid="uid://cbsk4h77dsmd7" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_tlqjw"]
+[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="4_vufug"]
+
+[node name="DesignerLeft" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_bkryp")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CollapsibleContainer" type="Control" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+script = ExtResource("4_vufug")
+sizing_node = NodePath("MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/CollapsibleContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="CollapsibleContainer" type="Control" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(40, 23)
+layout_mode = 2
+script = ExtResource("4_vufug")
+sizing_node = NodePath("MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/CollapsibleContainer"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 27.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CollapsibleButton" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer3" node_paths=PackedStringArray("collapsible_node") instance=ExtResource("3_tlqjw")]
+layout_mode = 2
+focus_mode = 0
+text = "Objects"
+collapsible_node = NodePath("../CollapsibleContainer")
+text_label = "Objects"
+symbol_label = ""
+
+[node name="CollapsibleContainer" type="Control" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("4_vufug")
+starts_opened = false
+folding_direction_preset = 10
+sizing_constraint = 1
+sizing_node = NodePath("MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer3/CollapsibleContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer3/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer3/CollapsibleContainer/MarginContainer"]
+layout_mode = 2

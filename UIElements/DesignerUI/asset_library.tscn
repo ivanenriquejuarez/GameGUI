@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://xlu81j53eu2g"]
+
+[ext_resource type="Script" uid="uid://dgaeo8yqaoi30" path="res://asset_library.gd" id="1_kp3vk"]
+
+[node name="AssetLibrary" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kp3vk")
+asset_paths = Array[String](["res://Designer Library/Test/test_scene_1.tscn", "res://Designer Library/Test/test_scene_2.tscn", "res://Designer Library/Player Character/Knight/playerState.tscn"])
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2

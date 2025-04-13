@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqdt1ionryk64"]
+
+[ext_resource type="Texture2D" uid="uid://cr0o1xrbh1g21" path="res://Assets/Sprites/Fire Worm/Sprites/Worm/Get Hit.png" id="1_vk0g3"]
+
+[node name="TestScene1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vk0g3")
+hframes = 3

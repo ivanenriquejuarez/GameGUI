@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf6wjyq7scldy"]
+
+[ext_resource type="Texture2D" uid="uid://dxso26wanx2st" path="res://Assets/Sprites/Fire Worm/Sprites/Worm/Death.png" id="1_sqesq"]
+
+[node name="TestScene2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sqesq")
+hframes = 7
