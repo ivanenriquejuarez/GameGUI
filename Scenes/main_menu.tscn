@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d02i7ep1d2v88"]
 
-[ext_resource type="Script" uid="uid://dgakj37cieetk" path="res://Scripts/main_menu.gd" id="1_cp0ys"]
-[ext_resource type="Shader" uid="uid://fuya7an2oqyj" path="res://Shaders/FlameShader.gdshader" id="2_ce3w2"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_cp0ys"]
+[ext_resource type="Shader" path="res://Shaders/FlameShader.gdshader" id="2_ce3w2"]
 [ext_resource type="FontFile" uid="uid://3pcrm11u4rqu" path="res://Assets/Fonts/Faradisa DEMO.otf" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://dqllg7jic0ivu" path="res://Assets/wooden_buttons.png" id="4_ce3w2"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="4_opfnp"]

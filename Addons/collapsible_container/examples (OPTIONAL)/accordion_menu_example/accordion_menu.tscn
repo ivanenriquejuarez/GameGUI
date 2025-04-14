@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnp8xctp7ehgs"]
 
-[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="1_mluu6"]
-[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_oopqj"]
+[ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="1_mluu6"]
+[ext_resource type="Script" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_oopqj"]
 [ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="2_bq8ha"]
 
 [node name="accordion_menu" type="Control"]
@@ -72,7 +72,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(574, 287)
+custom_minimum_size = Vector2(958, 287)
 layout_mode = 2
 script = ExtResource("1_mluu6")
 sizing_constraint = 1
@@ -109,7 +109,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(574, 62)
+custom_minimum_size = Vector2(958, 62)
 layout_mode = 2
 script = ExtResource("1_mluu6")
 sizing_constraint = 1
@@ -154,7 +154,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(574, 62)
+custom_minimum_size = Vector2(958, 62)
 layout_mode = 2
 script = ExtResource("1_mluu6")
 sizing_constraint = 1
@@ -199,7 +199,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(574, 62)
+custom_minimum_size = Vector2(958, 62)
 layout_mode = 2
 script = ExtResource("1_mluu6")
 sizing_constraint = 1

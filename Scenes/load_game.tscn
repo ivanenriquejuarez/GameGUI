@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cqxakn03ewye3"]
 
 [ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="1_kkuuu"]
-[ext_resource type="Script" uid="uid://1g3ypoaw8hgv" path="res://Scripts/load_game.gd" id="1_nlw8c"]
+[ext_resource type="Script" path="res://Scripts/load_game.gd" id="1_nlw8c"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="2_ypx42"]
 [ext_resource type="Texture2D" uid="uid://cd2wnyi80wax2" path="res://Assets/wooden_buttons_darker.png" id="4_3b4e4"]
 [ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="4_i8gfv"]
@@ -95,7 +95,6 @@ theme_override_constants/separation = 10
 
 [node name="SaveSlot1" type="Button" parent="SaveSlot/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/line_spacing = 100
 theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rm4s4")
@@ -106,7 +105,6 @@ text = "Save Slot X | Last Played: TBD"
 
 [node name="SaveSlot2" type="Button" parent="SaveSlot/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/line_spacing = 100
 theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rm4s4")
@@ -117,7 +115,6 @@ text = "Save Slot X | Last Played: TBD"
 
 [node name="SaveSlot3" type="Button" parent="SaveSlot/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/line_spacing = 100
 theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rm4s4")
@@ -128,7 +125,6 @@ text = "Save Slot X | Last Played: TBD"
 
 [node name="SaveSlot4" type="Button" parent="SaveSlot/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/line_spacing = 100
 theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rm4s4")

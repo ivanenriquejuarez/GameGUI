@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://byuspu342y8uo"]
 
-[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
-[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
+[ext_resource type="Script" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
+[ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
 [ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
 
 [node name="accordion_menu" type="Control"]

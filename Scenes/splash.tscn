@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://6bidekwl3by1"]
 
-[ext_resource type="Script" uid="uid://bloh7ah48efav" path="res://Scripts/splash_screen.gd" id="1_hvtgh"]
-[ext_resource type="Shader" uid="uid://fuya7an2oqyj" path="res://Shaders/FlameShader.gdshader" id="2_hvtgh"]
+[ext_resource type="Script" path="res://Scripts/splash_screen.gd" id="1_hvtgh"]
+[ext_resource type="Shader" path="res://Shaders/FlameShader.gdshader" id="2_hvtgh"]
 [ext_resource type="FontFile" uid="uid://3pcrm11u4rqu" path="res://Assets/Fonts/Faradisa DEMO.otf" id="3_3amwm"]
 [ext_resource type="FontFile" uid="uid://c1oo5pahwcbk4" path="res://Assets/Fonts/RELIGATH-Demo.otf" id="4_k5yql"]
 [ext_resource type="AudioStream" uid="uid://bdfqp637df2qd" path="res://Assets/sfx/1 titles INITIAL.wav" id="5_65tea"]

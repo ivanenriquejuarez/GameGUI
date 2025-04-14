@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xlu81j53eu2g"]
 
-[ext_resource type="Script" uid="uid://dgaeo8yqaoi30" path="res://asset_library.gd" id="1_kp3vk"]
+[ext_resource type="Script" path="res://asset_library.gd" id="1_kp3vk"]
 
 [node name="AssetLibrary" type="Control"]
 layout_mode = 3

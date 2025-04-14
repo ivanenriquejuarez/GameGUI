@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drp4mkjbhbi2e"]
 
-[ext_resource type="Script" uid="uid://biso0jap13ujn" path="res://Scripts/Globals/buttonHoverSound.gd" id="1_omyix"]
+[ext_resource type="Script" path="res://Scripts/Globals/buttonHoverSound.gd" id="1_omyix"]
 [ext_resource type="AudioStream" uid="uid://d24vb2kakmshk" path="res://Assets/sfx/hoverSound.wav" id="2_v78ui"]
 [ext_resource type="AudioStream" uid="uid://kj0jqh4tl732" path="res://Assets/sfx/013_Confirm_03.wav" id="3_v78ui"]
 

@@ -1,19 +1,19 @@
 [gd_scene load_steps=56 format=3 uid="uid://bk0ci6q46y8ic"]
 
-[ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
-[ext_resource type="Texture2D" uid="uid://ct40eem1k50us" path="res://Assets/Sprites/Player Sprites/_Crouch.png" id="7_nbj1r"]
-[ext_resource type="Texture2D" uid="uid://bdul0kt3fbdfn" path="res://Assets/Sprites/Player Sprites/_CrouchWalk.png" id="8_hl7ro"]
-[ext_resource type="Texture2D" uid="uid://dstcr50vsxb7k" path="res://Assets/Sprites/Player Sprites/_Run.png" id="8_qc51x"]
-[ext_resource type="Texture2D" uid="uid://dvtwlwfo5vgwe" path="res://Assets/Sprites/Player Sprites/_SlideFull.png" id="9_egbae"]
-[ext_resource type="Texture2D" uid="uid://dvvnpjo08me4y" path="res://Assets/Sprites/Player Sprites/_Jump.png" id="9_mef24"]
-[ext_resource type="Texture2D" uid="uid://ckbi1yg40waye" path="res://Assets/Sprites/Player Sprites/_Fall.png" id="10_drrqs"]
-[ext_resource type="Texture2D" uid="uid://bus2qpv3v6qwt" path="res://Assets/Sprites/Player Sprites/_Dash.png" id="10_o50mt"]
-[ext_resource type="Texture2D" uid="uid://csdll7mjqomo1" path="res://Assets/Sprites/Player Sprites/_Roll.png" id="11_fkajl"]
-[ext_resource type="Texture2D" uid="uid://cyvw1xhq061qb" path="res://Assets/Sprites/Player Sprites/_Attack.png" id="12_egyuu"]
-[ext_resource type="Texture2D" uid="uid://cugoujjklio4i" path="res://Assets/Sprites/Player Sprites/_Hit.png" id="14_lc21g"]
-[ext_resource type="Texture2D" uid="uid://bp6ucd8ioeesw" path="res://Assets/Sprites/Player Sprites/_WallSlide.png" id="15_g44xm"]
-[ext_resource type="Texture2D" uid="uid://b23ux8b7ijo4c" path="res://Assets/Sprites/Player Sprites/_Attack2.png" id="16_0tmk4"]
-[ext_resource type="Texture2D" uid="uid://bssab6emswgll" path="res://Assets/Sprites/Player Sprites/_CrouchAttack.png" id="17_2shkd"]
+[ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
+[ext_resource type="Texture2D" uid="uid://ct40eem1k50us" path="res://Assets/Sprites/Sprites/Player Sprites/_Crouch.png" id="7_nbj1r"]
+[ext_resource type="Texture2D" uid="uid://bdul0kt3fbdfn" path="res://Assets/Sprites/Sprites/Player Sprites/_CrouchWalk.png" id="8_hl7ro"]
+[ext_resource type="Texture2D" uid="uid://dstcr50vsxb7k" path="res://Assets/Sprites/Sprites/Player Sprites/_Run.png" id="8_qc51x"]
+[ext_resource type="Texture2D" uid="uid://dvtwlwfo5vgwe" path="res://Assets/Sprites/Sprites/Player Sprites/_SlideFull.png" id="9_egbae"]
+[ext_resource type="Texture2D" uid="uid://dvvnpjo08me4y" path="res://Assets/Sprites/Sprites/Player Sprites/_Jump.png" id="9_mef24"]
+[ext_resource type="Texture2D" uid="uid://ckbi1yg40waye" path="res://Assets/Sprites/Sprites/Player Sprites/_Fall.png" id="10_drrqs"]
+[ext_resource type="Texture2D" uid="uid://bus2qpv3v6qwt" path="res://Assets/Sprites/Sprites/Player Sprites/_Dash.png" id="10_o50mt"]
+[ext_resource type="Texture2D" uid="uid://csdll7mjqomo1" path="res://Assets/Sprites/Sprites/Player Sprites/_Roll.png" id="11_fkajl"]
+[ext_resource type="Texture2D" uid="uid://cyvw1xhq061qb" path="res://Assets/Sprites/Sprites/Player Sprites/_Attack.png" id="12_egyuu"]
+[ext_resource type="Texture2D" uid="uid://cugoujjklio4i" path="res://Assets/Sprites/Sprites/Player Sprites/_Hit.png" id="14_lc21g"]
+[ext_resource type="Texture2D" uid="uid://bp6ucd8ioeesw" path="res://Assets/Sprites/Sprites/Player Sprites/_WallSlide.png" id="15_g44xm"]
+[ext_resource type="Texture2D" uid="uid://b23ux8b7ijo4c" path="res://Assets/Sprites/Sprites/Player Sprites/_Attack2.png" id="16_0tmk4"]
+[ext_resource type="Texture2D" uid="uid://bssab6emswgll" path="res://Assets/Sprites/Sprites/Player Sprites/_CrouchAttack.png" id="17_2shkd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7hxca"]
 radius = 3.0
@@ -8296,22 +8296,22 @@ tracks/42/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lfsi8"]
 _data = {
-&"Attack1": SubResource("Animation_dguap"),
-&"Attack2": SubResource("Animation_jyd5k"),
-&"Crouch": SubResource("Animation_fc612"),
-&"Crouch_Attack": SubResource("Animation_p5tkr"),
-&"Crouch_Walk": SubResource("Animation_pmccw"),
-&"Dash": SubResource("Animation_sf5eq"),
-&"Fall": SubResource("Animation_frypo"),
-&"Hurt": SubResource("Animation_3sw27"),
-&"Idle": SubResource("Animation_45b67"),
-&"Jump": SubResource("Animation_nmu1n"),
-&"JumpAttack": SubResource("Animation_yo83p"),
-&"RESET": SubResource("Animation_5sk1v"),
-&"Roll": SubResource("Animation_1ltvd"),
-&"Run": SubResource("Animation_la2dn"),
-&"Slide": SubResource("Animation_2hubo"),
-&"WallSlide": SubResource("Animation_xmxe0")
+"Attack1": SubResource("Animation_dguap"),
+"Attack2": SubResource("Animation_jyd5k"),
+"Crouch": SubResource("Animation_fc612"),
+"Crouch_Attack": SubResource("Animation_p5tkr"),
+"Crouch_Walk": SubResource("Animation_pmccw"),
+"Dash": SubResource("Animation_sf5eq"),
+"Fall": SubResource("Animation_frypo"),
+"Hurt": SubResource("Animation_3sw27"),
+"Idle": SubResource("Animation_45b67"),
+"Jump": SubResource("Animation_nmu1n"),
+"JumpAttack": SubResource("Animation_yo83p"),
+"RESET": SubResource("Animation_5sk1v"),
+"Roll": SubResource("Animation_1ltvd"),
+"Run": SubResource("Animation_la2dn"),
+"Slide": SubResource("Animation_2hubo"),
+"WallSlide": SubResource("Animation_xmxe0")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwdog"]
@@ -8406,7 +8406,6 @@ debug_color = Color(0, 0.62242, 0.546233, 0.42)
 
 [node name="HeavyAttack" type="AudioStreamPlayer2D" parent="Sprite2D/Hurtbox"]
 position = Vector2(3, 0)
-bus = &"SFX"
 
 [node name="GhostTimer" type="Timer" parent="Sprite2D"]
 wait_time = 0.09
@@ -8480,27 +8479,20 @@ wait_time = 6.0
 [node name="Stamina" type="Node" parent="."]
 
 [node name="RunSound" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 
 [node name="LightAttack" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 
 [node name="SideAttack" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 volume_db = -20.048
-bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="."]
 volume_db = -7.495
-bus = &"SFX"
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 
 [node name="SlideHang" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://da4s7jl4qxkqo"]
 
-[ext_resource type="Script" uid="uid://ij814qgvhqvs" path="res://UIElements/DesignerUI/asset_button.gd" id="1_768lu"]
+[ext_resource type="Script" path="res://UIElements/DesignerUI/asset_button.gd" id="1_768lu"]
 
 [node name="AssetButton" type="Control"]
 custom_minimum_size = Vector2(96, 96)

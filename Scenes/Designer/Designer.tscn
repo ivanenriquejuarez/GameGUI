@@ -1,15 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://ty6ca4jgo80g"]
 
-[ext_resource type="Script" uid="uid://d3vjxq8617dwn" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
-[ext_resource type="Script" uid="uid://bmafmlj01k4bv" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
+[ext_resource type="Script" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
+[ext_resource type="Script" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
 [ext_resource type="PackedScene" uid="uid://byuspu342y8uo" path="res://UIElements/DesignerUI/designer_left_ui.tscn" id="4_di20i"]
-[ext_resource type="Script" uid="uid://doqisqrvpvkag" path="res://Addons/grid_display/grid_display.gd" id="5_56spr"]
+[ext_resource type="Script" path="res://addons/grid_display/grid_display.gd" id="5_56spr"]
 [ext_resource type="PackedScene" uid="uid://54qlgp3tcswv" path="res://UIElements/DesignerUI/designer_panel.tscn" id="5_g87yj"]
 [ext_resource type="PackedScene" uid="uid://bcsgncexysv8y" path="res://UIElements/DesignerUI/designer_settings.tscn" id="6_u8qm0"]
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
-grid_size = Vector2i(500, 500)
 
 [node name="DesignerCamera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -41,6 +40,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -89,7 +89,6 @@ text = "cell size"
 layout_mode = 2
 item_count = 4
 popup/item_0/text = "16"
-popup/item_0/id = 0
 popup/item_1/text = "32"
 popup/item_1/id = 1
 popup/item_2/text = "64"
@@ -110,14 +109,32 @@ layout_mode = 2
 text = "exit"
 
 [node name="accordion_menu" parent="DesignerCamera/CanvasLayer" instance=ExtResource("4_di20i")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 1.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="SaveLoad" parent="DesignerCamera/CanvasLayer" instance=ExtResource("5_g87yj")]
+[node name="SaveLoad" parent="DesignerCamera/CanvasLayer" node_paths=PackedStringArray("designer_node") instance=ExtResource("5_g87yj")]
 visible = false
+designer_node = NodePath("../../..")
 
 [node name="DesignerSettings" parent="DesignerCamera/CanvasLayer" instance=ExtResource("6_u8qm0")]
 visible = false
 
+[node name="play" type="Button" parent="DesignerCamera/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "PLAY"
+
 [node name="GridDisplay" type="Node2D" parent="."]
+z_index = -1
 script = ExtResource("5_56spr")
 grid_size = Vector2(500, 500)
 line_size = Vector2(1, 1)
@@ -127,3 +144,4 @@ border_width = 1.0
 [connection signal="item_selected" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]
 [connection signal="toggled" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/exit" to="." method="close_ui"]
+[connection signal="pressed" from="DesignerCamera/CanvasLayer/play" to="." method="_on_play_pressed"]

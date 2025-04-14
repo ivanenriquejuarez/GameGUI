@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://do3ng6sbu7qa4"]
 
 [ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="1_4geyq"]
-[ext_resource type="Script" uid="uid://xttgtyv6ay1k" path="res://Scripts/settings_audio.gd" id="1_f60ng"]
+[ext_resource type="Script" path="res://Scripts/settings_audio.gd" id="1_f60ng"]
 [ext_resource type="Texture2D" uid="uid://dtoopbsuvqbxs" path="res://Assets/Spritesheet_UI_Flat.png" id="2_i44u3"]
 [ext_resource type="Texture2D" uid="uid://dspcfyrjmqe86" path="res://Assets/SpriteSheet.png" id="3_bismi"]
 [ext_resource type="Texture2D" uid="uid://c1f5jl4qjwuxb" path="res://Assets/saveButtonHover.png" id="5_f60ng"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://borghsl8ooih6"]
 
-[ext_resource type="Script" uid="uid://cbsk4h77dsmd7" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_tlqjw"]
-[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="4_vufug"]
+[ext_resource type="Script" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_tlqjw"]
+[ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="4_vufug"]
 
 [node name="DesignerLeft" type="Control"]
 layout_mode = 3
@@ -118,7 +118,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0

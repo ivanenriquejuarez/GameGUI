@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://54qlgp3tcswv"]
 
 [ext_resource type="TileSet" uid="uid://fyfap5a6a2sb" path="res://Assets/UI/settings.tres" id="1_b22ix"]
-[ext_resource type="Script" uid="uid://dsfdagaj3db7l" path="res://UIElements/DesignerUI/designer_panel.gd" id="1_ptd1g"]
+[ext_resource type="Script" path="res://UIElements/DesignerUI/designer_panel.gd" id="1_ptd1g"]
 [ext_resource type="TileSet" uid="uid://csd0crr4505kw" path="res://Assets/UI/Buttons.tres" id="2_rwkcn"]
 [ext_resource type="Texture2D" uid="uid://c2ei4xtewv7hf" path="res://Assets/UI/Lucid V1.2/Spritesheet/Flat/32/IconsFlat-32.png" id="3_f8nqu"]
 [ext_resource type="Texture2D" uid="uid://cmmnqcghgy7tk" path="res://Assets/UI/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="4_mno1x"]

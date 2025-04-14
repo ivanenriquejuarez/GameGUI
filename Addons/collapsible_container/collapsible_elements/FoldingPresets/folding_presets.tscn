@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://cwa8eok4abi4c"]
 
-[ext_resource type="Script" uid="uid://c8e3ix1jfa4gn" path="res://addons/collapsible_container/collapsible_elements/FoldingPresets/folding_presets.gd" id="1_ysp51"]
+[ext_resource type="Script" path="res://addons/collapsible_container/collapsible_elements/FoldingPresets/folding_presets.gd" id="1_ysp51"]
 [ext_resource type="Texture2D" uid="uid://crdv3y6m67ms0" path="res://addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Normal/ControlAlignTopLeft.svg" id="2_lobqh"]
 [ext_resource type="Texture2D" uid="uid://c24jayottym27" path="res://addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Normal/ControlAlignCenterTop.svg" id="3_qbd0r"]
 [ext_resource type="Texture2D" uid="uid://domepwwue1sp4" path="res://addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Clicked/ControlAlignTopLeft.svg" id="3_waogs"]

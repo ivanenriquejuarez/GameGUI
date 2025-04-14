@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf6wjyq7scldy"]
+[gd_scene load_steps=4 format=3 uid="uid://cf6wjyq7scldy"]
 
-[ext_resource type="Texture2D" uid="uid://dxso26wanx2st" path="res://Assets/Sprites/Fire Worm/Sprites/Worm/Death.png" id="1_sqesq"]
+[ext_resource type="Script" path="res://Designer Library/Test/test_scene_2.gd" id="1_gjqe5"]
+[ext_resource type="Texture2D" uid="uid://dxso26wanx2st" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Death.png" id="1_sqesq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u8c2"]
+size = Vector2(21, 20)
 
 [node name="TestScene2" type="Node2D"]
+script = ExtResource("1_gjqe5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sqesq")
 hframes = 7
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7u8c2")

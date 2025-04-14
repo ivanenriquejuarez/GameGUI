@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://bv48v78blcagt"]
 
-[ext_resource type="TileSet" uid="uid://c446f8fukuvff" path="res://Assets/UI/settings.tres" id="2_tyu27"]
-[ext_resource type="TileSet" uid="uid://c1slwfmhusvdl" path="res://Assets/UI/Buttons.tres" id="5_31kt4"]
+[ext_resource type="TileSet" uid="uid://fyfap5a6a2sb" path="res://Assets/UI/settings.tres" id="2_tyu27"]
+[ext_resource type="TileSet" uid="uid://csd0crr4505kw" path="res://Assets/UI/Buttons.tres" id="5_31kt4"]
 [ext_resource type="AudioStream" uid="uid://2u1i5jmfnl2m" path="res://Assets/Audio/10_UI_Menu_SFX/001_Hover_01.wav" id="6_qomow"]
 [ext_resource type="AudioStream" uid="uid://58g4ecpevtif" path="res://Assets/Audio/10_UI_Menu_SFX/013_Confirm_03.wav" id="7_yby87"]
 
@@ -141,8 +141,6 @@ tile_set = ExtResource("5_31kt4")
 
 [node name="audio_hover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_qomow")
-bus = &"SFX"
 
 [node name="audio_select" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_yby87")
-bus = &"SFX"
