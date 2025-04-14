@@ -21,14 +21,21 @@ func _ready():
 	apply_grid_settings()
 
 func apply_grid_settings():
+	if Engine.is_editor_hint():
+		return
+	
 	if grid_display:
 		grid_display.grid_size = DesignerState.grid_size
 		grid_display.cell_size = DesignerState.cell_size
 
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return  # Don’t run this in the editor
+
 	if is_instance_valid(DesignerState.dragging_scene):
-		DesignerState.dragging_scene.global_position = get_global_mouse_position()
+		var mouse_pos := get_viewport().get_camera_2d().get_global_mouse_position()
+		DesignerState.dragging_scene.global_position = mouse_pos
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -43,12 +50,19 @@ func _input(event):
 		save_load.visible = false
 		designer_settings.visible = false
 
-func _on_asset_selected(scene_path: String):
-	DesignerState.scene_being_dragged = load(scene_path) as PackedScene
-	DesignerState.dragging_scene = DesignerState.scene_being_dragged.instantiate() as Node2D
-	DesignerState.dragging_scene.modulate.a = 0.5
-	add_child(DesignerState.dragging_scene)
-	DesignerState.dragging_scene.global_position = get_global_mouse_position()
+func _on_asset_selected(preview_path: String, runtime_path: String):
+	var preview_scene = load(preview_path) as PackedScene
+	var runtime_scene = load(runtime_path) as PackedScene
+
+	if preview_scene and runtime_scene:
+		DesignerState.scene_being_dragged = runtime_scene
+		DesignerState.dragging_scene = preview_scene.instantiate() as Node2D
+		DesignerState.dragging_scene.modulate.a = 0.5  # semi-transparent preview
+
+		var mouse_pos := get_viewport().get_camera_2d().get_global_mouse_position()
+		DesignerState.dragging_scene.global_position = mouse_pos
+
+		add_child(DesignerState.dragging_scene)
 
 func _on_play_pressed() -> void:
 	var play_scene = load("res://Scenes/Designer/play_mode.tscn") as PackedScene

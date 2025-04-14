@@ -2,7 +2,7 @@
 extends Node
 
 var cell_size: Vector2 = Vector2(64, 64)
-var grid_size: Vector2i = Vector2i(20, 15)
+var grid_size: Vector2i = Vector2i(500, 500)
 
 var dragging_scene: Node2D = null
 var scene_being_dragged: PackedScene = null
@@ -22,8 +22,10 @@ func pick_up(node: Node2D):
 	node.get_parent().remove_child(node)
 
 func finalize_placement(parent: Node):
+	var mouse_pos := parent.get_viewport().get_camera_2d().get_global_mouse_position()
+
 	var instance = scene_being_dragged.instantiate() as Node2D
-	instance.global_position = parent.get_global_mouse_position()
+	instance.global_position = mouse_pos
 	parent.add_child(instance)
 
 	pending_objects.append({

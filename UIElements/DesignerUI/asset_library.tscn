@@ -12,7 +12,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kp3vk")
-asset_paths = Array[String](["res://Designer Library/Test/test_scene_1.tscn", "res://Designer Library/Test/test_scene_2.tscn", "res://Designer Library/Player Character/Knight/playerState.tscn"])
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1

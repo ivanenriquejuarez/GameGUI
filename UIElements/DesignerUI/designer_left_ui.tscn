@@ -10,9 +10,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -577.0
+offset_right = -1348.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
 
 [node name="HorizontalMenu" type="Control" parent="." node_paths=PackedStringArray("check_button", "collapsible_buttons")]
 layout_mode = 2
