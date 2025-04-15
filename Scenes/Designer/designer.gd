@@ -12,7 +12,7 @@ extends Node2D
 signal button_pressed(button_name: String)
 
 func _ready():
-	connect("button_pressed", Callable(self, "handle_button_press"))
+	connect("button_pressed", Callable(self, "_on_button_pressed"))
 	if asset_library.has_signal("asset_selected"):
 		asset_library.connect("asset_selected", Callable(self, "_on_asset_selected"))
 	grid_controls.visible = false
@@ -28,7 +28,23 @@ func apply_grid_settings():
 		grid_display.grid_size = DesignerState.grid_size
 		grid_display.cell_size = DesignerState.cell_size
 
+func set_cell_size(index: int):
+	var cell_size = int($DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))
+	grid_display.cell_size = Vector2(cell_size, cell_size)
+	DesignerState.cell_size = Vector2(cell_size, cell_size)
 
+func set_line_and_border_width(value: float):
+	value = clamp(value, 1, 5)
+	grid_display.line_size = Vector2(value, value)
+	grid_display.border_width = value
+
+func toggle_grid(toggled_on: bool):
+	if grid_display:
+		grid_display.visible = toggled_on
+
+func _on_exit_pressed() -> void:
+	grid_controls.visible = false
+	
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return  # Don’t run this in the editor
@@ -68,3 +84,20 @@ func _on_asset_selected(preview_path: String, runtime_path: String):
 func _on_play_pressed() -> void:
 	var play_scene = load("res://Scenes/Designer/play_mode.tscn") as PackedScene
 	get_tree().change_scene_to_packed(play_scene)
+
+
+func _on_save_pressed() -> void:
+	DesignerState.save_to_file()
+
+
+func _on_load_pressed() -> void:
+	DesignerState.load_from_file()
+
+func _on_button_pressed(button_name: String):
+	match button_name:
+		"grid_controls":
+			grid_controls.visible = true
+		"designer_settings":
+			designer_settings.visible = true
+		"save_load":
+			save_load.visible = true

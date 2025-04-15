@@ -923,3 +923,7 @@ icon = ExtResource("6_c3pke")
 [node name="save_load" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("7_64w8g")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/grid_controls" to="." method="_on_grid_controls_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/designer_settings" to="." method="_on_designer_settings_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/save_load" to="." method="_on_save_load_pressed"]

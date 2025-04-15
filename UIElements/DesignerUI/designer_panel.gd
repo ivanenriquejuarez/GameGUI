@@ -13,9 +13,9 @@ func _ready():
 		print("Designer node not assigned!")
 
 	# Connect the button signals to emit the custom signal in the Designer
-	grid_controls.pressed.connect(_on_grid_controls_pressed)
-	designer_settings.pressed.connect(_on_designer_settings_pressed)
-	save_load.pressed.connect(_on_save_load_pressed)
+	#grid_controls.pressed.connect(_on_grid_controls_pressed)
+	#designer_settings.pressed.connect(_on_designer_settings_pressed)
+	#save_load.pressed.connect(_on_save_load_pressed)
 
 func _on_grid_controls_pressed():
 	# Emit the custom signal in the Designer node

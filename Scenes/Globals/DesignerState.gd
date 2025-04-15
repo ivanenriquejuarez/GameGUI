@@ -47,7 +47,19 @@ func finalize_placement(parent: Node):
 
 func save_to_file(path: String = "user://designer_save.json") -> void:
 	var file = FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(pending_objects))
+
+	var serialized_data := []
+	for obj in pending_objects:
+		serialized_data.append({
+			"preview_path": obj["preview_path"],
+			"runtime_path": obj["runtime_path"],
+			"position": {
+				"x": obj["position"].x,
+				"y": obj["position"].y
+			}
+		})
+
+	file.store_string(JSON.stringify(serialized_data))
 	print("Designer saved:", path)
 
 func load_from_file(path: String = "user://designer_save.json") -> void:
@@ -64,12 +76,12 @@ func load_from_file(path: String = "user://designer_save.json") -> void:
 		for obj in data:
 			var preview_scene = load(obj["preview_path"]) as PackedScene
 			var instance = preview_scene.instantiate() as Node2D
-			instance.global_position = obj["position"]
-			instance.modulate.a = 0.5  # semi-transparent like before
+			instance.global_position = Vector2(obj["position"]["x"], obj["position"]["y"])
+			instance.modulate.a = 0.5
 			get_tree().get_current_scene().add_child(instance)
 
 			pending_objects.append({
 				"preview_path": obj["preview_path"],
 				"runtime_path": obj["runtime_path"],
-				"position": obj["position"]
+				"position": instance.global_position
 			})
