@@ -106,6 +106,11 @@ text = "visibility"
 layout_mode = 2
 button_pressed = true
 
+[node name="snapBox" type="CheckBox" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Grid Snap"
+
 [node name="exit" type="Button" parent="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "exit"
@@ -168,6 +173,7 @@ border_width = 1.0
 [connection signal="value_changed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/HSlider" to="." method="set_line_and_border_width"]
 [connection signal="item_selected" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]
 [connection signal="toggled" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/CheckBox" to="." method="toggle_grid"]
+[connection signal="toggled" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/snapBox" to="." method="toggle_grid_snap"]
 [connection signal="pressed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="DesignerCamera/CanvasLayer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="DesignerCamera/CanvasLayer/save" to="." method="_on_save_pressed"]

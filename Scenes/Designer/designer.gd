@@ -8,7 +8,7 @@ extends Node2D
 @onready var asset_library := (
 	$DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
 ) as AssetLibrary
-
+var grid_snap_enabled: bool = true
 signal button_pressed(button_name: String)
 
 func _ready():
@@ -19,6 +19,7 @@ func _ready():
 	save_load.visible = false
 	designer_settings.visible = false
 	apply_grid_settings()
+	reload_designer_objects()
 
 func apply_grid_settings():
 	if Engine.is_editor_hint():
@@ -42,16 +43,29 @@ func toggle_grid(toggled_on: bool):
 	if grid_display:
 		grid_display.visible = toggled_on
 
+func toggle_grid_snap(toggled_on: bool):
+	DesignerState.grid_snap_enabled = toggled_on
+	
 func _on_exit_pressed() -> void:
 	grid_controls.visible = false
+	
+func snap_to_grid(pos: Vector2) -> Vector2:
+	if not DesignerState.grid_snap_enabled:
+		return pos
+
+	var size = DesignerState.cell_size
+	return Vector2(
+		floor(pos.x / size.x) * size.x + size.x / 2,
+		floor(pos.y / size.y) * size.y + size.y / 2
+	)
 	
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return  # Don’t run this in the editor
-
+		
 	if is_instance_valid(DesignerState.dragging_scene):
 		var mouse_pos := get_viewport().get_camera_2d().get_global_mouse_position()
-		DesignerState.dragging_scene.global_position = mouse_pos
+		DesignerState.dragging_scene.global_position = snap_to_grid(mouse_pos)
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -101,3 +115,12 @@ func _on_button_pressed(button_name: String):
 			designer_settings.visible = true
 		"save_load":
 			save_load.visible = true
+
+func reload_designer_objects():
+	for obj in DesignerState.pending_objects:
+		var preview_scene = load(obj["preview_path"]) as PackedScene
+		if preview_scene:
+			var instance = preview_scene.instantiate() as Node2D
+			instance.global_position = obj["position"]
+			instance.modulate.a = 0.5
+			add_child(instance)

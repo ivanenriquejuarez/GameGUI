@@ -7,3 +7,7 @@ func _ready():
 		var instance = packed.instantiate()
 		instance.global_position = pos
 		add_child(instance)
+
+
+func _on_return_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Designer/Designer.tscn")

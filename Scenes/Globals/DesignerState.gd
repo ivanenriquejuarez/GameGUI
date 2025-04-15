@@ -8,6 +8,7 @@ var preview_scene: PackedScene = null  # New!
 var dragging_scene: Node2D = null
 var scene_being_dragged: PackedScene = null
 var pending_objects: Array = []
+var grid_snap_enabled: bool = true
 
 func clear():
 	pending_objects.clear()
@@ -24,26 +25,32 @@ func pick_up(node: Node2D):
 
 func finalize_placement(parent: Node):
 	var mouse_pos := parent.get_viewport().get_camera_2d().get_global_mouse_position()
+	var final_pos = mouse_pos
 
-	# ✅ Place the preview scene visually in the designer
+	if grid_snap_enabled:
+		var cell_size = cell_size
+		final_pos = Vector2(
+			floor(mouse_pos.x / cell_size.x) * cell_size.x + cell_size.x / 2,
+			floor(mouse_pos.y / cell_size.y) * cell_size.y + cell_size.y / 2
+		)
+
 	var instance = preview_scene.instantiate() as Node2D
-	instance.global_position = mouse_pos
+	instance.global_position = final_pos
 	parent.add_child(instance)
 
-	# ✅ Store the runtime scene for play mode
 	pending_objects.append({
-	"preview_path": preview_scene.resource_path,
-	"runtime_path": scene_being_dragged.resource_path,
-	"position": instance.global_position
+		"preview_path": preview_scene.resource_path,
+		"runtime_path": scene_being_dragged.resource_path,
+		"position": final_pos
 	})
 
-	# ✅ Clean up preview
 	if is_instance_valid(dragging_scene):
 		dragging_scene.queue_free()
 
 	dragging_scene = null
 	scene_being_dragged = null
 	preview_scene = null
+
 
 func save_to_file(path: String = "user://designer_save.json") -> void:
 	var file = FileAccess.open(path, FileAccess.WRITE)
