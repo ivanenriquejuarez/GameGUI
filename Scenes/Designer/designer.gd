@@ -55,6 +55,7 @@ func _on_asset_selected(preview_path: String, runtime_path: String):
 	var runtime_scene = load(runtime_path) as PackedScene
 
 	if preview_scene and runtime_scene:
+		DesignerState.preview_scene = preview_scene
 		DesignerState.scene_being_dragged = runtime_scene
 		DesignerState.dragging_scene = preview_scene.instantiate() as Node2D
 		DesignerState.dragging_scene.modulate.a = 0.5  # semi-transparent preview

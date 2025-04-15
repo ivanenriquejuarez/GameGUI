@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsv5a4lk0oqvw"]
+
+[ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="1_76hk8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnhcm"]
+
+[node name="KnightPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -21)
+texture = ExtResource("1_76hk8")
+hframes = 10
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_cnhcm")

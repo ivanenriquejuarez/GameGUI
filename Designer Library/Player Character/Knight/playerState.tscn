@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bk0ci6q46y8ic"]
+[gd_scene load_steps=62 format=3 uid="uid://bk0ci6q46y8ic"]
 
 [ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_state_test.gd" id="1_5mgp2"]
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_idle_state.gd" id="17_4y3nx"]
 [ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_fall_state.gd" id="18_ccf8y"]
 [ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_jump_state.gd" id="19_78hht"]
+[ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_run_state.gd" id="19_w6y64"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7hxca"]
 radius = 3.0
@@ -8445,7 +8446,9 @@ character_body_2d = NodePath("../..")
 script = ExtResource("18_ccf8y")
 character_body_2d = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("19_w6y64")
+character_body_2d = NodePath("../..")
 
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
 script = ExtResource("19_78hht")

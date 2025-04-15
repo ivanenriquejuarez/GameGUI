@@ -16,7 +16,7 @@ var asset_list := [
 		"runtime": "res://Designer Library/Test/test_scene_1.tscn"
 	},
 	{
-		"preview": "res://Designer Library/Player Character/Knight/playerState.tscn",
+		"preview": "res://Designer Library/Player Character/Knight/knight_preview.tscn",
 		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
 	},
 	{
