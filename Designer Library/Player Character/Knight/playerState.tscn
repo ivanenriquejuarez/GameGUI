@@ -1,5 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://bk0ci6q46y8ic"]
+[gd_scene load_steps=61 format=3 uid="uid://bk0ci6q46y8ic"]
 
+[ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_state_test.gd" id="1_5mgp2"]
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
 [ext_resource type="Texture2D" uid="uid://ct40eem1k50us" path="res://Assets/Sprites/Sprites/Player Sprites/_Crouch.png" id="7_nbj1r"]
 [ext_resource type="Texture2D" uid="uid://bdul0kt3fbdfn" path="res://Assets/Sprites/Sprites/Player Sprites/_CrouchWalk.png" id="8_hl7ro"]
@@ -13,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://cugoujjklio4i" path="res://Assets/Sprites/Sprites/Player Sprites/_Hit.png" id="14_lc21g"]
 [ext_resource type="Texture2D" uid="uid://bp6ucd8ioeesw" path="res://Assets/Sprites/Sprites/Player Sprites/_WallSlide.png" id="15_g44xm"]
 [ext_resource type="Texture2D" uid="uid://b23ux8b7ijo4c" path="res://Assets/Sprites/Sprites/Player Sprites/_Attack2.png" id="16_0tmk4"]
+[ext_resource type="Script" path="res://Designer Library/state_machine/node_finite_state_machine.gd" id="16_j0xba"]
 [ext_resource type="Texture2D" uid="uid://bssab6emswgll" path="res://Assets/Sprites/Sprites/Player Sprites/_CrouchAttack.png" id="17_2shkd"]
+[ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_idle_state.gd" id="17_4y3nx"]
+[ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_fall_state.gd" id="18_ccf8y"]
+[ext_resource type="Script" path="res://Designer Library/Player Character/Knight/player_jump_state.gd" id="19_78hht"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7hxca"]
 radius = 3.0
@@ -8318,9 +8323,10 @@ _data = {
 size = Vector2(18, 28.5)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 130
-collision_mask = 5
+collision_layer = 2
+collision_mask = 13
 platform_floor_layers = 4294967041
+script = ExtResource("1_5mgp2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -40)
@@ -8427,15 +8433,23 @@ position = Vector2(0, -50)
 zoom = Vector2(3, 3)
 limit_smoothed = true
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("16_j0xba")
+initial_node_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("17_4y3nx")
+character_body_2d = NodePath("../..")
 
-[node name="Fall" type="Node" parent="StateMachine"]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("18_ccf8y")
+character_body_2d = NodePath("../..")
 
 [node name="Run" type="Node" parent="StateMachine"]
 
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("19_78hht")
+character_body_2d = NodePath("../..")
 
 [node name="Attack1" type="Node" parent="StateMachine"]
 

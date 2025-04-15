@@ -9,11 +9,8 @@ signal death
 @export var gravity : int = 700
 @export var friction : int = 700
 
-@onready var health: Health = $"../../Health"
-@onready var hitbox: Hitbox = $"../../Sprite2D/Hitbox"
-@onready var hurtbox: Hurtbox = $"../../Sprite2D/Hurtbox"
+
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var stamina: Stamina = $"../../Stamina"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
 
 var _is_dead: bool = false
@@ -21,8 +18,7 @@ var _moved_this_frame: bool = false
 const MOVEMENT_THRESHOLD: float = 0.1
 
 func _ready() -> void:
-	health.damaged.connect(_damaged)
-	health.death.connect(die)
+	pass
 
 func on_process(_delta :float):
 	pass
@@ -56,24 +52,20 @@ func on_physics_process(_delta :float):
 		transition.emit("Idle")
 		
 	if GameInputEvents.jump_input():
-		if stamina.use_stamina(1):
-			transition.emit("Jump")
+		transition.emit("Jump")
 		
 	if GameInputEvents.attack1_input():
-		if stamina.use_stamina(1):
-			transition.emit("Attack1")
+		transition.emit("Attack1")
 	
 	if GameInputEvents.attack2_input():
-		if stamina.use_stamina(1):
-			transition.emit("Attack2")
+		transition.emit("Attack2")
 		
 	if GameInputEvents.control_input():
 		transition.emit("Crouch")
 		
 	#if GameInputEvents.shift_input() && direction !=0:
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 
 		
 func _post_physics_process() -> void:
@@ -101,8 +93,6 @@ func apply_knockback(knockback: Vector2, frames: int = 10) -> void:
 		move(knockback)
 		await get_tree().physics_frame
 
-func get_health() -> Health:
-	return health
 
 	
 func die() -> void:

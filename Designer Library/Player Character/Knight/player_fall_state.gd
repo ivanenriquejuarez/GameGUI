@@ -11,14 +11,12 @@ signal death
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
-@onready var health: Health = $"../../Health"
-@onready var stamina: Stamina = $"../../Stamina"
+
 
 var _is_dead: bool = false
 
 func _ready() -> void:
-	health.damaged.connect(_damaged)
-	health.death.connect(die)
+	pass
 
 func on_process(_delta: float):
 	pass
@@ -52,18 +50,15 @@ func on_physics_process(_delta: float):
 		transition.emit("WallSlide")
 	
 	if GameInputEvents.attack1_input() || GameInputEvents.attack2_input():
-		if stamina.use_stamina(1):
-			transition.emit("JumpAttack")
+		transition.emit("JumpAttack")
 	
 # In Jump and Fall states
 	#if GameInputEvents.shift_input() && direction != 0:
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 			
 	if GameInputEvents.jump_input() && !character_body_2d.is_on_floor():
-		if stamina.use_stamina(3):
-			transition.emit("Jump")
+		transition.emit("Jump")
 			
 func _damaged(_amount: float, knockback: Vector2) -> void:
 	# Handle damage and knockback
@@ -82,8 +77,6 @@ func move(p_velocity: Vector2) -> void:
 	character_body_2d.velocity = lerp(character_body_2d.velocity, p_velocity, 0.2)
 	character_body_2d.move_and_slide()
 
-func get_health() -> Health:
-	return health
 
 func die() -> void:
 	if _is_dead:

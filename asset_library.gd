@@ -18,7 +18,11 @@ var asset_list := [
 	{
 		"preview": "res://Designer Library/Player Character/Knight/playerState.tscn",
 		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
-	}
+	},
+	{
+		"preview": "res://Designer Library/Blocks/stone_block.tscn",
+		"runtime": "res://Designer Library/Blocks/stone_block.tscn"
+	},
 ]
 
 func _ready():

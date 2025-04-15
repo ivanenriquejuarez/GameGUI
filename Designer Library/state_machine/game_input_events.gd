@@ -2,15 +2,15 @@ class_name GameInputEvents
 extends Node
 
 static func movement_input() -> float:
-	var direction : float = Input.get_axis("move_left","move_right")
+	var direction : float = Input.get_axis("left","right")
 	return direction
 
 static func movement_input_y() -> float:
-	var direction : float = Input.get_axis("move_up","move_down")
+	var direction : float = Input.get_axis("up","down")
 	return direction
 
 static func jump_input()->bool:
-	var jump_inputs : bool = Input.is_action_just_pressed("jump")
+	var jump_inputs : bool = Input.is_action_just_pressed("space")
 	return jump_inputs
 	
 static func control_input()->bool:

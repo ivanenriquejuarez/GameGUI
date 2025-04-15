@@ -12,8 +12,6 @@ signal death
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
-@onready var health: Health = $"../../Health"
-@onready var stamina: Stamina = $"../../Stamina"
 
 var _is_dead: bool = false
 var _moved_this_frame: bool = false
@@ -21,8 +19,7 @@ var _moved_this_frame: bool = false
 
 
 func _ready() -> void:
-	health.damaged.connect(_damaged)
-	health.death.connect(die)
+	pass
 
 func on_process(_delta: float):
 	pass
@@ -63,13 +60,11 @@ func on_physics_process(_delta: float):
 		transition.emit("Idle")
 		
 	if GameInputEvents.attack1_input() || GameInputEvents.attack2_input():
-		if stamina.use_stamina(1):
-			transition.emit("JumpAttack")
+		transition.emit("JumpAttack")
 	
 	#if GameInputEvents.shift_input() && direction != 0:
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 	
 	#if GameInputEvents.jump_input() and _has_jumped:
 		#transition.emit("DoubleJump")
@@ -97,8 +92,6 @@ func move(p_velocity: Vector2) -> void:
 	character_body_2d.move_and_slide()
 	_moved_this_frame = true
 	
-func get_health() -> Health:
-	return health
 
 func die() -> void:
 	if _is_dead:
