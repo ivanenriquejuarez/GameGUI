@@ -4,6 +4,7 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = -1
+visible = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchors_preset = 15

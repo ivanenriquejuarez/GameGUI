@@ -16,14 +16,50 @@ func clear():
 func cursor_is_empty() -> bool:
 	return dragging_scene == null
 
-func pick_up(node: Node2D):
-	pending_objects = pending_objects.filter(func(obj): return obj["instance"] != node)
-	dragging_scene = node
-	scene_being_dragged = PackedScene.new()
-	scene_being_dragged.pack(node)
-	node.get_parent().remove_child(node)
+func pick_up_preview(preview_path: String, runtime_path: String, node: Node2D):
+	var scene_root: Node = null
+	if node.get_tree() != null:
+		scene_root = node.get_tree().current_scene
+	else:
+		print("⚠ Cannot access scene tree.")
+		return
+
+	var mouse_pos := node.global_position
+
+	# ✅ Remove from pending_objects by matching preview_path + position
+	pending_objects = pending_objects.filter(func(obj):
+		return obj["preview_path"] != preview_path or obj["position"] != mouse_pos
+	)
+
+	# ✅ Remove and free the visual node
+	if node.get_parent():
+		node.get_parent().remove_child(node)
+		node.queue_free()
+
+	# ✅ Load the preview scene from the given path
+	preview_scene = load(preview_path) as PackedScene
+	if preview_scene == null:
+		print("⚠ Failed to load preview scene from path:", preview_path)
+		return
+
+	# ✅ Load the runtime scene from the given path
+	scene_being_dragged = load(runtime_path) as PackedScene
+	if scene_being_dragged == null:
+		print("⚠ Failed to load runtime scene from path:", runtime_path)
+		return
+
+	# ✅ Create the dragging preview
+	dragging_scene = preview_scene.instantiate() as Node2D
+	dragging_scene.modulate.a = 0.5
+	dragging_scene.global_position = mouse_pos
+	scene_root.add_child(dragging_scene)
+
 
 func finalize_placement(parent: Node):
+	if preview_scene == null or scene_being_dragged == null:
+		print("⚠ Cannot place item — no preview or runtime scene loaded.")
+		return
+
 	var mouse_pos := parent.get_viewport().get_camera_2d().get_global_mouse_position()
 	var final_pos = mouse_pos
 
@@ -36,6 +72,13 @@ func finalize_placement(parent: Node):
 
 	var instance = preview_scene.instantiate() as Node2D
 	instance.global_position = final_pos
+
+	# ✅ Assign the preview_path to the instance so it can be picked up later
+	if "preview_path" in instance:
+		instance.preview_path = preview_scene.resource_path
+	if "runtime_path" in instance:
+		instance.runtime_path = scene_being_dragged.resource_path
+	
 	parent.add_child(instance)
 
 	pending_objects.append({
@@ -47,9 +90,12 @@ func finalize_placement(parent: Node):
 	if is_instance_valid(dragging_scene):
 		dragging_scene.queue_free()
 
-	dragging_scene = null
-	scene_being_dragged = null
-	preview_scene = null
+	# Recreate the drag preview
+	dragging_scene = preview_scene.instantiate() as Node2D
+	dragging_scene.modulate.a = 0.5
+	parent.add_child(dragging_scene)
+	dragging_scene.global_position = parent.get_viewport().get_camera_2d().get_global_mouse_position()
+
 
 
 func save_to_file(path: String = "user://designer_save.json") -> void:

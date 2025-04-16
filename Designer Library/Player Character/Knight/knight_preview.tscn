@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsv5a4lk0oqvw"]
 
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="1_76hk8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnhcm"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/Area2D_template.tscn" id="2_hig48"]
 
 [node name="KnightPreview" type="Node2D"]
 
@@ -11,7 +10,6 @@ position = Vector2(4, -21)
 texture = ExtResource("1_76hk8")
 hframes = 10
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_cnhcm")
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_hig48")]
+preview_path = "res://Designer Library/Player Character/Knight/knight_preview.tscn"
+runtime_path = "res://Designer Library/Player Character/Knight/playerState.tscn"

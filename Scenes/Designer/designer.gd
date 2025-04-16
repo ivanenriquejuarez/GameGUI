@@ -79,6 +79,13 @@ func _input(event):
 		grid_controls.visible = false
 		save_load.visible = false
 		designer_settings.visible = false
+	# Clear the currently dragged preview (if any)
+		if is_instance_valid(DesignerState.dragging_scene):
+			DesignerState.dragging_scene.queue_free()
+		
+		DesignerState.dragging_scene = null
+		DesignerState.scene_being_dragged = null
+		DesignerState.preview_scene = null
 
 func _on_asset_selected(preview_path: String, runtime_path: String):
 	var preview_scene = load(preview_path) as PackedScene
