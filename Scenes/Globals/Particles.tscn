@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://chl350sg4vqpp"]
+[gd_scene load_steps=3 format=3 uid="uid://chl350sg4vqpp"]
 
 [ext_resource type="Texture2D" uid="uid://dcwj67ei0vbe6" path="res://Assets/background.png" id="1_7oafu"]
+[ext_resource type="Script" path="res://Scenes/Globals/particles.gd" id="1_7y28n"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = -1
-visible = false
+script = ExtResource("1_7y28n")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchors_preset = 15

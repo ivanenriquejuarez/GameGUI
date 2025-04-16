@@ -29,7 +29,7 @@ offset_left = -192.0
 offset_top = -64.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="designer_panel" parent="DesignerCamera/CanvasLayer/MarginContainer" node_paths=PackedStringArray("designer_node") instance=ExtResource("5_g87yj")]
@@ -39,10 +39,13 @@ designer_node = NodePath("../../../..")
 [node name="gridControls" type="Control" parent="DesignerCamera/CanvasLayer"]
 visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

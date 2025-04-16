@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+@onready var canvas_layer: CanvasLayer = $DesignerCamera/CanvasLayer
+
 @onready var save_load = $DesignerCamera/CanvasLayer/SaveLoad
 @onready var designer_settings = $DesignerCamera/CanvasLayer/DesignerSettings
 @onready var grid_controls = $DesignerCamera/CanvasLayer/gridControls
@@ -73,6 +75,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if DesignerState.dragging_scene:
 				DesignerState.finalize_placement(self)
+	#if event is InputEventMouseButton and event.pressed:
+		#print("Click received at:", get_global_mouse_position())
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
