@@ -1,0 +1,305 @@
+[gd_scene load_steps=20 format=3 uid="uid://bmipt6poqn81l"]
+
+[ext_resource type="Script" uid="uid://xttgtyv6ay1k" path="res://Scripts/settings_audio.gd" id="1_6wsrs"]
+[ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="2_wq107"]
+[ext_resource type="Texture2D" uid="uid://dspcfyrjmqe86" path="res://Assets/SpriteSheet.png" id="3_ofjqo"]
+[ext_resource type="Texture2D" uid="uid://vntwq1mtbbok" path="res://Assets/hoverpng.png" id="4_snisb"]
+[ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="5_1koiw"]
+[ext_resource type="Texture2D" uid="uid://dtoopbsuvqbxs" path="res://Assets/Spritesheet_UI_Flat.png" id="6_jk3sy"]
+[ext_resource type="Texture2D" uid="uid://c1f5jl4qjwuxb" path="res://Assets/saveButtonHover.png" id="7_y2ajq"]
+[ext_resource type="Texture2D" uid="uid://ce65tajikrp6n" path="res://Assets/saveButton.png" id="8_y0mtx"]
+[ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="9_n3u8x"]
+[ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="10_6nu8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bismi"]
+atlas = ExtResource("3_ofjqo")
+region = Rect2(398.573, 2834.24, 177.197, 24.6257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7vst"]
+atlas = ExtResource("4_snisb")
+region = Rect2(72, 224, 880.711, 572.09)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgw85"]
+atlas = ExtResource("3_ofjqo")
+region = Rect2(397.964, 2833.16, 177.815, 25.7112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35cvv"]
+atlas = ExtResource("4_snisb")
+region = Rect2(72, 224, 880, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieo4m"]
+atlas = ExtResource("4_snisb")
+region = Rect2(72, 224, 880, 576)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aaqfp"]
+texture = ExtResource("7_y2ajq")
+region_rect = Rect2(114.798, 160.582, 1312.98, 684.13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2dne"]
+texture = ExtResource("8_y0mtx")
+region_rect = Rect2(114.562, 159.132, 1313.76, 687.006)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f60ng"]
+texture = ExtResource("9_n3u8x")
+region_rect = Rect2(115, 162.582, 1312.45, 679.934)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bismi"]
+texture = ExtResource("10_6nu8h")
+region_rect = Rect2(119.584, 186.068, 1310.92, 653.032)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wsrs")
+
+[node name="MapSettingPNG" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wq107")
+region_rect = Rect2(635, 503, 423, 314)
+
+[node name="Tab1" type="TextureButton" parent="MapSettingPNG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -324.0
+offset_right = -314.0
+offset_bottom = -236.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_bismi")
+texture_pressed = SubResource("AtlasTexture_l7vst")
+texture_hover = SubResource("AtlasTexture_l7vst")
+stretch_mode = 0
+
+[node name="Audio" type="Label" parent="MapSettingPNG/Tab1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1koiw")
+theme_override_font_sizes/font_size = 45
+text = "Audio"
+
+[node name="Tab2" type="TextureButton" parent="MapSettingPNG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -244.0
+offset_right = -314.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_rgw85")
+texture_pressed = SubResource("AtlasTexture_35cvv")
+texture_hover = SubResource("AtlasTexture_35cvv")
+stretch_mode = 0
+
+[node name="Video" type="Label" parent="MapSettingPNG/Tab2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1koiw")
+theme_override_font_sizes/font_size = 40
+text = "Video"
+
+[node name="Tab3" type="TextureButton" parent="MapSettingPNG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -164.0
+offset_right = -314.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_rgw85")
+texture_pressed = SubResource("AtlasTexture_ieo4m")
+texture_hover = SubResource("AtlasTexture_ieo4m")
+stretch_mode = 0
+
+[node name="Control" type="Label" parent="MapSettingPNG/Tab3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 25.0
+offset_right = 15.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1koiw")
+theme_override_font_sizes/font_size = 35
+text = "Control"
+
+[node name="popupMenu" type="TextureRect" parent="MapSettingPNG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 760.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="baseMenu" type="MarginContainer" parent="MapSettingPNG/popupMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -770.0
+offset_top = 200.0
+offset_right = 30.0
+offset_bottom = 850.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MapSettingPNG/popupMenu/baseMenu"]
+custom_minimum_size = Vector2(800, 650)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_jk3sy")
+region_rect = Rect2(221.424, 30.0108, 100.477, 65.1445)
+patch_margin_left = 5
+patch_margin_top = 3
+patch_margin_right = 18
+
+[node name="SettingsTitle" type="Label" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.5
+offset_top = 35.0
+offset_right = 167.5
+offset_bottom = 163.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_1koiw")
+theme_override_font_sizes/font_size = 100
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 500
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
+
+[node name="buttonContainer" type="VBoxContainer" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="topButtonContainer" type="HBoxContainer" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="SaveButton" type="Button" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer"]
+custom_minimum_size = Vector2(125, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_aaqfp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aaqfp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_j2dne")
+
+[node name="ExitButton" type="Button" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer"]
+custom_minimum_size = Vector2(125, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_f60ng")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f60ng")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bismi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -68.5
+offset_right = 148.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master" type="Label" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="SFX" type="Label" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="Label" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[connection signal="pressed" from="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="mouse_exited" from="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_mouse_exited"]
+[connection signal="mouse_exited" from="MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MusicSlider" to="." method="_on_music_slider_mouse_exited"]

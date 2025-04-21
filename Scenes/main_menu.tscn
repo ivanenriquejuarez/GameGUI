@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://d02i7ep1d2v88"]
+
+[ext_resource type="Script" uid="uid://dgakj37cieetk" path="res://Scripts/main_menu.gd" id="1_cp0ys"]
+[ext_resource type="Shader" uid="uid://fuya7an2oqyj" path="res://Shaders/FlameShader.gdshader" id="2_ce3w2"]
+[ext_resource type="FontFile" uid="uid://3pcrm11u4rqu" path="res://Assets/Fonts/Faradisa DEMO.otf" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://dqllg7jic0ivu" path="res://Assets/wooden_buttons.png" id="4_ce3w2"]
+[ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="4_opfnp"]
+[ext_resource type="Texture2D" uid="uid://cd2wnyi80wax2" path="res://Assets/wooden_buttons_darker.png" id="5_n45e2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opfnp"]
+shader = ExtResource("2_ce3w2")
+shader_parameter/base_color = Color(1, 0.8, 0, 1)
+shader_parameter/flame_color = Color(1, 0.2, 0, 1)
+shader_parameter/speed = 2.0
+shader_parameter/intensity = 0.5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
+texture = ExtResource("4_ce3w2")
+region_rect = Rect2(550, 368, 435, 288)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n45e2"]
+texture = ExtResource("5_n45e2")
+region_rect = Rect2(39.7862, 368, 433.563, 284)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cp0ys")
+
+[node name="TitleLabel" type="Label" parent="."]
+material = SubResource("ShaderMaterial_opfnp")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -779.5
+offset_top = 135.0
+offset_right = 779.5
+offset_bottom = 337.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_n45e2")
+theme_override_font_sizes/font_size = 180
+text = "Game Level Designer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -73.0
+offset_right = -35.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.2, 2.2)
+theme_override_constants/separation = 20
+
+[node name="NewGame" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_opfnp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n45e2")
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_opfnp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n45e2")
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_opfnp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n45e2")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_opfnp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n45e2")
+text = "Exit"

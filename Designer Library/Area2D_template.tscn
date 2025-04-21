@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw02gcjgatrqs"]
+
+[ext_resource type="Script" uid="uid://b3k32yr1yu5t1" path="res://Designer Library/area_2d_template.gd" id="1_twri0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kju1n"]
+size = Vector2(16, 16)
+
+[node name="Area2dTemplate" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_twri0")
+preview_path = null
+runtime_path = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kju1n")

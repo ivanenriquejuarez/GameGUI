@@ -1,0 +1,177 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqxakn03ewye3"]
+
+[ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="1_kkuuu"]
+[ext_resource type="Script" uid="uid://1g3ypoaw8hgv" path="res://Scripts/load_game.gd" id="1_nlw8c"]
+[ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="2_ypx42"]
+[ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="4_i8gfv"]
+[ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="4_nifix"]
+[ext_resource type="Texture2D" uid="uid://cgomwobho1rb5" path="res://Assets/stoneLarge.png" id="6_3b4e4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nifix"]
+texture = ExtResource("4_nifix")
+region_rect = Rect2(114.12, 160.194, 1314.99, 684.657)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b4e4"]
+texture = ExtResource("4_i8gfv")
+region_rect = Rect2(112.876, 184.302, 1315.45, 654.413)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggmjl"]
+atlas = ExtResource("6_3b4e4")
+region = Rect2(28.4299, 369.64, 1431.39, 263.16)
+
+[node name="LoadGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nlw8c")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -496.0
+offset_top = 38.0
+offset_right = 454.0
+offset_bottom = 238.0
+grow_horizontal = 2
+texture = ExtResource("1_kkuuu")
+region_rect = Rect2(2080.15, 2122.96, 224.893, 52.9919)
+
+[node name="Label" type="Label" parent="NinePatchRect2"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 13.0
+offset_right = 910.0
+offset_bottom = 204.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ypx42")
+theme_override_font_sizes/font_size = 120
+text = "Load Game"
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -180.0
+offset_right = 72.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_nifix")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nifix")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3b4e4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 288.0
+offset_top = 241.0
+offset_right = 1536.0
+offset_bottom = 880.0
+
+[node name="SaveSlot2" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_ggmjl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ypx42")
+theme_override_font_sizes/font_size = 80
+text = "Save Slot X | Last Played: TBD"
+
+[node name="SaveSlot4" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_ggmjl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ypx42")
+theme_override_font_sizes/font_size = 80
+text = "Save Slot X | Last Played: TBD"
+
+[node name="SaveSlot3" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_ggmjl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ypx42")
+theme_override_font_sizes/font_size = 80
+text = "Save Slot X | Last Played: TBD"
+
+[node name="SaveSlot1" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_ggmjl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ypx42")
+theme_override_font_sizes/font_size = 80
+text = "Save Slot X | Last Played: TBD"

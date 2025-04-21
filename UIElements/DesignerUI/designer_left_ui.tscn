@@ -1,0 +1,224 @@
+[gd_scene load_steps=5 format=3 uid="uid://byuspu342y8uo"]
+
+[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
+[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
+[ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
+
+[node name="accordion_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1348.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="HorizontalMenu" type="Control" parent="." node_paths=PackedStringArray("check_button", "collapsible_buttons")]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 574.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+script = ExtResource("1_hth00")
+check_button = NodePath("MenuHolder/HBoxContainer/CheckButton")
+collapsible_buttons = [NodePath("MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleButton"), NodePath("MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleButton"), NodePath("MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleButton")]
+
+[node name="ColorRect" type="ColorRect" parent="HorizontalMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.270588, 0.313726, 0.513726, 0.337255)
+
+[node name="MenuHolder" type="VBoxContainer" parent="HorizontalMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 317.0
+grow_horizontal = 2
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HorizontalMenu/MenuHolder"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/HBoxContainer"]
+layout_mode = 2
+text = "adittiona ui elements can go here"
+
+[node name="CheckButton" type="CheckButton" parent="HorizontalMenu/MenuHolder/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Open Only 1"
+
+[node name="CollapsibleContainer" type="Control" parent="HorizontalMenu/MenuHolder"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(574, 317)
+layout_mode = 2
+script = ExtResource("2_lydky")
+sizing_constraint = 1
+sizing_node = NodePath("MarginContainer")
+tween_transition_type = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 287.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SubMenu" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="CollapsibleButton" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu" node_paths=PackedStringArray("collapsible_node") instance=ExtResource("3_uv41v")]
+layout_mode = 2
+focus_mode = 0
+text = "  Accordion Button 1> "
+collapsible_node = NodePath("../CollapsibleContainer")
+text_label = "  [rainbow freq=0.1 sat=0.3 val=0.8]Accordion Button 1"
+
+[node name="CollapsibleContainer" type="Control" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(574, 62)
+layout_mode = 2
+script = ExtResource("2_lydky")
+sizing_constraint = 1
+sizing_node = NodePath("MarginContainer")
+tween_transition_type = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 62.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Hello, 
+World!"
+horizontal_alignment = 1
+
+[node name="SubMenu2" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="CollapsibleButton" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2" node_paths=PackedStringArray("collapsible_node") instance=ExtResource("3_uv41v")]
+layout_mode = 2
+focus_mode = 0
+text = "  Accordion Button 2> "
+collapsible_node = NodePath("../CollapsibleContainer")
+text_label = "  [rainbow freq=0.1 sat=0.3 val=0.8]Accordion Button 2"
+
+[node name="CollapsibleContainer" type="Control" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(574, 62)
+layout_mode = 2
+script = ExtResource("2_lydky")
+sizing_constraint = 1
+sizing_node = NodePath("MarginContainer")
+tween_transition_type = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 62.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.388235, 0.807843, 0.682353, 1)
+
+[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Menu
+2"
+horizontal_alignment = 1
+
+[node name="SubMenu3" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="CollapsibleButton" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3" node_paths=PackedStringArray("collapsible_node") instance=ExtResource("3_uv41v")]
+layout_mode = 2
+focus_mode = 0
+text = "  Accordion Button 3> "
+collapsible_node = NodePath("../CollapsibleContainer")
+text_label = "  [rainbow freq=0.1 sat=0.3 val=0.8]Accordion Button 3"
+
+[node name="CollapsibleContainer" type="Control" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3"]
+process_mode = 3
+editor_description = "
+			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
+			
+Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
+clip_contents = true
+custom_minimum_size = Vector2(574, 100)
+layout_mode = 2
+script = ExtResource("2_lydky")
+sizing_constraint = 1
+sizing_node = NodePath("MarginContainer")
+tween_transition_type = 11
+tween_ease_type = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AssetLibrary" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer" instance=ExtResource("4_rvv21")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0.643137, 0.729412, 0.823529, 1)
+
+[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Menu
+3"
+horizontal_alignment = 1
+
+[connection signal="toggled" from="HorizontalMenu/MenuHolder/HBoxContainer/CheckButton" to="HorizontalMenu" method="_on_check_button_toggled"]

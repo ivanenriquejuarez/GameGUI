@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://6bidekwl3by1"]
+
+[ext_resource type="Script" uid="uid://bloh7ah48efav" path="res://Scripts/splash_screen.gd" id="1_hvtgh"]
+[ext_resource type="Shader" uid="uid://fuya7an2oqyj" path="res://Shaders/FlameShader.gdshader" id="2_hvtgh"]
+[ext_resource type="FontFile" uid="uid://3pcrm11u4rqu" path="res://Assets/Fonts/Faradisa DEMO.otf" id="3_3amwm"]
+[ext_resource type="FontFile" uid="uid://c1oo5pahwcbk4" path="res://Assets/Fonts/RELIGATH-Demo.otf" id="4_k5yql"]
+[ext_resource type="AudioStream" uid="uid://bdfqp637df2qd" path="res://Assets/sfx/1 titles INITIAL.wav" id="5_65tea"]
+[ext_resource type="AudioStream" uid="uid://com584ja6ehrc" path="res://Assets/sfx/fire-sound-222359.mp3" id="5_hvtgh"]
+[ext_resource type="Texture2D" uid="uid://buhwjorbeq31a" path="res://Assets/stone1.png" id="6_3amwm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hnr0x"]
+shader = ExtResource("2_hvtgh")
+shader_parameter/base_color = Color(1, 0.8, 0, 1)
+shader_parameter/flame_color = Color(1, 0.2, 0, 1)
+shader_parameter/speed = 2.0
+shader_parameter/intensity = 0.5
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hvtgh")
+
+[node name="TitleLabel" type="Label" parent="."]
+material = SubResource("ShaderMaterial_hnr0x")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -866.5
+offset_top = 135.0
+offset_right = 866.5
+offset_bottom = 359.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_3amwm")
+theme_override_font_sizes/font_size = 250
+text = "Game Level Designer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hvtgh")
+autoplay = true
+
+[node name="SplashMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_65tea")
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -290.0
+offset_right = 740.0
+offset_bottom = 734.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3amwm")
+
+[node name="PressAnyKey" type="Label" parent="TextureRect"]
+modulate = Color(0.235294, 0.235294, 0.235294, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -562.5
+offset_top = -41.5
+offset_right = 562.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_k5yql")
+theme_override_font_sizes/font_size = 70
+text = "Press Any Button to Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fade" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
