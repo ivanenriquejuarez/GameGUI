@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdxyhjctlaudh"]
+[gd_scene load_steps=5 format=3 uid="uid://cli0pnlrr4u7r"]
 
-[ext_resource type="Texture2D" uid="uid://b4nm26yv8dtbh" path="res://Assets/Sprites/Sprites/Blocks/world_tileset.png" id="1_4woej"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="1_lcoyi"]
+[ext_resource type="Texture2D" uid="uid://b4nm26yv8dtbh" path="res://Assets/Sprites/Sprites/Blocks/world_tileset.png" id="2_gqfa6"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjs2a"]
-texture = ExtResource("1_4woej")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6olj6"]
+texture = ExtResource("2_gqfa6")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -132,19 +133,18 @@ texture = ExtResource("1_4woej")
 2:15/0 = 0
 3:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_bqj8m"]
-sources/0 = SubResource("TileSetAtlasSource_sjs2a")
+[sub_resource type="TileSet" id="TileSet_33pk6"]
+sources/0 = SubResource("TileSetAtlasSource_6olj6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qff7j"]
-size = Vector2(16, 16)
+[node name="StonePreview" type="Node2D"]
 
-[node name="StoneBlock" type="StaticBody2D"]
-collision_mask = 14
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("1_lcoyi")]
+preview_path = "res://Designer Library/Blocks/stone/stone_preview.tscn"
+runtime_path = "res://Designer Library/Blocks/stone/stone_block.tscn"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, -8)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
-tile_set = SubResource("TileSet_bqj8m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qff7j")
+tile_set = SubResource("TileSet_33pk6")

@@ -8,22 +8,30 @@ signal asset_selected(preview_path: String, runtime_path: String)
 # You define your asset list directly here
 var asset_list := [
 	{
-		"preview": "res://Designer Library/Test/test_scene_1.tscn",
-		"runtime": "res://Designer Library/Test/test_scene_2.tscn"
-	},
-	{
-		"preview": "res://Designer Library/Test/test_scene_2.tscn",
-		"runtime": "res://Designer Library/Test/test_scene_1.tscn"
-	},
-	{
 		"preview": "res://Designer Library/Player Character/Knight/knight_preview.tscn",
 		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
 	},
 	{
-		"preview": "res://Designer Library/Blocks/stone_block.tscn",
-		"runtime": "res://Designer Library/Blocks/stone_block.tscn"
+		"preview": "res://Designer Library/Enemies/Eyeball/eyeball_preview.tscn",
+		"runtime": "res://Designer Library/Enemies/Eyeball/enemy_eyeball.tscn"
 	},
-]
+	{
+		"preview": "res://Designer Library/Enemies/Werewolf_black/werewolf_preview.tscn",
+		"runtime": "res://Designer Library/Enemies/Werewolf_black/enemy_werewolf_redd.tscn"
+	},
+	{
+		"preview": "res://Designer Library/Enemies/Witch/witch_preview.tscn",
+		"runtime": "res://Designer Library/Enemies/Witch/enemy_witch.tscn"
+	},
+	{
+		"preview": "res://Designer Library/Enemies/Worm_red/worm_preview.tscn",
+		"runtime": "res://Designer Library/Enemies/Worm_red/enemy_worm_fire.tscn"
+	},
+	{
+		"preview": "res://Designer Library/Blocks/stone/stone_preview.tscn",
+		"runtime": "res://Designer Library/Blocks/stone/stone_block.tscn"
+	},
+]	
 
 func _ready():
 	var asset_button_scene = preload("res://UIElements/DesignerUI/asset_button.tscn")

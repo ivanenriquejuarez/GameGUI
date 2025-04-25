@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvfsryfbkeqim"]
+
+[ext_resource type="Texture2D" uid="uid://dhby8yn7wjfss" path="res://Assets/Sprites/Sprites/Evil_Witch/Idle.png" id="1_diq76"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_7hgpv"]
+
+[node name="WitchPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_diq76")
+hframes = 10
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_7hgpv")]
+preview_path = "res://Designer Library/Enemies/Witch/witch_preview.tscn"
+runtime_path = "res://Designer Library/Enemies/Witch/enemy_witch.tscn"

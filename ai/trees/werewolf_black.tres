@@ -1,0 +1,223 @@
+[gd_resource type="BehaviorTree" load_steps=54 format=3 uid="uid://dp678rt0nn2gn"]
+
+[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_cos77"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_i6qg8"]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_1cbvp"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_bmbul"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_f5atq"]
+animation_player = SubResource("BBNode_bmbul")
+animation_name = &"Idle"
+
+[sub_resource type="BTAction" id="BTAction_m41fy"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_sau81"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_1cbvp"), SubResource("BTPlayAnimation_f5atq"), SubResource("BTAction_m41fy")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_3fhhq"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_dn7ti"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_jevwu"]
+animation_player = SubResource("BBNode_dn7ti")
+animation_name = &"Attack1"
+
+[sub_resource type="BTAction" id="BTAction_xtms0"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_d2ywy"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_3fhhq"), SubResource("BTPlayAnimation_jevwu"), SubResource("BTAction_xtms0")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_fricr"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_wiqcf"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_okuhv"]
+animation_player = SubResource("BBNode_wiqcf")
+animation_name = &"Attack2"
+
+[sub_resource type="BTAction" id="BTAction_bpx36"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_lw3ed"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_fricr"), SubResource("BTPlayAnimation_okuhv"), SubResource("BTAction_bpx36")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_md100"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_10gn6"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_npmmp"]
+animation_player = SubResource("BBNode_10gn6")
+animation_name = &"Attack3"
+
+[sub_resource type="BTAction" id="BTAction_g4a31"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_cpp48"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_md100"), SubResource("BTPlayAnimation_npmmp"), SubResource("BTAction_g4a31")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_3rv0h"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_ynq6m"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_50n4j"]
+animation_player = SubResource("BBNode_ynq6m")
+animation_name = &"Attack4"
+
+[sub_resource type="BTAction" id="BTAction_6ypk7"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_tk0bs"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_3rv0h"), SubResource("BTPlayAnimation_50n4j"), SubResource("BTAction_6ypk7")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_seuh6"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_ovrlr"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_hvwwg"]
+animation_player = SubResource("BBNode_ovrlr")
+animation_name = &"Death"
+
+[sub_resource type="BTAction" id="BTAction_ij3mu"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_b1wnv"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_seuh6"), SubResource("BTPlayAnimation_hvwwg"), SubResource("BTAction_ij3mu")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_56sne"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_7erb0"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_irnkj"]
+animation_player = SubResource("BBNode_7erb0")
+animation_name = &"Hurt"
+
+[sub_resource type="BTAction" id="BTAction_qjmvd"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_0lkoh"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_56sne"), SubResource("BTPlayAnimation_irnkj"), SubResource("BTAction_qjmvd")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_d03ud"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_fylhb"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_q5kvb"]
+animation_player = SubResource("BBNode_fylhb")
+animation_name = &"Jump"
+
+[sub_resource type="BTAction" id="BTAction_us0ft"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_eo2jj"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_d03ud"), SubResource("BTPlayAnimation_q5kvb"), SubResource("BTAction_us0ft")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_f3in3"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_opbla"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_886xm"]
+animation_player = SubResource("BBNode_opbla")
+animation_name = &"Run"
+
+[sub_resource type="BTAction" id="BTAction_2kwvw"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_xoqnd"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_f3in3"), SubResource("BTPlayAnimation_886xm"), SubResource("BTAction_2kwvw")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_cmmlg"]
+min_duration = 0.2
+max_duration = 0.3
+
+[sub_resource type="BBNode" id="BBNode_0h84m"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_t08l4"]
+animation_player = SubResource("BBNode_0h84m")
+animation_name = &"Walk"
+
+[sub_resource type="BTAction" id="BTAction_of5up"]
+script = ExtResource("1_cos77")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_tvs83"]
+custom_name = "Pause before action"
+children = [SubResource("BTRandomWait_cmmlg"), SubResource("BTPlayAnimation_t08l4"), SubResource("BTAction_of5up")]
+
+[sub_resource type="BTSequence" id="BTSequence_6cnh3"]
+custom_name = "Main"
+children = [SubResource("BTSequence_sau81"), SubResource("BTSequence_d2ywy"), SubResource("BTSequence_lw3ed"), SubResource("BTSequence_cpp48"), SubResource("BTSequence_tk0bs"), SubResource("BTSequence_b1wnv"), SubResource("BTSequence_0lkoh"), SubResource("BTSequence_eo2jj"), SubResource("BTSequence_xoqnd"), SubResource("BTSequence_tvs83")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_i6qg8")
+root_task = SubResource("BTSequence_6cnh3")

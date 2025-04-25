@@ -1,0 +1,104 @@
+[gd_resource type="BehaviorTree" load_steps=26 format=3 uid="uid://bal877rbb3ydu"]
+
+[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_fu16n"]
+[ext_resource type="Script" path="res://ai/tasks/in_range.gd" id="2_ncfa0"]
+[ext_resource type="Script" path="res://ai/tasks/pursue.gd" id="3_bo4wy"]
+[ext_resource type="Script" path="res://ai/tasks/fly_up.gd" id="4_tmaxr"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_um4bq"]
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 0.0
+var/speed/hint = 1
+var/speed/hint_string = "10,1000,10"
+var/flank_speed/name = &"flank_speed"
+var/flank_speed/type = 3
+var/flank_speed/value = 0.0
+var/flank_speed/hint = 1
+var/flank_speed/hint_string = "10,1000,10"
+
+[sub_resource type="BBNode" id="BBNode_m10k1"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_clj4h"]
+animation_player = SubResource("BBNode_m10k1")
+animation_name = &"Idle"
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_gnge2"]
+min_duration = 0.5
+max_duration = 1.3
+
+[sub_resource type="BTAction" id="BTAction_3cary"]
+script = ExtResource("1_fu16n")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTCondition" id="BTCondition_024ms"]
+script = ExtResource("2_ncfa0")
+distance_min = 0.0
+distance_max = 300.0
+target_var = &"target"
+
+[sub_resource type="BBNode" id="BBNode_l8le2"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_bf8yd"]
+animation_player = SubResource("BBNode_l8le2")
+animation_name = &"Walk"
+
+[sub_resource type="BTAction" id="BTAction_koeoj"]
+script = ExtResource("1_fu16n")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_o5xap"]
+script = ExtResource("3_bo4wy")
+target_var = &"target"
+speed_var = &"speed"
+approach_distance = -5.0
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_nxgj6"]
+time_limit = 4.0
+children = [SubResource("BTAction_o5xap")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_vodlr"]
+children = [SubResource("BTTimeLimit_nxgj6")]
+
+[sub_resource type="BTSequence" id="BTSequence_oijaq"]
+children = [SubResource("BTPlayAnimation_bf8yd"), SubResource("BTAction_koeoj"), SubResource("BTAlwaysSucceed_vodlr")]
+
+[sub_resource type="BBNode" id="BBNode_4ppwm"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_stbdw"]
+animation_player = SubResource("BBNode_4ppwm")
+animation_name = &"Idle"
+
+[sub_resource type="BTAction" id="BTAction_7bhgy"]
+script = ExtResource("4_tmaxr")
+speed_var = &"speed"
+max_angle_deviation = 0.3
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_6gkq8"]
+time_limit = 0.5
+children = [SubResource("BTAction_7bhgy")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3e2x6"]
+children = [SubResource("BTTimeLimit_6gkq8")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_pwufr"]
+min_duration = 0.5
+max_duration = 1.3
+
+[sub_resource type="BTSequence" id="BTSequence_nmx2n"]
+children = [SubResource("BTPlayAnimation_stbdw"), SubResource("BTAlwaysSucceed_3e2x6"), SubResource("BTRandomWait_pwufr")]
+
+[sub_resource type="BTSequence" id="BTSequence_145c5"]
+children = [SubResource("BTPlayAnimation_clj4h"), SubResource("BTRandomWait_gnge2"), SubResource("BTAction_3cary"), SubResource("BTCondition_024ms"), SubResource("BTSequence_oijaq"), SubResource("BTSequence_nmx2n")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_um4bq")
+root_task = SubResource("BTSequence_145c5")

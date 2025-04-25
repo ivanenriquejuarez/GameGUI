@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://eiddt6s4jp1y"]
+
+[ext_resource type="Texture2D" uid="uid://p64w5os0pg0n" path="res://Assets/Sprites/Sprites/Flying eye/Flight.png" id="1_l46fd"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_hf7df"]
+
+[node name="EyeballPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l46fd")
+hframes = 8
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_hf7df")]
+preview_path = "res://Designer Library/Enemies/Eyeball/eyeball_preview.tscn"
+runtime_path = "res://Designer Library/Enemies/Eyeball/enemy_eyeball.tscn"

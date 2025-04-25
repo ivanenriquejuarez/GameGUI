@@ -12,6 +12,7 @@
 script = ExtResource("1_bef0j")
 
 [node name="DesignerCamera" type="Camera2D" parent="."]
+z_index = -1
 anchor_mode = 0
 limit_left = 0
 limit_top = 0
