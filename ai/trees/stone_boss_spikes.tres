@@ -1,0 +1,59 @@
+[gd_resource type="BehaviorTree" load_steps=15 format=3 uid="uid://bpral5ownfc83"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_o0iwt"]
+
+[sub_resource type="BBNode" id="BBNode_sdy3d"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_5togc"]
+await_completion = 1.5
+animation_player = SubResource("BBNode_sdy3d")
+animation_name = &"Idle"
+
+[sub_resource type="BBNode" id="BBNode_wvq0s"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_i2pb5"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_wvq0s")
+animation_name = &"Spike"
+
+[sub_resource type="BTSequence" id="BTSequence_61lg2"]
+children = [SubResource("BTPlayAnimation_i2pb5")]
+
+[sub_resource type="BBNode" id="BBNode_i06gs"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_dka7p"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_i06gs")
+animation_name = &"Fist"
+
+[sub_resource type="BTSequence" id="BTSequence_4ks1n"]
+children = [SubResource("BTPlayAnimation_dka7p")]
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_ueu1i"]
+children = [SubResource("BTSequence_61lg2"), SubResource("BTSequence_4ks1n")]
+
+[sub_resource type="BBNode" id="BBNode_uwsdg"]
+saved_value = NodePath(".")
+resource_name = "."
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_xtrkp"]
+node = SubResource("BBNode_uwsdg")
+method = &"die"
+
+[sub_resource type="BTSequence" id="BTSequence_frrcr"]
+custom_name = "Pause before action"
+children = [SubResource("BTPlayAnimation_5togc"), SubResource("BTProbabilitySelector_ueu1i"), SubResource("BTCallMethod_xtrkp")]
+
+[sub_resource type="BTSelector" id="BTSelector_21p8g"]
+custom_name = "main"
+children = [SubResource("BTSequence_frrcr")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_o0iwt")
+root_task = SubResource("BTSelector_21p8g")

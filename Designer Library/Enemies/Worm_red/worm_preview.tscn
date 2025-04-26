@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8p0qks0djfsw"]
+
+[ext_resource type="Texture2D" uid="uid://1kjxg77nve6t" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Idle.png" id="1_uhgw0"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_4la7y"]
+
+[node name="WormPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uhgw0")
+hframes = 9
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_4la7y")]
+preview_path = "res://Designer Library/Enemies/Worm_red/worm_preview.tscn"
+runtime_path = "res://Designer Library/Enemies/Worm_red/enemy_worm_fire.tscn"

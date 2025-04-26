@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceyony783u8lq"]
+
+[ext_resource type="Texture2D" uid="uid://dt6rjsi03f1pu" path="res://Assets/Sprites/Sprites/Red_Werewolf/Idle.png" id="1_wx1on"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_fr3n3"]
+
+[node name="WerewolfPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -38)
+texture = ExtResource("1_wx1on")
+hframes = 8
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_fr3n3")]
+preview_path = "res://Designer Library/Enemies/Werewolf_black/werewolf_preview.tscn"
+runtime_path = "res://Designer Library/Enemies/Werewolf_black/enemy_werewolf_redd.tscn"

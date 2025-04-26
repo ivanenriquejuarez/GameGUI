@@ -1,0 +1,280 @@
+[gd_resource type="BehaviorTree" load_steps=68 format=3 uid="uid://d1xblaxfof76h"]
+
+[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_6tekc"]
+[ext_resource type="Script" path="res://ai/tasks/in_range.gd" id="2_3ofiw"]
+[ext_resource type="Script" path="res://ai/tasks/in_range_and_above.gd" id="2_pkmjg"]
+[ext_resource type="Script" path="res://ai/tasks/face_target.gd" id="3_f2auc"]
+[ext_resource type="Script" path="res://ai/tasks/above_player.gd" id="3_ucth1"]
+[ext_resource type="Script" path="res://ai/tasks/horizontal_to_player.gd" id="4_63502"]
+[ext_resource type="Script" path="res://ai/tasks/select_flanking_pos.gd" id="7_hibgr"]
+[ext_resource type="Script" path="res://ai/tasks/arrive_pos.gd" id="8_pisva"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_76jv0"]
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 110.0
+var/speed/hint = 1
+var/speed/hint_string = "10, 1000, 10"
+var/flank_speed/name = &"flank_speed"
+var/flank_speed/type = 3
+var/flank_speed/value = 125.0
+var/flank_speed/hint = 1
+var/flank_speed/hint_string = "10, 1000, 10"
+var/charge_speed/name = &"charge_speed"
+var/charge_speed/type = 3
+var/charge_speed/value = 125.0
+var/charge_speed/hint = 1
+var/charge_speed/hint_string = "10, 1000, 10"
+
+[sub_resource type="BTAction" id="BTAction_j5jl7"]
+script = ExtResource("1_6tekc")
+group = &"Player"
+output_var = &"target"
+
+[sub_resource type="BTCondition" id="BTCondition_mqt2a"]
+script = ExtResource("2_pkmjg")
+distance_min = 0.0
+distance_max = 220.0
+y_threshold = 45.0
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_06a71"]
+script = ExtResource("3_f2auc")
+target_var = &"target"
+
+[sub_resource type="BBNode" id="BBNode_wf66l"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_nkgyg"]
+animation_player = SubResource("BBNode_wf66l")
+animation_name = &"Jump"
+
+[sub_resource type="BTAction" id="BTAction_gxvn4"]
+script = ExtResource("3_ucth1")
+target_var = &"target"
+jump_speed = -300.0
+horizontal_push = 50.0
+y_offset = 8.0
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_ax5kr"]
+time_limit = 0.6
+children = [SubResource("BTAction_gxvn4")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_xes6o"]
+children = [SubResource("BTTimeLimit_ax5kr")]
+
+[sub_resource type="BBNode" id="BBNode_bjal4"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_53scs"]
+animation_player = SubResource("BBNode_bjal4")
+animation_name = &"Attack4"
+
+[sub_resource type="BTAction" id="BTAction_igbcf"]
+script = ExtResource("4_63502")
+target_var = &"target"
+dash_speed = 80.0
+arrival_tolerance = 8.0
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_4p20i"]
+time_limit = 1.1
+children = [SubResource("BTAction_igbcf")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_5xucm"]
+children = [SubResource("BTTimeLimit_4p20i")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_v5tqt"]
+min_duration = 0.0
+max_duration = 1.0
+
+[sub_resource type="BTSequence" id="BTSequence_lc4mn"]
+children = [SubResource("BTCondition_mqt2a"), SubResource("BTAction_06a71"), SubResource("BTPlayAnimation_nkgyg"), SubResource("BTAlwaysSucceed_xes6o"), SubResource("BTPlayAnimation_53scs"), SubResource("BTAlwaysSucceed_5xucm"), SubResource("BTRandomWait_v5tqt")]
+
+[sub_resource type="BTCondition" id="BTCondition_aukg6"]
+script = ExtResource("2_3ofiw")
+distance_min = 0.0
+distance_max = 50.0
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_y4pps"]
+script = ExtResource("3_f2auc")
+target_var = &"target"
+
+[sub_resource type="BBNode" id="BBNode_mukou"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_wdxkh"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_mukou")
+animation_name = &"Attack1"
+
+[sub_resource type="BBNode" id="BBNode_ypjeg"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_knv0g"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_ypjeg")
+animation_name = &"Attack2"
+
+[sub_resource type="BBNode" id="BBNode_1grec"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_qy6jh"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_1grec")
+animation_name = &"Attack3"
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_cjo8l"]
+children = [SubResource("BTPlayAnimation_wdxkh"), SubResource("BTPlayAnimation_knv0g"), SubResource("BTPlayAnimation_qy6jh")]
+
+[sub_resource type="BBNode" id="BBNode_dx7to"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_u3wx7"]
+animation_player = SubResource("BBNode_dx7to")
+animation_name = &"Idle"
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_ovb7f"]
+time_limit = 1.0
+children = [SubResource("BTPlayAnimation_u3wx7")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_cmq0w"]
+min_duration = 0.0
+max_duration = 1.0
+
+[sub_resource type="BTSequence" id="BTSequence_nu8hx"]
+custom_name = "close"
+children = [SubResource("BTCondition_aukg6"), SubResource("BTAction_y4pps"), SubResource("BTProbabilitySelector_cjo8l"), SubResource("BTTimeLimit_ovb7f"), SubResource("BTRandomWait_cmq0w")]
+
+[sub_resource type="BBNode" id="BBNode_8krk8"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_by3p0"]
+animation_player = SubResource("BBNode_8krk8")
+animation_name = &"Run"
+
+[sub_resource type="BTCondition" id="BTCondition_ll08a"]
+script = ExtResource("2_3ofiw")
+distance_min = 51.0
+distance_max = 250.0
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_hcfxd"]
+script = ExtResource("3_f2auc")
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_gfj1v"]
+script = ExtResource("7_hibgr")
+target_var = &"target"
+flank_side = 0
+range_min = 1
+range_max = 40
+position_var = &"pos"
+
+[sub_resource type="BTAction" id="BTAction_g8wiu"]
+script = ExtResource("8_pisva")
+target_position_var = &"pos"
+speed_var = &"speed"
+tolerance = 50.0
+avoid_var = &""
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_s6258"]
+time_limit = 1.0
+children = [SubResource("BTAction_g8wiu")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_ue710"]
+children = [SubResource("BTTimeLimit_s6258")]
+
+[sub_resource type="BBNode" id="BBNode_ay2n0"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_84jrp"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_ay2n0")
+animation_name = &"Attack1"
+
+[sub_resource type="BBNode" id="BBNode_lyi0j"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_g8h1h"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_lyi0j")
+animation_name = &"Attack2"
+
+[sub_resource type="BBNode" id="BBNode_47bae"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_rpeyf"]
+await_completion = 2.0
+animation_player = SubResource("BBNode_47bae")
+animation_name = &"Attack3"
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_mahl6"]
+children = [SubResource("BTPlayAnimation_84jrp"), SubResource("BTPlayAnimation_g8h1h"), SubResource("BTPlayAnimation_rpeyf")]
+
+[sub_resource type="BBNode" id="BBNode_w5h63"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_u4xui"]
+animation_player = SubResource("BBNode_w5h63")
+animation_name = &"Idle"
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_j61gs"]
+time_limit = 1.0
+children = [SubResource("BTPlayAnimation_u4xui")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_bvyg6"]
+min_duration = 0.0
+max_duration = 1.5
+
+[sub_resource type="BTSequence" id="BTSequence_m2m6k"]
+children = [SubResource("BTPlayAnimation_by3p0"), SubResource("BTCondition_ll08a"), SubResource("BTAction_hcfxd"), SubResource("BTAction_gfj1v"), SubResource("BTAlwaysSucceed_ue710"), SubResource("BTProbabilitySelector_mahl6"), SubResource("BTTimeLimit_j61gs"), SubResource("BTRandomWait_bvyg6")]
+
+[sub_resource type="BTCondition" id="BTCondition_ql2gk"]
+script = ExtResource("2_3ofiw")
+distance_min = 251.0
+distance_max = 500.0
+target_var = &"target"
+
+[sub_resource type="BBNode" id="BBNode_3aa2i"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_g8s0w"]
+animation_player = SubResource("BBNode_3aa2i")
+animation_name = &"Idle"
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_q4hyx"]
+time_limit = 1.0
+children = [SubResource("BTPlayAnimation_g8s0w")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_mrb4t"]
+min_duration = 0.0
+max_duration = 1.0
+
+[sub_resource type="BTSequence" id="BTSequence_yprty"]
+children = [SubResource("BTCondition_ql2gk"), SubResource("BTTimeLimit_q4hyx"), SubResource("BTRandomWait_mrb4t")]
+
+[sub_resource type="BTSelector" id="BTSelector_g6b22"]
+children = [SubResource("BTSequence_lc4mn"), SubResource("BTSequence_nu8hx"), SubResource("BTSequence_m2m6k"), SubResource("BTSequence_yprty")]
+
+[sub_resource type="BTSequence" id="BTSequence_ia5uh"]
+children = [SubResource("BTAction_j5jl7"), SubResource("BTSelector_g6b22")]
+
+[sub_resource type="BTSelector" id="BTSelector_86bgk"]
+children = [SubResource("BTSequence_ia5uh")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_76jv0")
+root_task = SubResource("BTSelector_86bgk")
