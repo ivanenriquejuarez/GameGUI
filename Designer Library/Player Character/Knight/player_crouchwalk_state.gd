@@ -9,7 +9,6 @@ signal death
 @export var character_body_2d : CharacterBody2D
 
 @onready var health: Health = $"../../Health"
-@onready var stamina: Stamina = $"../../Stamina"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
 @onready var run_sound: AudioStreamPlayer2D = $"../../RunSound"
@@ -53,12 +52,10 @@ func on_physics_process(_delta :float):
 	
 	#if GameInputEvents.shift_input() && direction !=0:
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 			
 	if GameInputEvents.attack1_input() || GameInputEvents.attack2_input():
-		if stamina.use_stamina(1):
-			transition.emit("CrouchAttack")
+		transition.emit("CrouchAttack")
 			
 func _post_physics_process() -> void:
 	if not _moved_this_frame:

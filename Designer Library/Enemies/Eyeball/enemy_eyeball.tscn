@@ -1,10 +1,10 @@
 [gd_scene load_steps=33 format=3 uid="uid://ha2c5sfcswao"]
 
-[ext_resource type="Script" path="res://Designer Library/Enemies/Eyeball/enemy_eyeball.gd" id="1_viodj"]
+[ext_resource type="Script" uid="uid://dbynb4au7rg8q" path="res://Designer Library/Enemies/Eyeball/enemy_eyeball.gd" id="1_viodj"]
 [ext_resource type="Texture2D" uid="uid://p64w5os0pg0n" path="res://Assets/Sprites/Sprites/Flying eye/Flight.png" id="2_exvnn"]
-[ext_resource type="Script" path="res://Designer Library/scripts/hurtbox.gd" id="3_k0v0j"]
-[ext_resource type="Script" path="res://Designer Library/scripts/hitbox.gd" id="4_nuny5"]
-[ext_resource type="Script" path="res://Designer Library/scripts/health.gd" id="5_wsoel"]
+[ext_resource type="Script" uid="uid://dtxioii31s441" path="res://Designer Library/scripts/hurtbox.gd" id="3_k0v0j"]
+[ext_resource type="Script" uid="uid://bpl5e3cc382f8" path="res://Designer Library/scripts/hitbox.gd" id="4_nuny5"]
+[ext_resource type="Script" uid="uid://dlgmv14dleebd" path="res://Designer Library/scripts/health.gd" id="5_wsoel"]
 [ext_resource type="Texture2D" uid="uid://bysnitg03a5mc" path="res://Assets/Sprites/Sprites/Flying eye/Death.png" id="6_yd4pi"]
 [ext_resource type="Texture2D" uid="uid://cc3i3nyenjvw2" path="res://Assets/Sprites/Sprites/Flying eye/Attack.png" id="7_xv7fo"]
 [ext_resource type="Texture2D" uid="uid://cdiygcnkn0jey" path="res://Assets/Sprites/Sprites/Flying eye/Attack3.png" id="8_egsnu"]
@@ -4676,14 +4676,14 @@ tracks/57/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv215"]
 _data = {
-"Attack1": SubResource("Animation_u3rc8"),
-"Attack2": SubResource("Animation_hqico"),
-"Death": SubResource("Animation_5s7md"),
-"Hurt": SubResource("Animation_w53hs"),
-"Idle": SubResource("Animation_m4cvx"),
-"RESET": SubResource("Animation_34wfd"),
-"RangeAttack1": SubResource("Animation_biv7m"),
-"Walk": SubResource("Animation_83qon")
+&"Attack1": SubResource("Animation_u3rc8"),
+&"Attack2": SubResource("Animation_hqico"),
+&"Death": SubResource("Animation_5s7md"),
+&"Hurt": SubResource("Animation_w53hs"),
+&"Idle": SubResource("Animation_m4cvx"),
+&"RESET": SubResource("Animation_34wfd"),
+&"RangeAttack1": SubResource("Animation_biv7m"),
+&"Walk": SubResource("Animation_83qon")
 }
 
 [node name="enemy_eyeball" type="CharacterBody2D"]
@@ -4699,10 +4699,11 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_exvnn")
 hframes = 8
 
-[node name="Hurtbox" type="Area2D" parent="Sprite2D"]
+[node name="Hurtbox" type="Area2D" parent="Sprite2D" node_paths=PackedStringArray("health")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_k0v0j")
+health = NodePath("../../Health")
 
 [node name="Hurt1" type="CollisionShape2D" parent="Sprite2D/Hurtbox"]
 position = Vector2(5.33333, 2)
@@ -4782,7 +4783,7 @@ debug_color = Color(0.652442, 0.518607, 0, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fv215")
+&"": SubResource("AnimationLibrary_fv215")
 }
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="."]

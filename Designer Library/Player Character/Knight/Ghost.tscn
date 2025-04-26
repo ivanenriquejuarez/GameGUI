@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqd5xakf1hqbj"]
+[gd_scene load_steps=3 format=3 uid="uid://bqd5xakf1hqbj"]
 
 [ext_resource type="Texture2D" uid="uid://bus2qpv3v6qwt" path="res://Assets/Sprites/Sprites/Player Sprites/_Dash.png" id="1_rjmem"]
+[ext_resource type="Script" uid="uid://c3ygfkg77016o" path="res://Designer Library/Player Character/Knight/ghost.gd" id="2_3snm6"]
 
 [node name="Ghost" type="Sprite2D"]
 modulate = Color(0.419813, 0.419813, 0.419813, 1)
@@ -8,3 +9,4 @@ show_behind_parent = true
 position = Vector2(0, -40)
 texture = ExtResource("1_rjmem")
 hframes = 2
+script = ExtResource("2_3snm6")

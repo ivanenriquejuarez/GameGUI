@@ -15,7 +15,6 @@ signal death
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
 @onready var hitbox: Hitbox = $"../../Sprite2D/Hitbox"
-@onready var stamina: Stamina = $"../../Stamina"
 @onready var slide_hang: AudioStreamPlayer2D = $"../../SlideHang"
 
 var can_dash: bool = true
@@ -56,12 +55,10 @@ func on_physics_process(_delta :float):
 		transition.emit("Idle")
 		
 	if GameInputEvents.jump_input():
-		if stamina.use_stamina(1):
-			transition.emit("Jump")
+		transition.emit("Jump")
 		
 	if GameInputEvents.attack1_input() || GameInputEvents.attack2_input():
-		if stamina.use_stamina(1):
-			transition.emit("WallAttack")
+		transition.emit("WallAttack")
 	
 	if !character_body_2d.is_on_floor() and !character_body_2d.is_on_wall() and character_body_2d.velocity.y > 300:
 		transition.emit("Fall")
@@ -73,8 +70,7 @@ func on_physics_process(_delta :float):
 		#transition.emit("Slide")
 		
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 
 func _post_physics_process() -> void:
 	if not _moved_this_frame:

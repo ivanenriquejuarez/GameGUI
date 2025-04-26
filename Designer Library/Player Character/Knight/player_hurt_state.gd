@@ -10,7 +10,6 @@ signal death
 @onready var health: Health = $"../../Health"
 @onready var hurtbox: Hurtbox = $"../../Sprite2D/Hurtbox"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
-@onready var stamina: Stamina = $"../../Stamina"
 
 var animation_finished = false
 var input_detected = false
@@ -34,11 +33,9 @@ func on_physics_process(_delta :float):
 	if animation_finished:
 		transition.emit("Idle")
 	elif GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
+		transition.emit("Dash")
 	elif GameInputEvents.jump_input():
-		if stamina.use_stamina(1):
-			transition.emit("Jump")
+		transition.emit("Jump")
 func _post_physics_process() -> void:
 	if not _moved_this_frame:
 		character_body_2d.velocity = lerp(character_body_2d.velocity, Vector2.ZERO, 0.5)

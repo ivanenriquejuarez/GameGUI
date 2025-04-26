@@ -1,11 +1,11 @@
 [gd_scene load_steps=31 format=3 uid="uid://c2grewbwmu5rs"]
 
 [ext_resource type="Texture2D" uid="uid://1kjxg77nve6t" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Idle.png" id="1_4diss"]
-[ext_resource type="Script" path="res://Designer Library/Enemies/Worm_red/enemy_worm_fire.gd" id="1_hnf0m"]
-[ext_resource type="Script" path="res://Designer Library/scripts/hurtbox.gd" id="3_afo83"]
-[ext_resource type="Script" path="res://Designer Library/scripts/hitbox.gd" id="4_10lv4"]
+[ext_resource type="Script" uid="uid://db7yusncir3ke" path="res://Designer Library/Enemies/Worm_red/enemy_worm_fire.gd" id="1_hnf0m"]
+[ext_resource type="Script" uid="uid://dtxioii31s441" path="res://Designer Library/scripts/hurtbox.gd" id="3_afo83"]
+[ext_resource type="Script" uid="uid://bpl5e3cc382f8" path="res://Designer Library/scripts/hitbox.gd" id="4_10lv4"]
 [ext_resource type="Texture2D" uid="uid://cqt5fbcd3n0fj" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Attack.png" id="5_5v2vj"]
-[ext_resource type="Script" path="res://Designer Library/scripts/health.gd" id="5_ibp51"]
+[ext_resource type="Script" uid="uid://dlgmv14dleebd" path="res://Designer Library/scripts/health.gd" id="5_ibp51"]
 [ext_resource type="Texture2D" uid="uid://b7a5swusuweaf" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Walk.png" id="6_gr858"]
 [ext_resource type="Texture2D" uid="uid://cr0o1xrbh1g21" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Get Hit.png" id="7_jlnri"]
 [ext_resource type="Texture2D" uid="uid://dxso26wanx2st" path="res://Assets/Sprites/Sprites/Fire Worm/Sprites/Worm/Death.png" id="8_7vosm"]
@@ -4651,13 +4651,13 @@ tracks/64/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32ku5"]
 _data = {
-"Attack1": SubResource("Animation_8hfww"),
-"Death": SubResource("Animation_3l3cr"),
-"Hurt": SubResource("Animation_r72o4"),
-"Idle": SubResource("Animation_8c6vk"),
-"RESET": SubResource("Animation_5s8t8"),
-"Run": SubResource("Animation_3uxfy"),
-"Walk": SubResource("Animation_ekbva")
+&"Attack1": SubResource("Animation_8hfww"),
+&"Death": SubResource("Animation_3l3cr"),
+&"Hurt": SubResource("Animation_r72o4"),
+&"Idle": SubResource("Animation_8c6vk"),
+&"RESET": SubResource("Animation_5s8t8"),
+&"Run": SubResource("Animation_3uxfy"),
+&"Walk": SubResource("Animation_ekbva")
 }
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_sobhr"]
@@ -4674,10 +4674,11 @@ scale = Vector2(1.15, 1.15)
 texture = ExtResource("1_4diss")
 hframes = 9
 
-[node name="Hurtbox" type="Area2D" parent="Sprite2D"]
+[node name="Hurtbox" type="Area2D" parent="Sprite2D" node_paths=PackedStringArray("health")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_afo83")
+health = NodePath("../../Health")
 
 [node name="Hurt1" type="CollisionShape2D" parent="Sprite2D/Hurtbox"]
 position = Vector2(12.1739, -7.82609)
@@ -4752,7 +4753,7 @@ script = ExtResource("5_ibp51")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_32ku5")
+&"": SubResource("AnimationLibrary_32ku5")
 }
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
