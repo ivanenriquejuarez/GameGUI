@@ -26,3 +26,9 @@ func populate_assets():
 
 func _on_asset_button_selected(preview_path: String, runtime_path: String):
 	emit_signal("asset_selected", preview_path, runtime_path)
+
+func get_asset_index(preview_path: String) -> int:
+	for i in range(asset_list.size()):
+		if asset_list[i].preview == preview_path:
+			return i
+	return 0  # Default if not found

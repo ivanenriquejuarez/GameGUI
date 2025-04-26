@@ -15,6 +15,8 @@ var grid_snap_enabled: bool = true
 var valid_scales: Array[int] = [16, 32, 64]
 var current_scale_index: int = 0
 signal button_pressed(button_name: String)
+var current_library: AssetLibrary = null
+var current_asset_index: int = 0
 
 func _ready():
 	connect("button_pressed", Callable(self, "_on_button_pressed"))
@@ -29,9 +31,9 @@ func _ready():
 	object_library.populate_assets()
 
 	# Connect signals after populating
-	character_library.asset_selected.connect(_on_asset_selected)
-	tile_library.asset_selected.connect(_on_asset_selected)
-	object_library.asset_selected.connect(_on_asset_selected)
+	character_library.asset_selected.connect(_on_asset_selected.bind(character_library))
+	tile_library.asset_selected.connect(_on_asset_selected.bind(tile_library))
+	object_library.asset_selected.connect(_on_asset_selected.bind(object_library))
 
 	grid_controls.visible = false
 	save_load.visible = false
@@ -104,6 +106,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed("zoom_out"):
 			if DesignerState.dragging_scene:
 				_decrease_dragging_scale()
+				
+	if Input.is_action_pressed("tab"):
+		if not DesignerState.cursor_is_empty():
+			_cycle_to_next_asset()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -118,7 +124,9 @@ func _input(event):
 		DesignerState.scene_being_dragged = null
 		DesignerState.preview_scene = null
 
-func _on_asset_selected(preview_path: String, runtime_path: String):
+func _on_asset_selected(preview_path: String, runtime_path: String, from_library: AssetLibrary):
+	current_library = from_library
+	current_asset_index = current_library.get_asset_index(preview_path)
 	var preview_scene = load(preview_path) as PackedScene
 	var runtime_scene = load(runtime_path) as PackedScene
 
@@ -192,3 +200,27 @@ func _decrease_dragging_scale():
 func get_current_scale_factor() -> float:
 	var target_size = valid_scales[current_scale_index]
 	return target_size / 16.0
+
+func _cycle_to_next_asset():
+	if current_library == null or current_library.asset_list.is_empty():
+		return
+
+	current_asset_index = (current_asset_index + 1) % current_library.asset_list.size()
+
+	var next_asset = current_library.asset_list[current_asset_index]
+	var preview_scene = load(next_asset.preview) as PackedScene
+	var runtime_scene = load(next_asset.runtime) as PackedScene
+
+	if preview_scene and runtime_scene:
+		if is_instance_valid(DesignerState.dragging_scene):
+			DesignerState.dragging_scene.queue_free()
+
+		DesignerState.preview_scene = preview_scene
+		DesignerState.scene_being_dragged = runtime_scene
+		DesignerState.dragging_scene = preview_scene.instantiate() as Node2D
+		DesignerState.dragging_scene.modulate.a = 0.5
+
+		var mouse_pos = get_viewport().get_camera_2d().get_global_mouse_position()
+		DesignerState.dragging_scene.global_position = mouse_pos
+
+		add_child(DesignerState.dragging_scene)
