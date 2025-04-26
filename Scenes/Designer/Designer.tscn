@@ -11,11 +11,18 @@
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
 
-[node name="DesignerCamera" type="Camera2D" parent="."]
+[node name="GridDisplay" type="Node2D" parent="."]
 z_index = -1
-anchor_mode = 0
+script = ExtResource("5_56spr")
+grid_size = Vector2(5000, 5000)
+line_size = Vector2(1, 1)
+border_width = 1.0
+
+[node name="DesignerCamera" type="Camera2D" parent="."]
+z_as_relative = false
 limit_left = 0
 limit_top = 0
+position_smoothing_enabled = true
 script = ExtResource("2_l6knb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DesignerCamera"]
@@ -166,13 +173,6 @@ offset_top = -31.0
 offset_right = 46.0
 grow_vertical = 0
 text = "Load"
-
-[node name="GridDisplay" type="Node2D" parent="."]
-z_index = -1
-script = ExtResource("5_56spr")
-grid_size = Vector2(5000, 5000)
-line_size = Vector2(1, 1)
-border_width = 1.0
 
 [connection signal="value_changed" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/HSlider" to="." method="set_line_and_border_width"]
 [connection signal="item_selected" from="DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]

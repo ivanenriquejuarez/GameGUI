@@ -2,6 +2,7 @@
 extends Node2D
 
 @onready var canvas_layer: CanvasLayer = $DesignerCamera/CanvasLayer
+@onready var designer_camera: Camera2D = $DesignerCamera
 
 @onready var save_load = $DesignerCamera/CanvasLayer/SaveLoad
 @onready var designer_settings = $DesignerCamera/CanvasLayer/DesignerSettings
@@ -77,6 +78,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				DesignerState.finalize_placement(self)
 	#if event is InputEventMouseButton and event.pressed:
 		#print("Click received at:", get_global_mouse_position())
+		# Add this outside of the mouse button check
+	if event.is_action_pressed("space"):
+		_center_on_first_player_preview()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -135,3 +139,10 @@ func reload_designer_objects():
 			instance.global_position = obj["position"]
 			instance.modulate.a = 0.5
 			add_child(instance)
+
+func _center_on_first_player_preview() -> void:
+	var players = get_tree().get_nodes_in_group("player_preview")
+
+	if players.size() > 0:
+		var first_player = players[0] as Node2D
+		designer_camera.global_position = first_player.global_position
