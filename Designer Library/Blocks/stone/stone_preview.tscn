@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cli0pnlrr4u7r"]
 
-[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="1_lcoyi"]
 [ext_resource type="Texture2D" uid="uid://b4nm26yv8dtbh" path="res://Assets/Sprites/Sprites/Blocks/world_tileset.png" id="2_gqfa6"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_ianeh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6olj6"]
 texture = ExtResource("2_gqfa6")
@@ -140,11 +140,9 @@ sources/0 = SubResource("TileSetAtlasSource_6olj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Area2dTemplate" parent="." instance=ExtResource("1_lcoyi")]
-preview_path = "res://Designer Library/Blocks/stone/stone_preview.tscn"
-runtime_path = "res://Designer Library/Blocks/stone/stone_block.tscn"
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, -8)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_33pk6")
+
+[node name="Area2dTemplate" parent="." instance=ExtResource("2_ianeh")]
