@@ -146,3 +146,5 @@ tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_33pk6")
 
 [node name="Area2dTemplate" parent="." instance=ExtResource("2_ianeh")]
+preview_path = "res://Designer Library/Blocks/stone/stone_preview.tscn"
+runtime_path = "res://Designer Library/Blocks/stone/stone_block.tscn"

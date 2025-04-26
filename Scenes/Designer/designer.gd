@@ -17,7 +17,7 @@ var current_scale_index: int = 0
 signal button_pressed(button_name: String)
 var current_library: AssetLibrary = null
 var current_asset_index: int = 0
-
+const AssetLibraryData = preload("res://UIElements/DesignerUI/AssetLibraryData.gd")
 func _ready():
 	connect("button_pressed", Callable(self, "_on_button_pressed"))
 	

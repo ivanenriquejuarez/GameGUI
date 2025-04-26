@@ -1,4 +1,7 @@
+
+@tool
 class_name AssetLibrary
+
 extends Control
 
 @onready var grid: GridContainer = $ScrollContainer/GridContainer

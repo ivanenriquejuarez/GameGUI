@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsv5a4lk0oqvw"]
 
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="1_76hk8"]
-[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/Area2D_template.tscn" id="2_hig48"]
+[ext_resource type="PackedScene" uid="uid://cw02gcjgatrqs" path="res://Designer Library/scripts/Area2D_template.tscn" id="2_hig48"]
 
-[node name="KnightPreview" type="Node2D"]
+[node name="KnightPreview" type="Node2D" groups=["player_preview"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, -21)
