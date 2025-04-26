@@ -19,6 +19,8 @@ var current_library: AssetLibrary = null
 var current_asset_index: int = 0
 const AssetLibraryData = preload("res://UIElements/DesignerUI/AssetLibraryData.gd")
 func _ready():
+	if Engine.is_editor_hint():
+		return  # Skip setup when running inside editor
 	connect("button_pressed", Callable(self, "_on_button_pressed"))
 	
 	character_library.asset_list = AssetLibraryData.character_assets
