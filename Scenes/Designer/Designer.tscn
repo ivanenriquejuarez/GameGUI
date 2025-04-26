@@ -1,12 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://ty6ca4jgo80g"]
+[gd_scene load_steps=23 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" uid="uid://d3vjxq8617dwn" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
 [ext_resource type="Script" uid="uid://bmafmlj01k4bv" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
 [ext_resource type="PackedScene" uid="uid://byuspu342y8uo" path="res://UIElements/DesignerUI/designer_left_ui.tscn" id="4_di20i"]
-[ext_resource type="Script" uid="uid://doqisqrvpvkag" path="res://addons/grid_display/grid_display.gd" id="5_56spr"]
-[ext_resource type="PackedScene" uid="uid://54qlgp3tcswv" path="res://UIElements/DesignerUI/designer_panel.tscn" id="5_g87yj"]
+[ext_resource type="Texture2D" uid="uid://be7dabwc7u6ud" path="res://Assets/gridLayout.png" id="4_s2k33"]
+[ext_resource type="Texture2D" uid="uid://cii02pptwbck8" path="res://Assets/gridHover.png" id="4_x5v8k"]
+[ext_resource type="Script" uid="uid://doqisqrvpvkag" path="res://Addons/grid_display/grid_display.gd" id="5_56spr"]
+[ext_resource type="Texture2D" uid="uid://dfcdi4s0gq2rd" path="res://Assets/settings.png" id="5_m2eit"]
 [ext_resource type="PackedScene" uid="uid://cvboaruh0ukq6" path="res://UIElements/DesignerUI/save_load_ui.tscn" id="5_m8kpb"]
+[ext_resource type="Texture2D" uid="uid://egk4wj6w8yla" path="res://Assets/saveIcon.png" id="6_7aako"]
+[ext_resource type="Texture2D" uid="uid://omntv6jchgnd" path="res://Assets/settingsHover.png" id="6_jyx4q"]
+[ext_resource type="Texture2D" uid="uid://dn5t8hmruyu6v" path="res://Assets/saveHover.png" id="6_m2eit"]
 [ext_resource type="PackedScene" uid="uid://bcsgncexysv8y" path="res://UIElements/DesignerUI/designer_settings.tscn" id="6_u8qm0"]
+[ext_resource type="Texture2D" uid="uid://dw1d00s2geaye" path="res://Assets/playHover.png" id="13_r6gme"]
+[ext_resource type="Texture2D" uid="uid://bteey1e1u0tm3" path="res://Assets/playButton.png" id="14_aa8cd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa8cd"]
+texture = ExtResource("4_x5v8k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5v8k"]
+texture = ExtResource("4_s2k33")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0afo"]
+texture = ExtResource("6_jyx4q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyx4q"]
+texture = ExtResource("5_m2eit")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7aako"]
+texture = ExtResource("6_m2eit")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r6gme"]
+texture = ExtResource("6_7aako")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jhpxb"]
+texture = ExtResource("13_r6gme")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1reo3"]
+texture = ExtResource("14_aa8cd")
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
@@ -31,16 +62,44 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -192.0
-offset_top = -64.0
+offset_left = -445.0
+offset_top = -180.0
+offset_right = -253.0
+offset_bottom = -116.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 
-[node name="designer_panel" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("designer_node") instance=ExtResource("5_g87yj")]
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-designer_node = NodePath("../../..")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 192.0
+offset_bottom = 64.0
+
+[node name="grid" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_aa8cd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aa8cd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_x5v8k")
+text = "              "
+
+[node name="settings" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_s0afo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s0afo")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jyx4q")
+text = "               "
+
+[node name="load" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_7aako")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7aako")
+theme_override_styles/normal = SubResource("StyleBoxTexture_r6gme")
 
 [node name="gridControls" type="Control" parent="CanvasLayer"]
 visible = false
@@ -129,8 +188,10 @@ text = "exit"
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 0.0
-offset_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 41.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 4
@@ -146,12 +207,20 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
+offset_left = -270.0
+offset_top = 50.0
+offset_right = -223.0
+offset_bottom = 81.0
 grow_horizontal = 0
-text = "PLAY"
+scale = Vector2(5, 5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_jhpxb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jhpxb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1reo3")
 
 [node name="save" type="Button" parent="CanvasLayer"]
+visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -165,6 +234,7 @@ grow_vertical = 2
 text = "Save"
 
 [node name="load" type="Button" parent="CanvasLayer"]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
