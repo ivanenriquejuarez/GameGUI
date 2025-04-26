@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://olgdto6i6dke"
-path="res://.godot/imported/blur-1239439_640.jpg-cd96adafc9b1690bdc7e9994902d3253.ctex"
+path="res://.godot/imported/blur-1239439_640.jpg-0f8d62dc1b2213c39e490e79fdb4dc13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/trains/blur-1239439_640.jpg"
-dest_files=["res://.godot/imported/blur-1239439_640.jpg-cd96adafc9b1690bdc7e9994902d3253.ctex"]
+source_file="res://Addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/trains/blur-1239439_640.jpg"
+dest_files=["res://.godot/imported/blur-1239439_640.jpg-0f8d62dc1b2213c39e490e79fdb4dc13.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4mcmdff7rfw2"
-path="res://.godot/imported/BTDynamicSelector.svg-d88a1aa9fb8d8826b74e69dad4c99f54.ctex"
+path="res://.godot/imported/BTDynamicSelector.svg-790086ab16f88316544a97ef0857514b.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/BTDynamicSelector.svg"
-dest_files=["res://.godot/imported/BTDynamicSelector.svg-d88a1aa9fb8d8826b74e69dad4c99f54.ctex"]
+source_file="res://Addons/limboai/icons/BTDynamicSelector.svg"
+dest_files=["res://.godot/imported/BTDynamicSelector.svg-790086ab16f88316544a97ef0857514b.ctex"]
 
 [params]
 

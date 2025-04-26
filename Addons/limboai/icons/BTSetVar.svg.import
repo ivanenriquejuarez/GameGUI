@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy1j4fg4oqdbh"
-path="res://.godot/imported/BTSetVar.svg-a8c4f135c2df6bc3f587cbd9f1fe2d95.ctex"
+path="res://.godot/imported/BTSetVar.svg-e6a7153850509237b1edd97b30428060.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/BTSetVar.svg"
-dest_files=["res://.godot/imported/BTSetVar.svg-a8c4f135c2df6bc3f587cbd9f1fe2d95.ctex"]
+source_file="res://Addons/limboai/icons/BTSetVar.svg"
+dest_files=["res://.godot/imported/BTSetVar.svg-e6a7153850509237b1edd97b30428060.ctex"]
 
 [params]
 

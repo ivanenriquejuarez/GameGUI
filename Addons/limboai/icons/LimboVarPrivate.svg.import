@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctotjk66f61ji"
-path="res://.godot/imported/LimboVarPrivate.svg-99b4229567f7f98cdabf892099c91da2.ctex"
+path="res://.godot/imported/LimboVarPrivate.svg-1c3094d63140a2999f31b4075402f21c.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/LimboVarPrivate.svg"
-dest_files=["res://.godot/imported/LimboVarPrivate.svg-99b4229567f7f98cdabf892099c91da2.ctex"]
+source_file="res://Addons/limboai/icons/LimboVarPrivate.svg"
+dest_files=["res://.godot/imported/LimboVarPrivate.svg-1c3094d63140a2999f31b4075402f21c.ctex"]
 
 [params]
 

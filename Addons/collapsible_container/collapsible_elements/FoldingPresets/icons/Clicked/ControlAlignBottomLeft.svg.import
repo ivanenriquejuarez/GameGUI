@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdyjj37l24bfu"
-path="res://.godot/imported/ControlAlignBottomLeft.svg-0755e9bb2af0c8ed6511d4ba3065964d.ctex"
+path="res://.godot/imported/ControlAlignBottomLeft.svg-72c256dc73297ef8f8d0e71e51bbfff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Clicked/ControlAlignBottomLeft.svg"
-dest_files=["res://.godot/imported/ControlAlignBottomLeft.svg-0755e9bb2af0c8ed6511d4ba3065964d.ctex"]
+source_file="res://Addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Clicked/ControlAlignBottomLeft.svg"
+dest_files=["res://.godot/imported/ControlAlignBottomLeft.svg-72c256dc73297ef8f8d0e71e51bbfff8.ctex"]
 
 [params]
 

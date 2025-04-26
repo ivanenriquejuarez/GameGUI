@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceq707cy3cm58"
-path="res://.godot/imported/train-3758523_640.jpg-e0d2c24c8eeeedf20ad2c4e4bd203b34.ctex"
+path="res://.godot/imported/train-3758523_640.jpg-138d579d7a8a314141b4cfe8096510ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/trains/train-3758523_640.jpg"
-dest_files=["res://.godot/imported/train-3758523_640.jpg-e0d2c24c8eeeedf20ad2c4e4bd203b34.ctex"]
+source_file="res://Addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/trains/train-3758523_640.jpg"
+dest_files=["res://.godot/imported/train-3758523_640.jpg-138d579d7a8a314141b4cfe8096510ef.ctex"]
 
 [params]
 

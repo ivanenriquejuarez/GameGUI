@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbmv1nns186ut"
-path="res://.godot/imported/LimboExtraClock.svg-840321103249948265bce58e6fb69483.ctex"
+path="res://.godot/imported/LimboExtraClock.svg-7bf58a580053ed74c472dac6bbe17bbf.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/LimboExtraClock.svg"
-dest_files=["res://.godot/imported/LimboExtraClock.svg-840321103249948265bce58e6fb69483.ctex"]
+source_file="res://Addons/limboai/icons/LimboExtraClock.svg"
+dest_files=["res://.godot/imported/LimboExtraClock.svg-7bf58a580053ed74c472dac6bbe17bbf.ctex"]
 
 [params]
 

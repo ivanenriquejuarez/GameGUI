@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cge3olatunqtv"
-path="res://.godot/imported/BTProbability.svg-f691fbf51ca49bc268a17742b1e04985.ctex"
+path="res://.godot/imported/BTProbability.svg-3b9f57c42ae15002de01fb4ee2e07afc.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/BTProbability.svg"
-dest_files=["res://.godot/imported/BTProbability.svg-f691fbf51ca49bc268a17742b1e04985.ctex"]
+source_file="res://Addons/limboai/icons/BTProbability.svg"
+dest_files=["res://.godot/imported/BTProbability.svg-3b9f57c42ae15002de01fb4ee2e07afc.ctex"]
 
 [params]
 

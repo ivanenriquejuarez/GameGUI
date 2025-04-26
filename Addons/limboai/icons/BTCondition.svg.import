@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd4mlwlrxtgxh"
-path="res://.godot/imported/BTCondition.svg-546aa4361ccfe650098b5f6867299d1a.ctex"
+path="res://.godot/imported/BTCondition.svg-9c5ddde26a82893912ba7bd779280657.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/limboai/icons/BTCondition.svg"
-dest_files=["res://.godot/imported/BTCondition.svg-546aa4361ccfe650098b5f6867299d1a.ctex"]
+source_file="res://Addons/limboai/icons/BTCondition.svg"
+dest_files=["res://.godot/imported/BTCondition.svg-9c5ddde26a82893912ba7bd779280657.ctex"]
 
 [params]
 
