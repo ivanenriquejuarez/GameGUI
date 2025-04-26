@@ -1,10 +1,10 @@
 [gd_resource type="BehaviorTree" load_steps=37 format=3 uid="uid://6fqyiiyewoyy"]
 
-[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_wgex2"]
-[ext_resource type="Script" path="res://ai/tasks/in_range.gd" id="2_tpwie"]
-[ext_resource type="Script" path="res://ai/tasks/face_target.gd" id="3_gw0xv"]
-[ext_resource type="Script" path="res://ai/tasks/pursue.gd" id="4_h6g07"]
-[ext_resource type="Script" path="res://ai/tasks/Patrol.gd" id="5_boqb6"]
+[ext_resource type="Script" uid="uid://bi7thhlivnm8m" path="res://ai/tasks/get_first_in_group.gd" id="1_wgex2"]
+[ext_resource type="Script" uid="uid://6ag5cngv8kwg" path="res://ai/tasks/in_range.gd" id="2_tpwie"]
+[ext_resource type="Script" uid="uid://c58ap7xhuqiy3" path="res://ai/tasks/face_target.gd" id="3_gw0xv"]
+[ext_resource type="Script" uid="uid://wyh75oubutlm" path="res://ai/tasks/pursue.gd" id="4_h6g07"]
+[ext_resource type="Script" uid="uid://dqcvt21l7p8sc" path="res://ai/tasks/Patrol.gd" id="5_boqb6"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_8rll2"]
 var/speed/name = &"speed"

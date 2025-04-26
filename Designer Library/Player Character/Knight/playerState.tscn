@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bk0ci6q46y8ic"]
+[gd_scene load_steps=81 format=3 uid="uid://bk0ci6q46y8ic"]
 
 [ext_resource type="Script" uid="uid://dvhtexoau7jqu" path="res://Designer Library/Player Character/Knight/player_state_test.gd" id="1_5mgp2"]
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
@@ -29,6 +29,17 @@
 [ext_resource type="Script" uid="uid://blbo8aivqrw5m" path="res://Designer Library/Player Character/Knight/player_dash_state.gd" id="26_r2r4l"]
 [ext_resource type="PackedScene" uid="uid://bqd5xakf1hqbj" path="res://Designer Library/Player Character/Knight/Ghost.tscn" id="27_7mo33"]
 [ext_resource type="Script" uid="uid://cq237m8uj0icr" path="res://Designer Library/Player Character/Knight/player_wallslide_state.gd" id="28_o6odl"]
+[ext_resource type="Script" uid="uid://bnaqpnvts72jo" path="res://Designer Library/Player Character/Knight/player_hurt_state.gd" id="29_r2r4l"]
+[ext_resource type="Script" uid="uid://c5tahm0oarkg3" path="res://Designer Library/Player Character/Knight/attack_2.gd" id="30_qd3hg"]
+[ext_resource type="Script" uid="uid://c2pcm4mf2806c" path="res://Designer Library/Player Character/Knight/jump_attack.gd" id="31_hkjd0"]
+[ext_resource type="Script" uid="uid://bd8qtk0xxyhxs" path="res://Designer Library/Player Character/Knight/player_slide_state.gd" id="32_rkfca"]
+[ext_resource type="Script" uid="uid://c6me6yaff471" path="res://Designer Library/Player Character/Knight/player_roll_state.gd" id="33_q7bvr"]
+[ext_resource type="Script" uid="uid://nm0jdho08fmj" path="res://Designer Library/Player Character/Knight/player_airdash_state.gd" id="34_xhiql"]
+[ext_resource type="Script" uid="uid://dmbkabm7k7k2a" path="res://Designer Library/Player Character/Knight/player_doublejump_state.gd" id="35_6nffy"]
+[ext_resource type="Script" uid="uid://dv1rl80syl71i" path="res://Designer Library/Player Character/Knight/player_walljump_state.gd" id="36_6wwtv"]
+[ext_resource type="Script" uid="uid://din08g1jdsct8" path="res://Designer Library/Player Character/Knight/player_climb_state.gd" id="37_tag2g"]
+[ext_resource type="Script" uid="uid://b6vjloukbp701" path="res://Designer Library/Player Character/Knight/wall_attack.gd" id="38_cgj4v"]
+[ext_resource type="Script" uid="uid://cdpd75o1qswke" path="res://Designer Library/Player Character/Knight/crouch_attack.gd" id="39_1phav"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7hxca"]
 radius = 3.0
@@ -8344,6 +8355,8 @@ hframes = 10
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("3_jojry")
+knockback_enabled = true
+knockback_strength = 10.0
 
 [node name="Attack1" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
 position = Vector2(-4, 11)
@@ -8368,6 +8381,8 @@ position = Vector2(0, 40)
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("3_jojry")
+knockback_enabled = true
+knockback_strength = 10.0
 
 [node name="LAttack1" type="CollisionShape2D" parent="Sprite2D/LightHitbox"]
 position = Vector2(3.8147e-06, -25)
@@ -8486,37 +8501,55 @@ player = NodePath("../..")
 script = ExtResource("28_o6odl")
 character_body_2d = NodePath("../..")
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("29_r2r4l")
+character_body_2d = NodePath("../..")
 
-[node name="Attack2" type="Node" parent="StateMachine"]
+[node name="Attack2" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("30_qd3hg")
+character_body_2d = NodePath("../..")
 
-[node name="JumpAttack" type="Node" parent="StateMachine"]
+[node name="JumpAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("31_hkjd0")
+character_body_2d = NodePath("../..")
 
-[node name="Slide" type="Node" parent="StateMachine"]
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("32_rkfca")
+character_body_2d = NodePath("../..")
 
-[node name="Roll" type="Node" parent="StateMachine"]
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("33_q7bvr")
+character_body_2d = NodePath("../..")
 
-[node name="AirDash" type="Node" parent="StateMachine"]
+[node name="AirDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("34_xhiql")
+character_body_2d = NodePath("../..")
 
-[node name="DoubleJump" type="Node" parent="StateMachine"]
+[node name="DoubleJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("35_6nffy")
+character_body_2d = NodePath("../..")
 
 [node name="Land" type="Node" parent="StateMachine"]
 
 [node name="WallJump" type="Node" parent="StateMachine"]
+script = ExtResource("36_6wwtv")
 
 [node name="Climb" type="Node" parent="StateMachine"]
+script = ExtResource("37_tag2g")
 
-[node name="WallAttack" type="Node" parent="StateMachine"]
+[node name="WallAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("38_cgj4v")
+character_body_2d = NodePath("../..")
 
-[node name="CrouchAttack" type="Node" parent="StateMachine"]
+[node name="CrouchAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("39_1phav")
+character_body_2d = NodePath("../..")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("23_l72ax")
 
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 6.0
-
-[node name="Stamina" type="Node" parent="."]
 
 [node name="RunSound" type="AudioStreamPlayer2D" parent="."]
 

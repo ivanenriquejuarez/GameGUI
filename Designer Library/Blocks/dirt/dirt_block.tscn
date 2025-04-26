@@ -140,7 +140,7 @@ sources/0 = SubResource("TileSetAtlasSource_8807t")
 size = Vector2(16, 16)
 
 [node name="DirtBlock" type="StaticBody2D"]
-collision_mask = 14
+collision_mask = 0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, -8)

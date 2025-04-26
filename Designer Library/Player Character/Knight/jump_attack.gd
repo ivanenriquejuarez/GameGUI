@@ -12,7 +12,6 @@ signal death
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var sprite_2d: Sprite2D = $"../../Sprite2D"
-@onready var stamina: Stamina = $"../../Stamina"
 @onready var health: Health = $"../../Health"
 
 var _is_dead: bool = false
@@ -50,10 +49,7 @@ func on_physics_process(_delta: float):
 
 	#if GameInputEvents.shift_input() && direction != 0:
 	if GameInputEvents.shift_input():
-		if stamina.use_stamina(2):
-			transition.emit("Dash")
-		else:
-			print("Not enough stamina!")
+		transition.emit("Dash")
 
 func _post_physics_process() -> void:
 	if not _moved_this_frame:
