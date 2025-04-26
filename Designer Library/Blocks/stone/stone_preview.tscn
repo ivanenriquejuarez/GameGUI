@@ -138,8 +138,6 @@ sources/0 = SubResource("TileSetAtlasSource_6olj6")
 
 [node name="StonePreview" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, -8)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
