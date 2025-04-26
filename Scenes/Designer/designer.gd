@@ -8,9 +8,9 @@ extends Node2D
 @onready var designer_settings = $DesignerCamera/CanvasLayer/DesignerSettings
 @onready var grid_controls = $DesignerCamera/CanvasLayer/gridControls
 @onready var grid_display: GridDisplay = $GridDisplay
-@onready var asset_library := (
-	$DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
-) as AssetLibrary
+@onready var character_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer/AssetLibrary
+@onready var tile_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer/AssetLibrary
+@onready var object_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
 var grid_snap_enabled: bool = true
 var valid_scales: Array[int] = [16, 32, 64]
 var current_scale_index: int = 0
@@ -18,8 +18,21 @@ signal button_pressed(button_name: String)
 
 func _ready():
 	connect("button_pressed", Callable(self, "_on_button_pressed"))
-	if asset_library.has_signal("asset_selected"):
-		asset_library.connect("asset_selected", Callable(self, "_on_asset_selected"))
+	
+	character_library.asset_list = AssetLibraryData.character_assets
+	tile_library.asset_list = AssetLibraryData.tile_assets
+	object_library.asset_list = AssetLibraryData.object_assets
+
+	# Trigger the manual population!
+	character_library.populate_assets()
+	tile_library.populate_assets()
+	object_library.populate_assets()
+
+	# Connect signals after populating
+	character_library.asset_selected.connect(_on_asset_selected)
+	tile_library.asset_selected.connect(_on_asset_selected)
+	object_library.asset_selected.connect(_on_asset_selected)
+
 	grid_controls.visible = false
 	save_load.visible = false
 	designer_settings.visible = false
