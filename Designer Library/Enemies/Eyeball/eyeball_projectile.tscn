@@ -291,6 +291,7 @@ _data = {
 }
 
 [node name="eyeball_projectile" type="Node2D"]
+z_index = 1
 script = ExtResource("1_5t61s")
 
 [node name="Root" type="Node2D" parent="."]

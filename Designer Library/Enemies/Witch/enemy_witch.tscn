@@ -6217,6 +6217,7 @@ _data = {
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_oc7yl"]
 
 [node name="enemy_witch" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 3
 platform_floor_layers = 4294901761

@@ -1,16 +1,16 @@
 @tool
 extends Node2D
 
-@onready var canvas_layer: CanvasLayer = $DesignerCamera/CanvasLayer
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var designer_camera: Camera2D = $DesignerCamera
 
-@onready var save_load = $DesignerCamera/CanvasLayer/SaveLoad
-@onready var designer_settings = $DesignerCamera/CanvasLayer/DesignerSettings
-@onready var grid_controls = $DesignerCamera/CanvasLayer/gridControls
+@onready var save_load = $CanvasLayer/SaveLoad
+@onready var designer_settings = $CanvasLayer/DesignerSettings
+@onready var grid_controls = $CanvasLayer/gridControls
 @onready var grid_display: GridDisplay = $GridDisplay
-@onready var character_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer/AssetLibrary
-@onready var tile_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer/AssetLibrary
-@onready var object_library: AssetLibrary = $DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
+@onready var character_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer/AssetLibrary
+@onready var tile_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer/AssetLibrary
+@onready var object_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
 var grid_snap_enabled: bool = true
 var valid_scales: Array[int] = [16, 32, 64]
 var current_scale_index: int = 0
@@ -48,7 +48,7 @@ func apply_grid_settings():
 		grid_display.cell_size = DesignerState.cell_size
 
 func set_cell_size(index: int):
-	var cell_size = int($DesignerCamera/CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))
+	var cell_size = int($CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))
 	grid_display.cell_size = Vector2(cell_size, cell_size)
 	DesignerState.cell_size = Vector2(cell_size, cell_size)
 

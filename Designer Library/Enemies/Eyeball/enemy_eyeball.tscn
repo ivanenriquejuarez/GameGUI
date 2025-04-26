@@ -4687,6 +4687,7 @@ _data = {
 }
 
 [node name="enemy_eyeball" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1

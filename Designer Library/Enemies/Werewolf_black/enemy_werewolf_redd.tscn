@@ -8593,6 +8593,7 @@ _data = {
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_0xqn1"]
 
 [node name="enemy_werewolf_redd" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(1.25, 1.25)
 collision_layer = 4
 collision_mask = 3

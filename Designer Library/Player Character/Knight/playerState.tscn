@@ -8327,6 +8327,7 @@ _data = {
 size = Vector2(18, 28.5)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 2
 collision_layer = 2
 collision_mask = 13
 platform_floor_layers = 4294967041

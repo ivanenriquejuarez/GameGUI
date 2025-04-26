@@ -4663,6 +4663,7 @@ _data = {
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_sobhr"]
 
 [node name="enemy_worm_red" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_hnf0m")
