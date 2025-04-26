@@ -1,7 +1,9 @@
-[gd_scene load_steps=62 format=3 uid="uid://bk0ci6q46y8ic"]
+[gd_scene load_steps=70 format=3 uid="uid://bk0ci6q46y8ic"]
 
 [ext_resource type="Script" uid="uid://dvhtexoau7jqu" path="res://Designer Library/Player Character/Knight/player_state_test.gd" id="1_5mgp2"]
 [ext_resource type="Texture2D" uid="uid://dk35juwrvoknr" path="res://Assets/Sprites/Sprites/Player Sprites/_Idle.png" id="2_6ii4s"]
+[ext_resource type="Script" uid="uid://bpl5e3cc382f8" path="res://Designer Library/scripts/hitbox.gd" id="3_jojry"]
+[ext_resource type="Script" uid="uid://dtxioii31s441" path="res://Designer Library/scripts/hurtbox.gd" id="4_l72ax"]
 [ext_resource type="Texture2D" uid="uid://ct40eem1k50us" path="res://Assets/Sprites/Sprites/Player Sprites/_Crouch.png" id="7_nbj1r"]
 [ext_resource type="Texture2D" uid="uid://bdul0kt3fbdfn" path="res://Assets/Sprites/Sprites/Player Sprites/_CrouchWalk.png" id="8_hl7ro"]
 [ext_resource type="Texture2D" uid="uid://dstcr50vsxb7k" path="res://Assets/Sprites/Sprites/Player Sprites/_Run.png" id="8_qc51x"]
@@ -20,6 +22,13 @@
 [ext_resource type="Script" uid="uid://cy7r6mwkk2phw" path="res://Designer Library/Player Character/Knight/player_fall_state.gd" id="18_ccf8y"]
 [ext_resource type="Script" uid="uid://c5kxiwo7x0702" path="res://Designer Library/Player Character/Knight/player_jump_state.gd" id="19_78hht"]
 [ext_resource type="Script" uid="uid://b7narufdmm21o" path="res://Designer Library/Player Character/Knight/player_run_state.gd" id="19_w6y64"]
+[ext_resource type="Script" uid="uid://dlgmv14dleebd" path="res://Designer Library/scripts/health.gd" id="23_l72ax"]
+[ext_resource type="Script" uid="uid://cjm6q4vt1k62h" path="res://Designer Library/Player Character/Knight/attack_1.gd" id="23_lnvrx"]
+[ext_resource type="Script" uid="uid://dldc2kxvyxeet" path="res://Designer Library/Player Character/Knight/player_crouch_state.gd" id="24_7mo33"]
+[ext_resource type="Script" uid="uid://c581rc1e6ak8s" path="res://Designer Library/Player Character/Knight/player_crouchwalk_state.gd" id="25_o6odl"]
+[ext_resource type="Script" uid="uid://blbo8aivqrw5m" path="res://Designer Library/Player Character/Knight/player_dash_state.gd" id="26_r2r4l"]
+[ext_resource type="PackedScene" uid="uid://bqd5xakf1hqbj" path="res://Designer Library/Player Character/Knight/Ghost.tscn" id="27_7mo33"]
+[ext_resource type="Script" uid="uid://cq237m8uj0icr" path="res://Designer Library/Player Character/Knight/player_wallslide_state.gd" id="28_o6odl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7hxca"]
 radius = 3.0
@@ -8320,9 +8329,6 @@ _data = {
 &"WallSlide": SubResource("Animation_xmxe0")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwdog"]
-size = Vector2(18, 28.5)
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 13
@@ -8337,6 +8343,7 @@ hframes = 10
 [node name="Hitbox" type="Area2D" parent="Sprite2D"]
 collision_layer = 0
 collision_mask = 16
+script = ExtResource("3_jojry")
 
 [node name="Attack1" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
 position = Vector2(-4, 11)
@@ -8360,6 +8367,7 @@ debug_color = Color(0.961248, 0, 0.511433, 0.42)
 position = Vector2(0, 40)
 collision_layer = 0
 collision_mask = 16
+script = ExtResource("3_jojry")
 
 [node name="LAttack1" type="CollisionShape2D" parent="Sprite2D/LightHitbox"]
 position = Vector2(3.8147e-06, -25)
@@ -8379,10 +8387,12 @@ rotation = 1.79594
 shape = SubResource("CapsuleShape2D_vbbkk")
 debug_color = Color(0.967122, 2.88785e-07, 0.476246, 0.42)
 
-[node name="Hurtbox" type="Area2D" parent="Sprite2D"]
+[node name="Hurtbox" type="Area2D" parent="Sprite2D" node_paths=PackedStringArray("health")]
 position = Vector2(-3, 40)
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("4_l72ax")
+health = NodePath("../../Health")
 
 [node name="Hurt1" type="CollisionShape2D" parent="Sprite2D/Hurtbox"]
 position = Vector2(8, -28)
@@ -8419,7 +8429,7 @@ wait_time = 0.09
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_lfsi8")
+&"": SubResource("AnimationLibrary_lfsi8")
 }
 autoplay = "Idle"
 
@@ -8454,15 +8464,27 @@ character_body_2d = NodePath("../..")
 script = ExtResource("19_78hht")
 character_body_2d = NodePath("../..")
 
-[node name="Attack1" type="Node" parent="StateMachine"]
+[node name="Attack1" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("23_lnvrx")
+character_body_2d = NodePath("../..")
 
-[node name="Crouch" type="Node" parent="StateMachine"]
+[node name="Crouch" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("24_7mo33")
+character_body_2d = NodePath("../..")
 
-[node name="CrouchWalk" type="Node" parent="StateMachine"]
+[node name="CrouchWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("25_o6odl")
+character_body_2d = NodePath("../..")
 
-[node name="Dash" type="Node" parent="StateMachine"]
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "player")]
+script = ExtResource("26_r2r4l")
+character_body_2d = NodePath("../..")
+ghost_node = ExtResource("27_7mo33")
+player = NodePath("../..")
 
-[node name="WallSlide" type="Node" parent="StateMachine"]
+[node name="WallSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
+script = ExtResource("28_o6odl")
+character_body_2d = NodePath("../..")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 
@@ -8489,6 +8511,7 @@ character_body_2d = NodePath("../..")
 [node name="CrouchAttack" type="Node" parent="StateMachine"]
 
 [node name="Health" type="Node" parent="."]
+script = ExtResource("23_l72ax")
 
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 6.0
@@ -8511,18 +8534,9 @@ volume_db = -7.495
 
 [node name="SlideHang" type="AudioStreamPlayer2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5, -15)
-shape = SubResource("RectangleShape2D_qwdog")
-
 [connection signal="timeout" from="Sprite2D/GhostTimer" to="StateMachine/Dash" method="_on_ghost_timer_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="StateMachine/Idle" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="StateMachine/Fall" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="StateMachine/Run" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="StateMachine/Jump" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

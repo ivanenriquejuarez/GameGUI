@@ -72,8 +72,8 @@ static var tile_assets = [
 
 static var object_assets = [
 	{
-		"preview": "res://Designer Library/Blocks/stone/stone_preview.tscn",
-		"runtime": "res://Designer Library/Blocks/stone/stone_block.tscn"
+		"preview": "res://Designer Library/Objects/Breakable Box/breakable_box_preview.tscn",
+		"runtime": "res://Designer Library/Objects/Breakable Box/object_breakable_box.tscn"
 	},
 	# Add more objects...
 ]
