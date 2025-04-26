@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2mb6obttg3k6"
-path="res://.godot/imported/BTCallMethod.svg-2e87cea6c3e3c0b830418a52d404ae56.ctex"
+path="res://.godot/imported/BTCallMethod.svg-f41bac2a2119be3591af9424d2c32d9a.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Addons/limboai/icons/BTCallMethod.svg"
-dest_files=["res://.godot/imported/BTCallMethod.svg-2e87cea6c3e3c0b830418a52d404ae56.ctex"]
+source_file="res://addons/limboai/icons/BTCallMethod.svg"
+dest_files=["res://.godot/imported/BTCallMethod.svg-f41bac2a2119be3591af9424d2c32d9a.ctex"]
 
 [params]
 

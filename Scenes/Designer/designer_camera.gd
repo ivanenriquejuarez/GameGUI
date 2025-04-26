@@ -29,6 +29,9 @@ func _handle_panning(delta):
 		position.y = max(position.y, 0)
 
 func _handle_zoom():
+	if Input.is_action_pressed("shift"):
+		return
+		
 	if Input.is_action_just_pressed("zoom_out"):
 		var new_zoom = zoom - Vector2(zoom_speed, zoom_speed)
 		zoom = new_zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))

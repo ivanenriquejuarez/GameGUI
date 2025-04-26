@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnlq4coc1l4hy"
-path="res://.godot/imported/urn.svg-dcc79478956ed4f90916cc5ae8601e30.ctex"
+path="res://.godot/imported/urn.svg-f291d72363436c68c1cf7f69ef6ae414.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/urn/urn.svg"
-dest_files=["res://.godot/imported/urn.svg-dcc79478956ed4f90916cc5ae8601e30.ctex"]
+source_file="res://addons/collapsible_container/examples (OPTIONAL)/layout_preset_example/assets/images/urn/urn.svg"
+dest_files=["res://.godot/imported/urn.svg-f291d72363436c68c1cf7f69ef6ae414.ctex"]
 
 [params]
 

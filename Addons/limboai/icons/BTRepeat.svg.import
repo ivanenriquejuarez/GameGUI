@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5bll4dnt3s6g"
-path="res://.godot/imported/BTRepeat.svg-ecd45adabcbb5387e9bebccb53cb9152.ctex"
+path="res://.godot/imported/BTRepeat.svg-ca1efcf8bdef890d4575f2bf66ba0a8d.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Addons/limboai/icons/BTRepeat.svg"
-dest_files=["res://.godot/imported/BTRepeat.svg-ecd45adabcbb5387e9bebccb53cb9152.ctex"]
+source_file="res://addons/limboai/icons/BTRepeat.svg"
+dest_files=["res://.godot/imported/BTRepeat.svg-ca1efcf8bdef890d4575f2bf66ba0a8d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsrh2rx4lxivy"
-path="res://.godot/imported/ControlAlignFullRect.svg-f91a3d7c7449710637e4a8446204b24b.ctex"
+path="res://.godot/imported/ControlAlignFullRect.svg-dade0ff26d5139e74a5e8d99cefd5de9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Hover/ControlAlignFullRect.svg"
-dest_files=["res://.godot/imported/ControlAlignFullRect.svg-f91a3d7c7449710637e4a8446204b24b.ctex"]
+source_file="res://addons/collapsible_container/collapsible_elements/FoldingPresets/icons/Hover/ControlAlignFullRect.svg"
+dest_files=["res://.godot/imported/ControlAlignFullRect.svg-dade0ff26d5139e74a5e8d99cefd5de9.ctex"]
 
 [params]
 

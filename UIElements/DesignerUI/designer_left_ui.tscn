@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
 [ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
 [ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
 
 [node name="accordion_menu" type="Control"]
@@ -112,17 +112,8 @@ anchor_right = 1.0
 offset_bottom = 62.0
 grow_horizontal = 2
 
-[node name="ColorRect" type="ColorRect" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer"]
+[node name="AssetLibrary" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer" instance=ExtResource("4_rvv21")]
 layout_mode = 2
-color = Color(0.666667, 0.666667, 0.666667, 1)
-
-[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Hello, 
-World!"
-horizontal_alignment = 1
 
 [node name="SubMenu2" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -157,17 +148,8 @@ anchor_right = 1.0
 offset_bottom = 62.0
 grow_horizontal = 2
 
-[node name="ColorRect" type="ColorRect" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer"]
+[node name="AssetLibrary" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer" instance=ExtResource("4_rvv21")]
 layout_mode = 2
-color = Color(0.388235, 0.807843, 0.682353, 1)
-
-[node name="Label" type="Label" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Menu
-2"
-horizontal_alignment = 1
 
 [node name="SubMenu3" type="VBoxContainer" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

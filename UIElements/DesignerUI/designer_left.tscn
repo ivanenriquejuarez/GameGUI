@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://borghsl8ooih6"]
 
 [ext_resource type="Script" uid="uid://cbsk4h77dsmd7" path="res://UIElements/DesignerUI/designer_left.gd" id="1_bkryp"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_tlqjw"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_tlqjw"]
 [ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="4_vufug"]
 
 [node name="DesignerLeft" type="Control"]

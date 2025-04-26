@@ -5,27 +5,16 @@ extends Control
 
 signal asset_selected(preview_path: String, runtime_path: String)
 
-# You define your asset list directly here
-var asset_list := [
-	{
-		"preview": "res://Designer Library/Test/test_scene_1.tscn",
-		"runtime": "res://Designer Library/Test/test_scene_2.tscn"
-	},
-	{
-		"preview": "res://Designer Library/Test/test_scene_2.tscn",
-		"runtime": "res://Designer Library/Test/test_scene_1.tscn"
-	},
-	{
-		"preview": "res://Designer Library/Player Character/Knight/knight_preview.tscn",
-		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
-	},
-	{
-		"preview": "res://Designer Library/Blocks/stone_block.tscn",
-		"runtime": "res://Designer Library/Blocks/stone_block.tscn"
-	},
-]
+@export var asset_list: Array = []
 
 func _ready():
+	# No more auto-populating here!
+	pass
+
+func populate_assets():
+	if asset_list.is_empty():
+		return
+
 	var asset_button_scene = preload("res://UIElements/DesignerUI/asset_button.tscn")
 
 	for asset in asset_list:
@@ -37,3 +26,9 @@ func _ready():
 
 func _on_asset_button_selected(preview_path: String, runtime_path: String):
 	emit_signal("asset_selected", preview_path, runtime_path)
+
+func get_asset_index(preview_path: String) -> int:
+	for i in range(asset_list.size()):
+		if asset_list[i].preview == preview_path:
+			return i
+	return 0  # Default if not found

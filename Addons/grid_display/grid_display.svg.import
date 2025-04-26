@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvr8u6c1ampqi"
-path="res://.godot/imported/grid_display.svg-21b9bf97a9a5695b317dfbc4b45bfe9b.ctex"
+path="res://.godot/imported/grid_display.svg-1e2dff091c9cf058414f626977b2cdf5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/grid_display/grid_display.svg"
-dest_files=["res://.godot/imported/grid_display.svg-21b9bf97a9a5695b317dfbc4b45bfe9b.ctex"]
+source_file="res://addons/grid_display/grid_display.svg"
+dest_files=["res://.godot/imported/grid_display.svg-1e2dff091c9cf058414f626977b2cdf5.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brmwpdbir3006"
-path="res://.godot/imported/BTNewScope.svg-76dbb58c42513e0cb48ea2eef041370b.ctex"
+path="res://.godot/imported/BTNewScope.svg-d536a90c30773badb76653d8c928cfe0.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Addons/limboai/icons/BTNewScope.svg"
-dest_files=["res://.godot/imported/BTNewScope.svg-76dbb58c42513e0cb48ea2eef041370b.ctex"]
+source_file="res://addons/limboai/icons/BTNewScope.svg"
+dest_files=["res://.godot/imported/BTNewScope.svg-d536a90c30773badb76653d8c928cfe0.ctex"]
 
 [params]
 
