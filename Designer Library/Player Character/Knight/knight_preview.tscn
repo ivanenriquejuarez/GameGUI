@@ -11,4 +11,5 @@ texture = ExtResource("1_76hk8")
 hframes = 10
 
 [node name="Area2dTemplate" parent="." instance=ExtResource("2_hig48")]
-script = null
+preview_path = "res://Designer Library/Player Character/Knight/knight_preview.tscn"
+runtime_path = "res://Designer Library/Player Character/Knight/playerState.tscn"

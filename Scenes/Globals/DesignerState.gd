@@ -26,9 +26,20 @@ func pick_up_preview(preview_path: String, runtime_path: String, node: Node2D):
 
 	var mouse_pos := node.global_position
 
-	# ✅ Remove from pending_objects by matching preview_path + position
+	# 🛠 SAFELY FIND MATCH FIRST
+	var matched_obj = null
+	for obj in pending_objects:
+		if obj["preview_path"] == preview_path and obj["position"] == mouse_pos:
+			matched_obj = obj
+			break
+
+	if matched_obj == null:
+		print("⚠ No matching object found for pickup.")
+		return
+
+	# ✅ THEN REMOVE from pending_objects AFTER finding match
 	pending_objects = pending_objects.filter(func(obj):
-		return obj["preview_path"] != preview_path or obj["position"] != mouse_pos
+		return obj != matched_obj
 	)
 
 	# ✅ Remove and free the visual node
@@ -52,10 +63,18 @@ func pick_up_preview(preview_path: String, runtime_path: String, node: Node2D):
 	dragging_scene = preview_scene.instantiate() as Node2D
 	dragging_scene.modulate.a = 0.5
 	dragging_scene.global_position = mouse_pos
+	
+	# ✅ Restore the correct scale from matched object
+	if "scale" in matched_obj:
+		dragging_scene.scale = matched_obj["scale"]
+	else:
+		dragging_scene.scale = Vector2(1, 1)
+
 	scene_root.add_child(dragging_scene)
 
 
-func finalize_placement(parent: Node):
+
+func finalize_placement(parent: Node, scale_factor: float):
 	if preview_scene == null or scene_being_dragged == null:
 		print("⚠ Cannot place item — no preview or runtime scene loaded.")
 		return
@@ -72,29 +91,28 @@ func finalize_placement(parent: Node):
 
 	var instance = preview_scene.instantiate() as Node2D
 	instance.global_position = final_pos
+	instance.scale = Vector2(scale_factor, scale_factor)
 
-	# ✅ Assign the preview_path to the instance so it can be picked up later
-	if "preview_path" in instance:
-		instance.preview_path = preview_scene.resource_path
-	if "runtime_path" in instance:
-		instance.runtime_path = scene_being_dragged.resource_path
-	
 	parent.add_child(instance)
 
+	# Save with correct scale
 	pending_objects.append({
 		"preview_path": preview_scene.resource_path,
 		"runtime_path": scene_being_dragged.resource_path,
-		"position": final_pos
+		"position": final_pos,
+		"scale": instance.scale
 	})
 
+	# recreate drag preview
 	if is_instance_valid(dragging_scene):
 		dragging_scene.queue_free()
 
-	# Recreate the drag preview
 	dragging_scene = preview_scene.instantiate() as Node2D
 	dragging_scene.modulate.a = 0.5
 	parent.add_child(dragging_scene)
 	dragging_scene.global_position = parent.get_viewport().get_camera_2d().get_global_mouse_position()
+	dragging_scene.scale = Vector2(scale_factor, scale_factor)  # Apply current scale to new drag preview
+
 
 
 
@@ -131,6 +149,10 @@ func load_from_file(path: String = "user://designer_save.json") -> void:
 			var instance = preview_scene.instantiate() as Node2D
 			instance.global_position = Vector2(obj["position"]["x"], obj["position"]["y"])
 			instance.modulate.a = 0.5
+			if "scale" in obj:
+				instance.scale = obj["scale"]
+			else:
+				instance.scale = Vector2(1, 1)  # fallback if old save without scale
 			get_tree().get_current_scene().add_child(instance)
 
 			pending_objects.append({

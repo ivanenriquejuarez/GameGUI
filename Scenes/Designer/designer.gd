@@ -12,6 +12,8 @@ extends Node2D
 	$DesignerCamera/CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
 ) as AssetLibrary
 var grid_snap_enabled: bool = true
+var valid_scales: Array[int] = [16, 32, 64]
+var current_scale_index: int = 0
 signal button_pressed(button_name: String)
 
 func _ready():
@@ -75,12 +77,20 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if DesignerState.dragging_scene:
-				DesignerState.finalize_placement(self)
+				DesignerState.finalize_placement(self, get_current_scale_factor())
 	#if event is InputEventMouseButton and event.pressed:
 		#print("Click received at:", get_global_mouse_position())
 		# Add this outside of the mouse button check
 	if event.is_action_pressed("space"):
 		_center_on_first_player_preview()
+		
+	if Input.is_action_pressed("shift"):
+		if event.is_action_pressed("zoom_in"):
+			if DesignerState.dragging_scene:
+				_increase_dragging_scale()
+		elif event.is_action_pressed("zoom_out"):
+			if DesignerState.dragging_scene:
+				_decrease_dragging_scale()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -137,6 +147,11 @@ func reload_designer_objects():
 		if preview_scene:
 			var instance = preview_scene.instantiate() as Node2D
 			instance.global_position = obj["position"]
+			# ✅ Restore the saved scale if available
+			if "scale" in obj:
+				instance.scale = obj["scale"]
+			else:
+				instance.scale = Vector2(1, 1)  # Default to normal scale
 			instance.modulate.a = 0.5
 			add_child(instance)
 
@@ -146,3 +161,21 @@ func _center_on_first_player_preview() -> void:
 	if players.size() > 0:
 		var first_player = players[0] as Node2D
 		designer_camera.global_position = first_player.global_position
+
+func _apply_current_scale():
+	var target_size = valid_scales[current_scale_index]
+	var scale_factor = target_size / 16.0
+	if DesignerState.dragging_scene:
+		DesignerState.dragging_scene.scale = Vector2(scale_factor, scale_factor)
+
+func _increase_dragging_scale():
+	current_scale_index = clamp(current_scale_index + 1, 0, valid_scales.size() - 1)
+	_apply_current_scale()
+
+func _decrease_dragging_scale():
+	current_scale_index = clamp(current_scale_index - 1, 0, valid_scales.size() - 1)
+	_apply_current_scale()
+
+func get_current_scale_factor() -> float:
+	var target_size = valid_scales[current_scale_index]
+	return target_size / 16.0

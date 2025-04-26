@@ -7,10 +7,7 @@ signal asset_selected(preview_path: String, runtime_path: String)
 
 # You define your asset list directly here
 var asset_list := [
-	{
-		"preview": "res://Designer Library/Player Character/Knight/knight_preview.tscn",
-		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
-	},
+	
 	{
 		"preview": "res://Designer Library/Enemies/Eyeball/eyeball_preview.tscn",
 		"runtime": "res://Designer Library/Enemies/Eyeball/enemy_eyeball.tscn"
@@ -30,6 +27,10 @@ var asset_list := [
 	{
 		"preview": "res://Designer Library/Blocks/stone/stone_preview.tscn",
 		"runtime": "res://Designer Library/Blocks/stone/stone_block.tscn"
+	},
+	{
+		"preview": "res://Designer Library/Player Character/Knight/knight_preview.tscn",
+		"runtime": "res://Designer Library/Player Character/Knight/playerState.tscn"
 	},
 ]	
 
