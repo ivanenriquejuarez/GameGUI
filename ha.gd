@@ -1,61 +1,27 @@
 extends Control
-
+# References to UI elements
 @onready var master_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MasterSlider
 @onready var sfx_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/SFXSlider
 @onready var music_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MusicSlider
 @onready var save_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
 @onready var exit_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
 
+# Update these paths to match the exact node structure from your screenshot
 @onready var audio_tab = $MapSettingPNG/Tab1
 @onready var video_tab = $MapSettingPNG/Tab2
 @onready var control_tab = $MapSettingPNG/Tab3
 
+# Store original values
 var original_master_volume: float
 var original_sfx_volume: float
 var original_music_volume: float
 
 func _ready():
+	# Print debug info to check if nodes are being found
 	print("Audio tab found: ", audio_tab != null)
 	print("Video tab found: ", video_tab != null)
 	print("Control tab found: ", control_tab != null)
 	
-	var slider_track = load("res://Assets/sliderTrack.png")
-	var button_slider = load("res://Assets/buttonSlider.png")
-	var button_highlight = load("res://Assets/buttonHighlight.png")
-	
-	print("Track texture loaded: ", slider_track != null)
-	print("Slider button loaded: ", button_slider != null)
-	print("Highlight button loaded: ", button_highlight != null)
-	
-	if button_slider and button_highlight:
-		var small_grabber = Image.new()
-		small_grabber.copy_from(button_slider.get_image())
-		small_grabber.resize(32, 32)
-		var small_grabber_texture = ImageTexture.create_from_image(small_grabber)
-		
-		var small_highlight = Image.new()
-		small_highlight.copy_from(button_highlight.get_image())
-		small_highlight.resize(32, 32)
-		var small_highlight_texture = ImageTexture.create_from_image(small_highlight)
-		
-		for s in [master_slider, sfx_slider, music_slider]:
-			s.add_theme_icon_override("grabber", small_grabber_texture)
-			s.add_theme_icon_override("grabber_highlight", small_highlight_texture)
-	
-	if slider_track:
-		var small_track = Image.new()
-		small_track.copy_from(slider_track.get_image())
-		small_track.resize(256, 16)
-		var small_track_texture = ImageTexture.create_from_image(small_track)
-
-		for s in [master_slider, sfx_slider, music_slider]:
-			var track_style = StyleBoxTexture.new()
-			track_style.texture = small_track_texture
-			track_style.draw_center = true
-			track_style.set_content_margin_all(0)
-			
-			s.add_theme_stylebox_override("slider", track_style)
-
 	# Save original volume values
 	original_master_volume = AudioManager.master_volume
 	original_sfx_volume = AudioManager.sfx_volume
@@ -72,6 +38,7 @@ func _ready():
 	sfx_slider.value = original_sfx_volume
 	music_slider.value = original_music_volume
 	
+	# Connect signals for audio settings
 	master_slider.value_changed.connect(_on_master_slider_value_changed)
 	sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
 	music_slider.value_changed.connect(_on_music_slider_value_changed)
@@ -81,7 +48,8 @@ func _ready():
 	exit_button.mouse_entered.connect(_on_button_hovered)
 	save_button.pressed.connect(_on_button_pressed)
 	exit_button.pressed.connect(_on_button_pressed)
-
+	
+	# Connect signals for tab buttons
 	if audio_tab:
 		audio_tab.pressed.connect(_on_audio_button_pressed)
 		audio_tab.mouse_entered.connect(_on_button_hovered)
@@ -92,6 +60,7 @@ func _ready():
 		control_tab.pressed.connect(_on_control_button_pressed)
 		control_tab.mouse_entered.connect(_on_button_hovered)
 
+# Volume change handlers
 func _on_master_slider_value_changed(value):
 	AudioManager.set_master_volume(value, false)
 
@@ -101,6 +70,7 @@ func _on_sfx_slider_value_changed(value):
 func _on_music_slider_value_changed(value):
 	AudioManager.set_music_volume(value, false)
 
+# Save volume settings
 func _on_save_button_pressed():
 	AudioManager.save_volume_settings()
 	original_master_volume = AudioManager.master_volume
@@ -108,7 +78,9 @@ func _on_save_button_pressed():
 	original_music_volume = AudioManager.music_volume
 	print("Settings saved!")
 
+# Return/exit button
 func _on_exit_button_pressed():
+	# Revert unsaved settings
 	if AudioManager.master_volume != original_master_volume or \
 	   AudioManager.sfx_volume != original_sfx_volume or \
 	   AudioManager.music_volume != original_music_volume:
@@ -116,20 +88,23 @@ func _on_exit_button_pressed():
 		AudioManager.set_sfx_volume(original_sfx_volume, false)
 		AudioManager.set_music_volume(original_music_volume, false)
 	AudioManager.ensure_audio_state()
+	# 🌟 Check this scene path is correct
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
+# Tab navigation functions with debug prints
 func _on_audio_button_pressed():
 	print("Audio button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
-
+	
 func _on_video_button_pressed():
 	print("Video button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/video_settings.tscn")
-
+	
 func _on_control_button_pressed():
 	print("Control button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/control_settings.tscn")
 
+# Hover & press sounds
 func _on_button_hovered():
 	ButtonHoverSound.play_hover_sound()
 
