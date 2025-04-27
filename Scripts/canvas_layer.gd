@@ -6,7 +6,7 @@ extends CanvasLayer
 
 var active_popup: Window = null  # Track the currently open popup
 var last_button_pressed = ""     # Track last button name pressed
-
+	
 func _on_grid_pressed():
 	_handle_popup(popup_grid, "grid")
 
@@ -29,3 +29,4 @@ func _handle_popup(popup_node: Window, button_name: String):
 		popup_node.popup_centered()
 		active_popup = popup_node
 		last_button_pressed = button_name
+		

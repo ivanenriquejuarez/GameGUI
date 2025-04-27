@@ -6,7 +6,7 @@ extends Node2D
 
 @onready var save_load = $CanvasLayer/SaveLoad
 @onready var designer_settings = $CanvasLayer/DesignerSettings
-@onready var grid_controls = $CanvasLayer/gridControls
+@onready var grid_controls = $CanvasLayer/PopupGrid
 @onready var grid_display: GridDisplay = $GridDisplay
 @onready var character_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer/AssetLibrary
 @onready var tile_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer/AssetLibrary
@@ -52,7 +52,7 @@ func apply_grid_settings():
 		grid_display.cell_size = DesignerState.cell_size
 
 func set_cell_size(index: int):
-	var cell_size = int($CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))
+	var cell_size = int($CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/OptionButton.get_item_text(index))
 	grid_display.cell_size = Vector2(cell_size, cell_size)
 	DesignerState.cell_size = Vector2(cell_size, cell_size)
 
@@ -93,6 +93,7 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#print("click")
 			if DesignerState.dragging_scene:
 				DesignerState.finalize_placement(self, get_current_scale_factor())
 	#if event is InputEventMouseButton and event.pressed:

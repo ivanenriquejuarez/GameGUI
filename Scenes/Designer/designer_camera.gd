@@ -9,6 +9,9 @@ func _process(delta):
 	_handle_panning(delta)
 	_handle_zoom()
 
+func _ready():
+	position = Vector2(1920 * 3, 1080 * 3)  # Move 3 screens right and down
+	
 func _handle_panning(delta):
 	var move_vector := Vector2.ZERO
 	

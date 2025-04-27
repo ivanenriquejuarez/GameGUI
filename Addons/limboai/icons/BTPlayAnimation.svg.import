@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkavr451maugp"
-path="res://.godot/imported/BTPlayAnimation.svg-7f6fd603a952380a27ee5f1ce0e112e0.ctex"
+path="res://.godot/imported/BTPlayAnimation.svg-8821f3b3413b9b328414add0e843468c.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Addons/limboai/icons/BTPlayAnimation.svg"
-dest_files=["res://.godot/imported/BTPlayAnimation.svg-7f6fd603a952380a27ee5f1ce0e112e0.ctex"]
+source_file="res://addons/limboai/icons/BTPlayAnimation.svg"
+dest_files=["res://.godot/imported/BTPlayAnimation.svg-8821f3b3413b9b328414add0e843468c.ctex"]
 
 [params]
 
