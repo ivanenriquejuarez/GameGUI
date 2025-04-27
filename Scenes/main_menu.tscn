@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d02i7ep1d2v88"]
+[gd_scene load_steps=20 format=3 uid="uid://d02i7ep1d2v88"]
 
 [ext_resource type="Script" uid="uid://dgakj37cieetk" path="res://Scripts/main_menu.gd" id="1_cp0ys"]
 [ext_resource type="Shader" uid="uid://fuya7an2oqyj" path="res://Shaders/FlameShader.gdshader" id="2_ce3w2"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dqllg7jic0ivu" path="res://Assets/wooden_buttons.png" id="4_ce3w2"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="4_opfnp"]
 [ext_resource type="Texture2D" uid="uid://cd2wnyi80wax2" path="res://Assets/wooden_buttons_darker.png" id="5_n45e2"]
+[ext_resource type="Texture2D" uid="uid://l58wkkbc4fwf" path="res://Assets/sfxMute.png" id="7_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://debb4join84im" path="res://Assets/sfxHover.png" id="8_trj04"]
+[ext_resource type="Texture2D" uid="uid://ddslwaieok5qj" path="res://Assets/sfxMuted.png" id="8_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://bdtrc0mxns0ns" path="res://Assets/musicMute.png" id="10_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://djs5viop4210h" path="res://Assets/musicPressed.png" id="11_5egv6"]
+[ext_resource type="Texture2D" uid="uid://bb86p7xxqgg6q" path="res://Assets/musicHover.png" id="12_vtepg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opfnp"]
 shader = ExtResource("2_ce3w2")
@@ -21,6 +27,18 @@ region_rect = Rect2(550, 368, 435, 288)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n45e2"]
 texture = ExtResource("5_n45e2")
 region_rect = Rect2(39.7862, 368, 433.563, 284)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trj04"]
+atlas = ExtResource("7_yhxw7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dnnj"]
+atlas = ExtResource("10_t1dhk")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3bi6"]
+atlas = ExtResource("11_5egv6")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyh8j"]
+atlas = ExtResource("12_vtepg")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -99,3 +117,32 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ce3w2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_n45e2")
 text = "Exit"
+
+[node name="SFX" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1750.0
+offset_top = 950.0
+offset_right = 812.0
+offset_bottom = 950.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+action_mode = 0
+texture_normal = SubResource("AtlasTexture_trj04")
+texture_pressed = ExtResource("8_yhxw7")
+texture_hover = ExtResource("8_trj04")
+
+[node name="Music" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1640.0
+offset_top = 950.0
+offset_right = 2664.0
+offset_bottom = 1974.0
+scale = Vector2(0.08, 0.08)
+texture_normal = SubResource("AtlasTexture_8dnnj")
+texture_pressed = SubResource("AtlasTexture_m3bi6")
+texture_hover = SubResource("AtlasTexture_wyh8j")
