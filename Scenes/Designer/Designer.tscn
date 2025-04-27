@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://ty6ca4jgo80g"]
+[gd_scene load_steps=26 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" uid="uid://d3vjxq8617dwn" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
 [ext_resource type="Script" uid="uid://bmafmlj01k4bv" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
 [ext_resource type="PackedScene" uid="uid://byuspu342y8uo" path="res://UIElements/DesignerUI/designer_left_ui.tscn" id="4_di20i"]
+[ext_resource type="Script" uid="uid://bd0wnftpqh8x" path="res://Scripts/canvas_layer.gd" id="4_jhpxb"]
 [ext_resource type="Texture2D" uid="uid://be7dabwc7u6ud" path="res://Assets/gridLayout.png" id="4_s2k33"]
 [ext_resource type="Texture2D" uid="uid://cii02pptwbck8" path="res://Assets/gridHover.png" id="4_x5v8k"]
 [ext_resource type="Script" uid="uid://doqisqrvpvkag" path="res://Addons/grid_display/grid_display.gd" id="5_56spr"]
@@ -12,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://omntv6jchgnd" path="res://Assets/settingsHover.png" id="6_jyx4q"]
 [ext_resource type="Texture2D" uid="uid://dn5t8hmruyu6v" path="res://Assets/saveHover.png" id="6_m2eit"]
 [ext_resource type="PackedScene" uid="uid://bcsgncexysv8y" path="res://UIElements/DesignerUI/designer_settings.tscn" id="6_u8qm0"]
+[ext_resource type="PackedScene" uid="uid://bmipt6poqn81l" path="res://Scenes/settings.tscn" id="11_1reo3"]
+[ext_resource type="PackedScene" uid="uid://cqxakn03ewye3" path="res://Scenes/load_game.tscn" id="12_8sb1d"]
 [ext_resource type="Texture2D" uid="uid://dw1d00s2geaye" path="res://Assets/playHover.png" id="13_r6gme"]
 [ext_resource type="Texture2D" uid="uid://bteey1e1u0tm3" path="res://Assets/playButton.png" id="14_aa8cd"]
 
@@ -55,6 +58,7 @@ line_size = Vector2(1, 1)
 border_width = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_jhpxb")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
@@ -101,6 +105,115 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6gme")
 
+[node name="PopupGrid" type="PopupPanel" parent="CanvasLayer"]
+size = Vector2i(800, 600)
+
+[node name="gridControls" type="Control" parent="CanvasLayer/PopupGrid"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 796.0
+offset_bottom = 596.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PopupGrid/gridControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -326.0
+offset_right = 577.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "TEST"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "line width"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label4" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "cell size"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "16"
+popup/item_0/id = 0
+popup/item_1/text = "32"
+popup/item_1/id = 1
+popup/item_2/text = "64"
+popup/item_2/id = 2
+popup/item_3/text = "128"
+popup/item_3/id = 3
+
+[node name="Label3" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "visibility"
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="snapBox" type="CheckBox" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Grid Snap"
+
+[node name="exit" type="Button" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "exit"
+
+[node name="PopupSettings" type="PopupPanel" parent="CanvasLayer"]
+auto_translate_mode = 1
+size = Vector2i(1280, 720)
+
+[node name="Settings" parent="CanvasLayer/PopupSettings" instance=ExtResource("11_1reo3")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1276.0
+offset_bottom = 716.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PopupLoad" type="PopupPanel" parent="CanvasLayer"]
+size = Vector2i(1400, 800)
+
+[node name="LoadGame" parent="CanvasLayer/PopupLoad" instance=ExtResource("12_8sb1d")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1396.0
+offset_bottom = 796.0
+
 [node name="gridControls" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -110,7 +223,8 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -0.5
-offset_right = 0.5
+offset_right = 91.5
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -189,9 +303,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 100.0
-offset_top = 80.0
+offset_top = 120.0
 offset_right = 100.0
-offset_bottom = 81.0
+offset_bottom = 121.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 4
@@ -207,10 +321,10 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -270.0
-offset_top = 50.0
-offset_right = -223.0
-offset_bottom = 81.0
+offset_left = -1673.0
+offset_top = 625.0
+offset_right = -1626.0
+offset_bottom = 656.0
 grow_horizontal = 0
 scale = Vector2(5, 5)
 size_flags_horizontal = 3
@@ -243,6 +357,14 @@ offset_right = 46.0
 grow_vertical = 0
 text = "Load"
 
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/grid" to="CanvasLayer" method="_on_grid_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/settings" to="CanvasLayer" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/load" to="CanvasLayer" method="_on_load_pressed"]
+[connection signal="value_changed" from="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/HSlider" to="." method="set_line_and_border_width"]
+[connection signal="item_selected" from="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]
+[connection signal="toggled" from="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/CheckBox" to="." method="toggle_grid"]
+[connection signal="toggled" from="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/snapBox" to="." method="toggle_grid_snap"]
+[connection signal="pressed" from="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/gridControls/CenterContainer/VBoxContainer/HSlider" to="." method="set_line_and_border_width"]
 [connection signal="item_selected" from="CanvasLayer/gridControls/CenterContainer/VBoxContainer/OptionButton" to="." method="set_cell_size"]
 [connection signal="toggled" from="CanvasLayer/gridControls/CenterContainer/VBoxContainer/CheckBox" to="." method="toggle_grid"]
