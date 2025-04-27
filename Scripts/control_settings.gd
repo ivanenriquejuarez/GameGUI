@@ -1,82 +1,58 @@
 extends Control
 
-# References to UI elements
-@onready var save_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
-@onready var exit_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
+# Control UI elements within the CenterContainer
+@onready var move_forward_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer/Button
+@onready var move_backward_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer4/Button
+@onready var move_left_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer3/Button
+@onready var move_right_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer2/Button
+@onready var invert_mouse_checkbox = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer5/CheckBox
+@onready var mouse_sensitivity_slider = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer6/HSlider
 
-# References to movement control buttons
-@onready var move_forward_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer/Button
-@onready var move_backward_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer4/Button
-@onready var move_left_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer3/Button
-@onready var move_right_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer2/Button
+# These are working correctly - keeping them as is
+@onready var save_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
+@onready var exit_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
 
-# References to mouse settings
-@onready var invert_mouse_checkbox = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer5/CheckBox
-@onready var mouse_sensitivity_node = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer6/MouseSensitivity
+# These are working correctly - keeping them as is
+@onready var audio_tab = $CenterContainer/MapSettingPNG/Tab1
+@onready var video_tab = $CenterContainer/MapSettingPNG/Tab2
+@onready var control_tab = $CenterContainer/MapSettingPNG/Tab3
 
-# References to tab buttons
-@onready var audio_tab = $MapSettingPNG/Tab1
-@onready var video_tab = $MapSettingPNG/Tab2
-@onready var control_tab = $MapSettingPNG/Tab3
-
-# Mapping of action names to buttons and user-friendly names
-var action_buttons = {
-	"move_forward": {"button": null, "name": "Move Forward"},
-	"move_backward": {"button": null, "name": "Move Backward"},
-	"move_left": {"button": null, "name": "Move Left"},
-	"move_right": {"button": null, "name": "Move Right"}
-}
-
-# Store original mappings
-var original_mappings = {}
-var original_invert_mouse = false
-var original_mouse_sensitivity = 1.0
-var current_mapping_button = null
+# Store original values
+var original_mouse_inverted: bool
+var original_mouse_sensitivity: float
+var original_key_bindings = {}
 
 func _ready():
-	# Debug to check which references are found
-	print("Move Forward button found: ", move_forward_button != null)
-	print("Move Backward button found: ", move_backward_button != null)
-	print("Move Left button found: ", move_left_button != null)
-	print("Move Right button found: ", move_right_button != null)
-	print("Invert Mouse checkbox found: ", invert_mouse_checkbox != null)
-	print("Mouse Sensitivity node found: ", mouse_sensitivity_node != null)
+	# Debug prints to check if nodes are found
+	print("Move Forward button: ", move_forward_button)
+	print("Move Backward button: ", move_backward_button)
+	print("Move Left button: ", move_left_button)
+	print("Move Right button: ", move_right_button)
+	print("Invert Mouse checkbox: ", invert_mouse_checkbox)
+	print("Mouse Sensitivity slider: ", mouse_sensitivity_slider)
+	print("Save button node: ", save_button)
+	print("Exit button node: ", exit_button)
+	print("Audio tab found: ", audio_tab != null)
+	print("Video tab found: ", video_tab != null)
+	print("Control tab found: ", control_tab != null)
 	
-	# Initialize button references
-	action_buttons["move_forward"].button = move_forward_button
-	action_buttons["move_backward"].button = move_backward_button
-	action_buttons["move_left"].button = move_left_button
-	action_buttons["move_right"].button = move_right_button
+	# Wait for nodes to initialize fully
+	await get_tree().process_frame
 	
-	# Save original mappings
-	_save_original_mappings()
+	# Load current control settings
+	_load_control_settings()
 	
-	# Set checkbox value if it exists
-	if invert_mouse_checkbox:
-		original_invert_mouse = invert_mouse_checkbox.button_pressed
-		invert_mouse_checkbox.toggled.connect(_on_invert_mouse_toggled)
+	# Connect signals
+	if save_button:
+		save_button.pressed.connect(_on_save_button_pressed)
+		save_button.mouse_entered.connect(_on_button_hovered)
+		save_button.pressed.connect(_on_button_pressed)
 	
-	# Set slider value if it exists and is a slider
-	if mouse_sensitivity_node and mouse_sensitivity_node is HSlider:
-		original_mouse_sensitivity = mouse_sensitivity_node.value
-		mouse_sensitivity_node.value_changed.connect(_on_mouse_sensitivity_changed)
+	if exit_button:
+		exit_button.pressed.connect(_on_exit_button_pressed)
+		exit_button.mouse_entered.connect(_on_button_hovered)
+		exit_button.pressed.connect(_on_button_pressed)
 	
-	# Initialize button text and connect signals
-	for action in action_buttons.keys():
-		var button = action_buttons[action].button
-		if button:
-			button.text = _get_key_name(action)
-			button.pressed.connect(_on_key_button_pressed.bind(button, action))
-	
-	# Connect other signals
-	save_button.pressed.connect(_on_save_button_pressed)
-	exit_button.pressed.connect(_on_exit_button_pressed)
-	save_button.mouse_entered.connect(_on_button_hovered)
-	exit_button.mouse_entered.connect(_on_button_hovered)
-	save_button.pressed.connect(_on_button_pressed)
-	exit_button.pressed.connect(_on_button_pressed)
-	
-	# Connect signals for tab buttons
 	if audio_tab:
 		audio_tab.pressed.connect(_on_audio_button_pressed)
 		audio_tab.mouse_entered.connect(_on_button_hovered)
@@ -86,152 +62,201 @@ func _ready():
 	if control_tab:
 		control_tab.pressed.connect(_on_control_button_pressed)
 		control_tab.mouse_entered.connect(_on_button_hovered)
-
-func _save_original_mappings():
-	for action in action_buttons.keys():
-		original_mappings[action] = []
-		if InputMap.has_action(action):
-			for event in InputMap.action_get_events(action):
-				if event is InputEventKey:
-					original_mappings[action].append(event.physical_keycode)
-
-func _get_key_name(action):
-	if not InputMap.has_action(action):
-		return "Unassigned"
 		
-	var events = InputMap.action_get_events(action)
-	if events.size() > 0:
-		for event in events:
-			if event is InputEventKey:
-				return OS.get_keycode_string(event.physical_keycode)
-	return "Unassigned"
-
-func _on_key_button_pressed(button, action):
-	# Highlight the button being mapped
-	if current_mapping_button:
-		current_mapping_button.text = _get_key_name(current_mapping_button.get_meta("action"))
+	# Connect control-specific signals
+	if invert_mouse_checkbox:
+		invert_mouse_checkbox.toggled.connect(_on_invert_mouse_toggled)
+	if mouse_sensitivity_slider:
+		mouse_sensitivity_slider.value_changed.connect(_on_mouse_sensitivity_changed)
 	
-	current_mapping_button = button
-	current_mapping_button.set_meta("action", action)
-	current_mapping_button.text = "Press any key..."
+	# Connect key rebinding buttons
+	if move_forward_button:
+		move_forward_button.pressed.connect(_on_rebind_key_pressed.bind("move_forward"))
+	if move_backward_button:
+		move_backward_button.pressed.connect(_on_rebind_key_pressed.bind("move_backward"))
+	if move_left_button:
+		move_left_button.pressed.connect(_on_rebind_key_pressed.bind("move_left"))
+	if move_right_button:
+		move_right_button.pressed.connect(_on_rebind_key_pressed.bind("move_right"))
+
+# --- Load Control Settings ---
+func _load_control_settings():
+	var config = ConfigFile.new()
+	var err = config.load("user://control_settings.cfg")
+	
+	if err == OK:
+		# Load saved control settings
+		if invert_mouse_checkbox:
+			var inverted = config.get_value("mouse", "inverted", false)
+			invert_mouse_checkbox.button_pressed = inverted
+			original_mouse_inverted = inverted
+		
+		if mouse_sensitivity_slider:
+			var sensitivity = config.get_value("mouse", "sensitivity", 0.5)
+			mouse_sensitivity_slider.value = sensitivity
+			original_mouse_sensitivity = sensitivity
+		
+		# Load key bindings
+		var forward_key = config.get_value("keys", "move_forward", KEY_W)
+		var backward_key = config.get_value("keys", "move_backward", KEY_S)
+		var left_key = config.get_value("keys", "move_left", KEY_A)
+		var right_key = config.get_value("keys", "move_right", KEY_D)
+		
+		# Store original key bindings
+		original_key_bindings = {
+			"move_forward": forward_key,
+			"move_backward": backward_key,
+			"move_left": left_key,
+			"move_right": right_key
+		}
+		
+		# Update button labels
+		_update_key_button_labels()
+	else:
+		# Set default values
+		if invert_mouse_checkbox:
+			invert_mouse_checkbox.button_pressed = false
+			original_mouse_inverted = false
+		
+		if mouse_sensitivity_slider:
+			mouse_sensitivity_slider.value = 0.5
+			original_mouse_sensitivity = 0.5
+		
+		# Default key bindings
+		original_key_bindings = {
+			"move_forward": KEY_W,
+			"move_backward": KEY_S,
+			"move_left": KEY_A,
+			"move_right": KEY_D
+		}
+		
+		# Update button labels
+		_update_key_button_labels()
+
+# --- Update Key Button Labels ---
+func _update_key_button_labels():
+	if move_forward_button:
+		move_forward_button.text = OS.get_keycode_string(original_key_bindings["move_forward"])
+	if move_backward_button:
+		move_backward_button.text = OS.get_keycode_string(original_key_bindings["move_backward"])
+	if move_left_button:
+		move_left_button.text = OS.get_keycode_string(original_key_bindings["move_left"])
+	if move_right_button:
+		move_right_button.text = OS.get_keycode_string(original_key_bindings["move_right"])
+
+# --- Control-specific Signal Handlers ---
+func _on_invert_mouse_toggled(toggled_on):
+	print("Mouse inversion set to: ", toggled_on)
+
+func _on_mouse_sensitivity_changed(value):
+	print("Mouse sensitivity set to: ", value)
+
+var _current_rebinding_action = ""
+
+func _on_rebind_key_pressed(action):
+	_current_rebinding_action = action
+	print("Press any key to rebind '", action, "'...")
+	
+	# Change the button text to indicate waiting for input
+	match action:
+		"move_forward":
+			if move_forward_button:
+				move_forward_button.text = "Press any key..."
+		"move_backward":
+			if move_backward_button:
+				move_backward_button.text = "Press any key..."
+		"move_left":
+			if move_left_button:
+				move_left_button.text = "Press any key..."
+		"move_right":
+			if move_right_button:
+				move_right_button.text = "Press any key..."
+	
+	# Enable input processing to catch the next key press
+	set_process_input(true)
 
 func _input(event):
-	if current_mapping_button and event is InputEventKey and event.pressed:
-		var action = current_mapping_button.get_meta("action")
+	if _current_rebinding_action != "" and event is InputEventKey and event.pressed:
+		# Assign the new key to the action
+		original_key_bindings[_current_rebinding_action] = event.keycode
 		
-		# Check if this key is already assigned
-		for existing_action in action_buttons.keys():
-			if existing_action != action and InputMap.has_action(existing_action):
-				for existing_event in InputMap.action_get_events(existing_action):
-					if existing_event is InputEventKey and existing_event.physical_keycode == event.physical_keycode:
-						# Remove the key from the other action
-						InputMap.action_erase_event(existing_action, existing_event)
-						# Update UI for the other action
-						if action_buttons[existing_action].button:
-							action_buttons[existing_action].button.text = _get_key_name(existing_action)
-						break
+		# Update the button label
+		match _current_rebinding_action:
+			"move_forward":
+				if move_forward_button:
+					move_forward_button.text = OS.get_keycode_string(event.keycode)
+			"move_backward":
+				if move_backward_button:
+					move_backward_button.text = OS.get_keycode_string(event.keycode)
+			"move_left":
+				if move_left_button:
+					move_left_button.text = OS.get_keycode_string(event.keycode)
+			"move_right":
+				if move_right_button:
+					move_right_button.text = OS.get_keycode_string(event.keycode)
 		
-		# Make sure the action exists in the InputMap
-		if not InputMap.has_action(action):
-			InputMap.add_action(action)
-			
-		# Clear existing events
-		InputMap.action_erase_events(action)
+		print("Action '", _current_rebinding_action, "' rebound to key: ", OS.get_keycode_string(event.keycode))
 		
-		# Add new event
-		InputMap.action_add_event(action, event)
+		# Reset rebinding state
+		_current_rebinding_action = ""
 		
-		# Update button text
-		current_mapping_button.text = OS.get_keycode_string(event.physical_keycode)
-		current_mapping_button = null
+		# Disable input processing
+		set_process_input(false)
 		
 		# Consume the event
 		get_viewport().set_input_as_handled()
 
-# Mouse settings handlers
-func _on_invert_mouse_toggled(toggled_on):
-	print("Mouse inversion " + ("enabled" if toggled_on else "disabled"))
-
-func _on_mouse_sensitivity_changed(value):
-	print("Mouse sensitivity set to: " + str(value))
-
-# Save control settings
+# --- Save and Exit ---
 func _on_save_button_pressed():
-	# Save key bindings
-	var key_config = ConfigFile.new()
+	var config = ConfigFile.new()
 	
-	for action in action_buttons.keys():
-		if InputMap.has_action(action):
-			var events = InputMap.action_get_events(action)
-			var keycodes = []
-			
-			for event in events:
-				if event is InputEventKey:
-					keycodes.append(event.physical_keycode)
-			
-			key_config.set_value("controls", action, keycodes)
-	
-	key_config.save("user://key_bindings.cfg")
-	
-	# Save mouse settings if components exist
-	if invert_mouse_checkbox or (mouse_sensitivity_node and mouse_sensitivity_node is HSlider):
-		var mouse_config = ConfigFile.new()
+	if invert_mouse_checkbox and mouse_sensitivity_slider:
+		# Save mouse settings
+		config.set_value("mouse", "inverted", invert_mouse_checkbox.button_pressed)
+		config.set_value("mouse", "sensitivity", mouse_sensitivity_slider.value)
 		
-		if invert_mouse_checkbox:
-			mouse_config.set_value("mouse", "invert_y", invert_mouse_checkbox.button_pressed)
+		# Save key bindings
+		config.set_value("keys", "move_forward", original_key_bindings["move_forward"])
+		config.set_value("keys", "move_backward", original_key_bindings["move_backward"])
+		config.set_value("keys", "move_left", original_key_bindings["move_left"])
+		config.set_value("keys", "move_right", original_key_bindings["move_right"])
 		
-		if mouse_sensitivity_node and mouse_sensitivity_node is HSlider:
-			mouse_config.set_value("mouse", "sensitivity", mouse_sensitivity_node.value)
+		config.save("user://control_settings.cfg")
 		
-		mouse_config.save("user://mouse_settings.cfg")
-	
-	# Update original values
-	_save_original_mappings()
-	if invert_mouse_checkbox:
-		original_invert_mouse = invert_mouse_checkbox.button_pressed
-	if mouse_sensitivity_node and mouse_sensitivity_node is HSlider:
-		original_mouse_sensitivity = mouse_sensitivity_node.value
-	
-	print("Control settings saved!")
+		# Update original values
+		original_mouse_inverted = invert_mouse_checkbox.button_pressed
+		original_mouse_sensitivity = mouse_sensitivity_slider.value
+		
+		print("Control settings saved!")
+	else:
+		print("Cannot save settings: Some UI elements are null")
 
-# Return/exit button
 func _on_exit_button_pressed():
-	# Revert unsaved key bindings
-	for action in original_mappings.keys():
-		if InputMap.has_action(action):
-			InputMap.action_erase_events(action)
+	if invert_mouse_checkbox and mouse_sensitivity_slider:
+		# Check if any settings were changed
+		if invert_mouse_checkbox.button_pressed != original_mouse_inverted or \
+		   mouse_sensitivity_slider.value != original_mouse_sensitivity:
 			
-			for keycode in original_mappings[action]:
-				var event = InputEventKey.new()
-				event.physical_keycode = keycode
-				InputMap.action_add_event(action, event)
+			# Revert to original values
+			invert_mouse_checkbox.button_pressed = original_mouse_inverted
+			mouse_sensitivity_slider.value = original_mouse_sensitivity
 	
-	# Revert unsaved mouse settings
-	if invert_mouse_checkbox and invert_mouse_checkbox.button_pressed != original_invert_mouse:
-		invert_mouse_checkbox.button_pressed = original_invert_mouse
-		_on_invert_mouse_toggled(original_invert_mouse)
-		
-	if mouse_sensitivity_node and mouse_sensitivity_node is HSlider and mouse_sensitivity_node.value != original_mouse_sensitivity:
-		mouse_sensitivity_node.value = original_mouse_sensitivity
-		_on_mouse_sensitivity_changed(original_mouse_sensitivity)
-	
-	# Return to main menu
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-# Tab navigation functions
+# --- Tab Handlers ---
 func _on_audio_button_pressed():
 	print("Audio button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
-	
+
 func _on_video_button_pressed():
 	print("Video button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/video_settings.tscn")
-	
+
 func _on_control_button_pressed():
 	print("Control button pressed!")
 	get_tree().change_scene_to_file("res://Scenes/control_settings.tscn")
 
-# Hover & press sounds
+# --- Hover and Press Sounds ---
 func _on_button_hovered():
 	ButtonHoverSound.play_hover_sound()
 
