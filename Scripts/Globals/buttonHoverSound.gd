@@ -1,7 +1,9 @@
 extends Control
 
 func play_hover_sound():
-	$AudioStreamPlayer.play()
-	
+	if AudioManager.sfx_volume > 0:
+		$AudioStreamPlayer.play()
+
 func play_press_sound():
-	$AudioStreamPlayer2.play()
+	if AudioManager.sfx_volume > 0:
+		$AudioStreamPlayer2.play()

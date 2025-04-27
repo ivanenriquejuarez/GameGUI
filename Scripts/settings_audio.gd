@@ -1,47 +1,54 @@
 extends Control
 
-@onready var master_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MasterSlider
-@onready var sfx_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/SFXSlider
-@onready var music_slider = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MusicSlider
-@onready var save_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
-@onready var exit_button = $MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
+@onready var map_settings_png = $CenterContainer/MapSettingPNG
+@onready var master_slider = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MasterSlider
+@onready var sfx_slider = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/SFXSlider
+@onready var music_slider = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MusicSlider
+@onready var save_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
+@onready var exit_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
 
-@onready var audio_tab = $MapSettingPNG/Tab1
-@onready var video_tab = $MapSettingPNG/Tab2
-@onready var control_tab = $MapSettingPNG/Tab3
+@onready var audio_tab = $CenterContainer/MapSettingPNG/Tab1
+@onready var video_tab = $CenterContainer/MapSettingPNG/Tab2
+@onready var control_tab = $CenterContainer/MapSettingPNG/Tab3
 
 var original_master_volume: float
 var original_sfx_volume: float
 var original_music_volume: float
 
 func _ready():
+	# Adjust scaling nicely based on screen size
+	if get_viewport().size.x < 1600:
+		map_settings_png.scale = Vector2(0.7, 0.7)  # smaller on smaller screens
+	else:
+		map_settings_png.scale = Vector2(1, 1)  # full size on bigger screens
+	
 	print("Audio tab found: ", audio_tab != null)
 	print("Video tab found: ", video_tab != null)
 	print("Control tab found: ", control_tab != null)
-	
+
 	var slider_track = load("res://Assets/sliderTrack.png")
 	var button_slider = load("res://Assets/buttonSlider.png")
 	var button_highlight = load("res://Assets/buttonHighlight.png")
-	
+
 	print("Track texture loaded: ", slider_track != null)
 	print("Slider button loaded: ", button_slider != null)
 	print("Highlight button loaded: ", button_highlight != null)
-	
+
 	if button_slider and button_highlight:
 		var small_grabber = Image.new()
 		small_grabber.copy_from(button_slider.get_image())
 		small_grabber.resize(32, 32)
 		var small_grabber_texture = ImageTexture.create_from_image(small_grabber)
-		
+
 		var small_highlight = Image.new()
 		small_highlight.copy_from(button_highlight.get_image())
 		small_highlight.resize(32, 32)
 		var small_highlight_texture = ImageTexture.create_from_image(small_highlight)
-		
+
 		for s in [master_slider, sfx_slider, music_slider]:
 			s.add_theme_icon_override("grabber", small_grabber_texture)
 			s.add_theme_icon_override("grabber_highlight", small_highlight_texture)
-	
+
 	if slider_track:
 		var small_track = Image.new()
 		small_track.copy_from(slider_track.get_image())
@@ -53,14 +60,13 @@ func _ready():
 			track_style.texture = small_track_texture
 			track_style.draw_center = true
 			track_style.set_content_margin_all(0)
-			
 			s.add_theme_stylebox_override("slider", track_style)
 
 	# Save original volume values
 	original_master_volume = AudioManager.master_volume
 	original_sfx_volume = AudioManager.sfx_volume
 	original_music_volume = AudioManager.music_volume
-	
+
 	# Configure sliders
 	master_slider.min_value = 0
 	master_slider.max_value = 100
@@ -68,10 +74,11 @@ func _ready():
 	sfx_slider.max_value = 100
 	music_slider.min_value = 0
 	music_slider.max_value = 100
+
 	master_slider.value = original_master_volume
 	sfx_slider.value = original_sfx_volume
 	music_slider.value = original_music_volume
-	
+
 	master_slider.value_changed.connect(_on_master_slider_value_changed)
 	sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
 	music_slider.value_changed.connect(_on_music_slider_value_changed)
