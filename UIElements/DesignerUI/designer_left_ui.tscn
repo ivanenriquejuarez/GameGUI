@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://byuspu342y8uo"]
+[gd_scene load_steps=6 format=3 uid="uid://byuspu342y8uo"]
 
-[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
-[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
+[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
+[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
 [ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
+[ext_resource type="Texture2D" uid="uid://cjcf3eod4g755" path="res://Assets/stoneMossBack.png" id="5_3lr1e"]
 
 [node name="accordion_menu" type="Control"]
 layout_mode = 3
@@ -188,5 +189,19 @@ grow_vertical = 2
 
 [node name="AssetLibrary" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer" instance=ExtResource("4_rvv21")]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HorizontalMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -80.0
+offset_right = 37.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_3lr1e")
+expand_mode = 3
 
 [connection signal="toggled" from="HorizontalMenu/MenuHolder/HBoxContainer/CheckButton" to="HorizontalMenu" method="_on_check_button_toggled"]
