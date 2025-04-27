@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqm8hk0rif0jg"]
+[gd_scene load_steps=3 format=3 uid="uid://dqm8hk0rif0jg"]
 
-[ext_resource type="Script" uid="uid://bn1xvprpavde6" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.gd" id="1_ag2g8"]
+[ext_resource type="Script" uid="uid://bn1xvprpavde6" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.gd" id="1_ag2g8"]
+[ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="2_araqj"]
 
 [node name="CollapsibleButton" type="Button"]
 editor_description = "Button which can use BBCode.
@@ -11,16 +12,16 @@ offset_bottom = 31.0
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 text = "  Accordion Button> "
 script = ExtResource("1_ag2g8")
 rotator_pivot = Vector2(-3.66, 0)
@@ -50,6 +51,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_araqj")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "  [wave amp=50.0 freq=3.5 connected=1][rainbow freq=0.1 sat=0.3 val=0.8]Accordion Button"
