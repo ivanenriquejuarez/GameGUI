@@ -127,6 +127,10 @@ func save_to_file(path: String = "user://designer_save.json") -> void:
 			"position": {
 				"x": obj["position"].x,
 				"y": obj["position"].y
+			},
+			"scale": {  # ✅ Added
+				"x": obj["scale"].x,
+				"y": obj["scale"].y
 			}
 		})
 
@@ -135,10 +139,11 @@ func save_to_file(path: String = "user://designer_save.json") -> void:
 
 func load_from_file(path: String = "user://designer_save.json") -> void:
 	if not FileAccess.file_exists(path):
-		print("Designer save file not found.")
+		print("Designer save file not found:", path)
 		return
 
-	clear()
+	# Correct clearing of previous placed items
+	clear()  # <<--- whatever your real clear function is!
 
 	var file = FileAccess.open(path, FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
@@ -148,15 +153,18 @@ func load_from_file(path: String = "user://designer_save.json") -> void:
 			var preview_scene = load(obj["preview_path"]) as PackedScene
 			var instance = preview_scene.instantiate() as Node2D
 			instance.global_position = Vector2(obj["position"]["x"], obj["position"]["y"])
-			instance.modulate.a = 0.5
+			
+			# Correct scale loading
 			if "scale" in obj:
-				instance.scale = obj["scale"]
+				instance.scale = Vector2(obj["scale"]["x"], obj["scale"]["y"])
 			else:
-				instance.scale = Vector2(1, 1)  # fallback if old save without scale
+				instance.scale = Vector2(1, 1)
+
 			get_tree().get_current_scene().add_child(instance)
 
 			pending_objects.append({
 				"preview_path": obj["preview_path"],
 				"runtime_path": obj["runtime_path"],
-				"position": instance.global_position
+				"position": instance.global_position,
+				"scale": instance.scale
 			})
