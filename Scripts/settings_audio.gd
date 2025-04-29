@@ -18,49 +18,32 @@ var original_music_volume: float
 func _ready():
 	# Adjust scaling nicely based on screen size
 	if get_viewport().size.x < 1600:
-		map_settings_png.scale = Vector2(0.7, 0.7)  # smaller on smaller screens
+		map_settings_png.scale = Vector2(0.7, 0.7)
 	else:
-		map_settings_png.scale = Vector2(1, 1)  # full size on bigger screens
-	
+		map_settings_png.scale = Vector2(1, 1)
+
 	print("Audio tab found: ", audio_tab != null)
 	print("Video tab found: ", video_tab != null)
 	print("Control tab found: ", control_tab != null)
 
-	var slider_track = load("res://Assets/sliderTrack.png")
+	# Load and assign grabber textures only
 	var button_slider = load("res://Assets/buttonSlider.png")
 	var button_highlight = load("res://Assets/buttonHighlight.png")
-
-	print("Track texture loaded: ", slider_track != null)
-	print("Slider button loaded: ", button_slider != null)
-	print("Highlight button loaded: ", button_highlight != null)
 
 	if button_slider and button_highlight:
 		var small_grabber = Image.new()
 		small_grabber.copy_from(button_slider.get_image())
-		small_grabber.resize(32, 32)
+		small_grabber.resize(91, 91)
 		var small_grabber_texture = ImageTexture.create_from_image(small_grabber)
 
 		var small_highlight = Image.new()
 		small_highlight.copy_from(button_highlight.get_image())
-		small_highlight.resize(32, 32)
+		small_highlight.resize(91, 91)
 		var small_highlight_texture = ImageTexture.create_from_image(small_highlight)
 
 		for s in [master_slider, sfx_slider, music_slider]:
 			s.add_theme_icon_override("grabber", small_grabber_texture)
 			s.add_theme_icon_override("grabber_highlight", small_highlight_texture)
-
-	if slider_track:
-		var small_track = Image.new()
-		small_track.copy_from(slider_track.get_image())
-		small_track.resize(256, 16)
-		var small_track_texture = ImageTexture.create_from_image(small_track)
-
-		for s in [master_slider, sfx_slider, music_slider]:
-			var track_style = StyleBoxTexture.new()
-			track_style.texture = small_track_texture
-			track_style.draw_center = true
-			track_style.set_content_margin_all(0)
-			s.add_theme_stylebox_override("slider", track_style)
 
 	# Save original volume values
 	original_master_volume = AudioManager.master_volume

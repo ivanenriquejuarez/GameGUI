@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ty6ca4jgo80g"]
+[gd_scene load_steps=33 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" uid="uid://d3vjxq8617dwn" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
 [ext_resource type="Script" uid="uid://bmafmlj01k4bv" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
@@ -14,9 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://dn5t8hmruyu6v" path="res://Assets/saveHover.png" id="6_m2eit"]
 [ext_resource type="PackedScene" uid="uid://bcsgncexysv8y" path="res://UIElements/DesignerUI/designer_settings.tscn" id="6_u8qm0"]
 [ext_resource type="PackedScene" uid="uid://bmipt6poqn81l" path="res://Scenes/settings.tscn" id="11_1reo3"]
+[ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="11_ofv85"]
+[ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="12_0yskp"]
 [ext_resource type="PackedScene" uid="uid://cqxakn03ewye3" path="res://Scenes/load_game.tscn" id="12_8sb1d"]
 [ext_resource type="Texture2D" uid="uid://dw1d00s2geaye" path="res://Assets/playHover.png" id="13_r6gme"]
 [ext_resource type="Texture2D" uid="uid://bteey1e1u0tm3" path="res://Assets/playButton.png" id="14_aa8cd"]
+[ext_resource type="Texture2D" uid="uid://6b6xq67mwut" path="res://Assets/saveHover2.png" id="18_8sb1d"]
+[ext_resource type="Texture2D" uid="uid://dct5t5ckbce5o" path="res://Assets/saveButton1.png" id="19_lfimo"]
+[ext_resource type="Texture2D" uid="uid://56y4fnww5h7t" path="res://Assets/grass_sprite.png" id="22_0yskp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa8cd"]
 texture = ExtResource("4_x5v8k")
@@ -41,6 +46,14 @@ texture = ExtResource("13_r6gme")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1reo3"]
 texture = ExtResource("14_aa8cd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofv85"]
+texture = ExtResource("18_8sb1d")
+region_rect = Rect2(33.7633, 287.083, 970.477, 455.22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0yskp"]
+texture = ExtResource("19_lfimo")
+region_rect = Rect2(38.2985, 278.277, 951.693, 458.886)
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
@@ -67,9 +80,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -445.0
+offset_left = -520.0
 offset_top = -180.0
-offset_right = -253.0
+offset_right = -328.0
 offset_bottom = -116.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -107,7 +120,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6gme")
 
 [node name="PopupGrid" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(800, 600)
+initial_position = 3
+size = Vector2i(750, 500)
+current_screen = 0
 
 [node name="gridControls" type="Control" parent="CanvasLayer/PopupGrid"]
 layout_mode = 3
@@ -118,12 +133,22 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 796.0
-offset_bottom = 596.0
+offset_right = 746.0
+offset_bottom = 496.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/PopupGrid/gridControls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_ofv85")
+region_rect = Rect2(1241.09, 501.798, 305.281, 308.944)
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PopupGrid/gridControls"]
 layout_mode = 1
@@ -140,17 +165,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "TEST"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 75
+text = "Game Map Controls"
 
 [node name="Label2" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "line width"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 30
+text = "Line Width"
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -162,7 +194,10 @@ ticks_on_borders = true
 
 [node name="Label4" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "cell size"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 30
+text = "Cell Size"
 
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -176,22 +211,39 @@ popup/item_2/id = 2
 popup/item_3/text = "128"
 popup/item_3/id = 3
 
-[node name="Label3" type="Label" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "visibility"
-
 [node name="CheckBox" type="CheckBox" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 25
 button_pressed = true
+text = "Visibility"
 
 [node name="snapBox" type="CheckBox" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 25
 button_pressed = true
 text = "Grid Snap"
 
 [node name="exit" type="Button" parent="CanvasLayer/PopupGrid/gridControls/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "exit"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_0yskp")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
 
 [node name="PopupSettings" type="PopupPanel" parent="CanvasLayer"]
 auto_translate_mode = 1
@@ -239,10 +291,10 @@ grow_vertical = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -350.0
-offset_top = 32.0
-offset_right = -303.0
-offset_bottom = 63.0
+offset_left = -420.0
+offset_top = 60.0
+offset_right = -373.0
+offset_bottom = 97.0
 grow_horizontal = 0
 scale = Vector2(5, 5)
 size_flags_horizontal = 3
@@ -257,12 +309,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -15.5
-offset_bottom = 15.5
+offset_left = -420.0
+offset_top = 265.0
+offset_right = -385.0
+offset_bottom = 280.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "Save"
+scale = Vector2(5, 5)
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ofv85")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ofv85")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0yskp")
 
 [node name="load" type="Button" parent="CanvasLayer"]
 visible = false
@@ -301,6 +357,23 @@ text = "confirm"
 [node name="cancelsave" type="Button" parent="CanvasLayer/SavePopup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "cancel"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -11.0
+offset_right = 19.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_0yskp")
+region_rect = Rect2(35.0981, 78.9276, 948.979, 879.816)
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/grid" to="CanvasLayer" method="_on_grid_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/settings" to="CanvasLayer" method="_on_settings_pressed"]

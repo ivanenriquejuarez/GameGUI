@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqxakn03ewye3"]
+[gd_scene load_steps=11 format=3 uid="uid://cqxakn03ewye3"]
 
 [ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="1_kkuuu"]
 [ext_resource type="Script" uid="uid://1g3ypoaw8hgv" path="res://Scripts/load_game.gd" id="1_nlw8c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="4_i8gfv"]
 [ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="4_nifix"]
 [ext_resource type="Texture2D" uid="uid://cgomwobho1rb5" path="res://Assets/stoneLarge.png" id="6_3b4e4"]
+[ext_resource type="Texture2D" uid="uid://ckgtx1kos13pf" path="res://Assets/loadgame.png" id="7_ggmjl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nifix"]
 texture = ExtResource("4_nifix")
@@ -34,9 +35,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -496.0
-offset_top = 38.0
+offset_top = 90.0
 offset_right = 454.0
-offset_bottom = 238.0
+offset_bottom = 290.0
 grow_horizontal = 2
 texture = ExtResource("1_kkuuu")
 region_rect = Rect2(2080.15, 2122.96, 224.893, 52.9919)
@@ -71,12 +72,14 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_3b4e4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 288.0
-offset_top = 241.0
-offset_right = 1536.0
-offset_bottom = 880.0
+offset_left = 490.0
+offset_top = 320.0
+offset_right = 1738.0
+offset_bottom = 1070.0
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 25
 
-[node name="SaveSlot2" type="TextureButton" parent="VBoxContainer"]
+[node name="SaveSlot1" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -84,7 +87,7 @@ texture_normal = SubResource("AtlasTexture_ggmjl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/SaveSlot2"]
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,7 +104,7 @@ theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 80
 text = "Save Slot X | Last Played: TBD"
 
-[node name="SaveSlot4" type="TextureButton" parent="VBoxContainer"]
+[node name="SaveSlot2" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -109,7 +112,7 @@ texture_normal = SubResource("AtlasTexture_ggmjl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/SaveSlot4"]
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -151,7 +154,7 @@ theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 80
 text = "Save Slot X | Last Played: TBD"
 
-[node name="SaveSlot1" type="TextureButton" parent="VBoxContainer"]
+[node name="SaveSlot4" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -159,7 +162,7 @@ texture_normal = SubResource("AtlasTexture_ggmjl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/SaveSlot1"]
+[node name="Label" type="Label" parent="VBoxContainer/SaveSlot4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,3 +178,33 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ypx42")
 theme_override_font_sizes/font_size = 80
 text = "Save Slot X | Last Played: TBD"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 465.0
+offset_top = 225.0
+offset_right = 465.0
+offset_bottom = 645.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_ggmjl")
+
+[node name="no" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 980.0
+offset_right = 870.0
+offset_bottom = 1130.0
+
+[node name="yes" type="Button" parent="NinePatchRect"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 1044.0
+offset_top = 972.0
+offset_right = 1512.0
+offset_bottom = 1122.0

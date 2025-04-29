@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqen82qj8cr3s"]
+[gd_scene load_steps=21 format=3 uid="uid://bqen82qj8cr3s"]
 
 [ext_resource type="Script" uid="uid://dfjlbjx7rr4js" path="res://Scripts/control_settings.gd" id="1_kogeq"]
 [ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="2_8vq80"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dspcfyrjmqe86" path="res://Assets/SpriteSheet.png" id="3_x0v70"]
 [ext_resource type="Texture2D" uid="uid://vntwq1mtbbok" path="res://Assets/hoverpng.png" id="4_rhd1b"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="5_0hffn"]
+[ext_resource type="Texture2D" uid="uid://d3u4liqwxl8e2" path="res://Assets/stone_back.png" id="7_8vq80"]
 [ext_resource type="Texture2D" uid="uid://c1f5jl4qjwuxb" path="res://Assets/saveButtonHover.png" id="7_hn3gg"]
 [ext_resource type="Texture2D" uid="uid://ce65tajikrp6n" path="res://Assets/saveButton.png" id="8_80udx"]
 [ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="9_dk21x"]
@@ -216,6 +217,15 @@ patch_margin_left = 5
 patch_margin_top = 3
 patch_margin_right = 18
 
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+custom_minimum_size = Vector2(250, 0)
+offset_left = 125.0
+offset_top = 70.0
+offset_right = 675.0
+offset_bottom = 195.0
+texture = ExtResource("7_8vq80")
+region_rect = Rect2(57.6158, 323.709, 926.563, 337.178)
+
 [node name="SettingsTitle" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 5
@@ -285,7 +295,7 @@ offset_right = 148.0
 offset_bottom = 68.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 5
 
 [node name="MovementControls" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://iisifm3ukd50"]
+[gd_scene load_steps=21 format=3 uid="uid://iisifm3ukd50"]
 
 [ext_resource type="Script" uid="uid://dlnrtlcddul08" path="res://Scripts/video_settings.gd" id="1_q7ucn"]
 [ext_resource type="Texture2D" uid="uid://bd7ra07f4ysoi" path="res://Assets/settingsBg.png" id="1_vavjv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://vntwq1mtbbok" path="res://Assets/hoverpng.png" id="4_0b1vb"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="5_f3pyy"]
 [ext_resource type="Texture2D" uid="uid://c1f5jl4qjwuxb" path="res://Assets/saveButtonHover.png" id="7_8srsg"]
+[ext_resource type="Texture2D" uid="uid://d3u4liqwxl8e2" path="res://Assets/stone_back.png" id="7_wq107"]
 [ext_resource type="Texture2D" uid="uid://ce65tajikrp6n" path="res://Assets/saveButton.png" id="8_xrn1k"]
 [ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="9_pbfu4"]
 [ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="10_rbofp"]
@@ -215,6 +216,15 @@ region_rect = Rect2(620.479, 483.533, 463.774, 350.219)
 patch_margin_left = 5
 patch_margin_top = 3
 patch_margin_right = 18
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+custom_minimum_size = Vector2(250, 0)
+offset_left = 125.0
+offset_top = 70.0
+offset_right = 675.0
+offset_bottom = 195.0
+texture = ExtResource("7_wq107")
+region_rect = Rect2(57.6158, 323.709, 926.563, 337.178)
 
 [node name="SettingsTitle" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
 layout_mode = 1

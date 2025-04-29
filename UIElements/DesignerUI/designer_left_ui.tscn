@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=4 uid="uid://byuspu342y8uo"]
+[gd_scene load_steps=13 format=4 uid="uid://byuspu342y8uo"]
 
 [ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
+[ext_resource type="Texture2D" uid="uid://bd7ra07f4ysoi" path="res://Assets/settingsBg.png" id="1_q6nji"]
 [ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
 [ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="4_q6nji"]
 [ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
-[ext_resource type="Texture2D" uid="uid://cjcf3eod4g755" path="res://Assets/stoneMossBack.png" id="5_3lr1e"]
+[ext_resource type="Texture2D" uid="uid://dhaxcmd0w81yt" path="res://Assets/sliderTrack2.png" id="6_eakrf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6nji"]
+texture = ExtResource("1_q6nji")
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -3870,6 +3872,18 @@
 [sub_resource type="TileSet" id="TileSet_eakrf"]
 sources/0 = SubResource("TileSetAtlasSource_q6nji")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynqnd"]
+texture = ExtResource("6_eakrf")
+region_rect = Rect2(78.5991, 441.51, 1248.59, 146.418)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljna5"]
+texture = ExtResource("6_eakrf")
+region_rect = Rect2(79.0539, 442.018, 1247.09, 144.74)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bd7x3"]
+texture = ExtResource("6_eakrf")
+region_rect = Rect2(81.9642, 440.526, 1247.25, 144.355)
+
 [node name="accordion_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -3897,9 +3911,10 @@ collapsible_buttons = [NodePath("MenuHolder/CollapsibleContainer/MarginContainer
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = -250.0
 offset_top = 25.0
-offset_right = 100.0
-offset_bottom = 748.0
+offset_right = 400.0
+offset_bottom = 805.0
 grow_horizontal = 2
 theme_override_constants/separation = -1
 
@@ -3921,7 +3936,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(600, 750)
+custom_minimum_size = Vector2(650, 750)
 layout_mode = 2
 script = ExtResource("2_lydky")
 sizing_constraint = 1
@@ -3949,6 +3964,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_q6nji")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ynqnd")
 text = "Sprites"
 collapsible_node = NodePath("../CollapsibleContainer")
 text_label = "Sprites"
@@ -3961,7 +3979,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(600, 150)
+custom_minimum_size = Vector2(650, 150)
 layout_mode = 2
 script = ExtResource("2_lydky")
 folding_direction_preset = 15
@@ -3992,6 +4010,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_q6nji")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ljna5")
 text = "Tiles"
 collapsible_node = NodePath("../CollapsibleContainer")
 text_label = "Tiles"
@@ -4004,7 +4025,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(600, 200)
+custom_minimum_size = Vector2(650, 200)
 layout_mode = 2
 script = ExtResource("2_lydky")
 sizing_constraint = 1
@@ -4033,6 +4054,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_q6nji")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ynqnd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bd7x3")
 text = "Objects"
 collapsible_node = NodePath("../CollapsibleContainer")
 text_label = "Objects"
@@ -4045,7 +4069,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(600, 150)
+custom_minimum_size = Vector2(650, 150)
 layout_mode = 2
 script = ExtResource("2_lydky")
 sizing_constraint = 1
@@ -4064,18 +4088,5 @@ grow_vertical = 2
 
 [node name="AssetLibrary" parent="HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer" instance=ExtResource("4_rvv21")]
 layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 58.0
-offset_top = 22.0
-offset_right = 648.0
-offset_bottom = 822.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_3lr1e")
 
 [connection signal="toggled" from="HorizontalMenu/MenuHolder/HBoxContainer/CheckButton" to="HorizontalMenu" method="_on_check_button_toggled"]

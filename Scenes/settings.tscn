@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmipt6poqn81l"]
+[gd_scene load_steps=24 format=3 uid="uid://bmipt6poqn81l"]
 
 [ext_resource type="Script" uid="uid://xttgtyv6ay1k" path="res://Scripts/settings_audio.gd" id="1_6wsrs"]
 [ext_resource type="Texture2D" uid="uid://bd7ra07f4ysoi" path="res://Assets/settingsBg.png" id="2_rgw85"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dspcfyrjmqe86" path="res://Assets/SpriteSheet.png" id="3_ofjqo"]
 [ext_resource type="Texture2D" uid="uid://vntwq1mtbbok" path="res://Assets/hoverpng.png" id="4_snisb"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="5_1koiw"]
+[ext_resource type="Texture2D" uid="uid://d3u4liqwxl8e2" path="res://Assets/stone_back.png" id="7_35cvv"]
 [ext_resource type="Texture2D" uid="uid://c1f5jl4qjwuxb" path="res://Assets/saveButtonHover.png" id="7_y2ajq"]
 [ext_resource type="Texture2D" uid="uid://ce65tajikrp6n" path="res://Assets/saveButton.png" id="8_y0mtx"]
 [ext_resource type="Texture2D" uid="uid://c5vcpaivxa5e" path="res://Assets/returnButtonHover.png" id="9_n3u8x"]
 [ext_resource type="Texture2D" uid="uid://11wmnryp8ewh" path="res://Assets/returnButton.png" id="10_6nu8h"]
+[ext_resource type="Texture2D" uid="uid://dsdxudl4tn2ge" path="res://Assets/sliderTrack.png" id="11_l7vst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bismi"]
 atlas = ExtResource("3_ofjqo")
@@ -46,6 +48,16 @@ region_rect = Rect2(115, 162.582, 1312.45, 679.934)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bismi"]
 texture = ExtResource("10_6nu8h")
 region_rect = Rect2(119.584, 186.068, 1310.92, 653.032)
+
+[sub_resource type="ImageTexture" id="ImageTexture_l7vst"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_35cvv"]
+content_margin_left = 50.0
+content_margin_top = 0.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+texture = ExtResource("11_l7vst")
+region_rect = Rect2(8.89197, 447.463, 989.223, 152.975)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -216,6 +228,16 @@ patch_margin_left = 5
 patch_margin_top = 3
 patch_margin_right = 18
 
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 125.0
+offset_top = 70.0
+offset_right = 675.0
+offset_bottom = 195.0
+texture = ExtResource("7_35cvv")
+region_rect = Rect2(57.6158, 323.709, 926.563, 337.178)
+
 [node name="SettingsTitle" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 5
@@ -285,24 +307,43 @@ offset_right = 148.0
 offset_bottom = 68.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -15
 
 [node name="Master" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_1koiw")
 text = "Master"
 
 [node name="MasterSlider" type="HSlider" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+texture_repeat = 1
 layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_l7vst")
+theme_override_icons/tick = SubResource("ImageTexture_l7vst")
+theme_override_styles/slider = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_35cvv")
 max_value = 1.0
 step = 0.05
 
 [node name="SFX" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_1koiw")
 text = "SFX"
 
 [node name="SFXSlider" type="HSlider" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+texture_repeat = 1
 layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_l7vst")
+theme_override_icons/tick = SubResource("ImageTexture_l7vst")
+theme_override_styles/slider = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_35cvv")
 max_value = 1.0
 step = 0.05
 
@@ -312,7 +353,16 @@ theme_override_fonts/font = ExtResource("5_1koiw")
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
+texture_repeat = 1
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l7vst")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_l7vst")
+theme_override_icons/tick = SubResource("ImageTexture_l7vst")
+theme_override_styles/slider = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_35cvv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_35cvv")
 max_value = 1.0
 step = 0.05
 
