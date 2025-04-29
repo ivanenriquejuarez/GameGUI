@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ty6ca4jgo80g"]
+[gd_scene load_steps=40 format=3 uid="uid://ty6ca4jgo80g"]
 
 [ext_resource type="Script" uid="uid://d3vjxq8617dwn" path="res://Scenes/Designer/designer.gd" id="1_bef0j"]
 [ext_resource type="Script" uid="uid://bmafmlj01k4bv" path="res://Scenes/Designer/designer_camera.gd" id="2_l6knb"]
@@ -22,6 +22,11 @@
 [ext_resource type="Texture2D" uid="uid://6b6xq67mwut" path="res://Assets/saveHover2.png" id="18_8sb1d"]
 [ext_resource type="Texture2D" uid="uid://dct5t5ckbce5o" path="res://Assets/saveButton1.png" id="19_lfimo"]
 [ext_resource type="Texture2D" uid="uid://56y4fnww5h7t" path="res://Assets/grass_sprite.png" id="22_0yskp"]
+[ext_resource type="Texture2D" uid="uid://cjcf3eod4g755" path="res://Assets/stoneMossBack.png" id="23_vmhpi"]
+[ext_resource type="Texture2D" uid="uid://bi73wb5hjnexc" path="res://Assets/return_hover.png" id="24_krjf8"]
+[ext_resource type="Texture2D" uid="uid://lgxe03hb8dhe" path="res://Assets/return_button.png" id="25_8i64h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2vti6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aa8cd"]
 texture = ExtResource("4_x5v8k")
@@ -41,11 +46,15 @@ texture = ExtResource("6_m2eit")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r6gme"]
 texture = ExtResource("6_7aako")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmhpi"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jhpxb"]
 texture = ExtResource("13_r6gme")
+region_rect = Rect2(57.5, 235.75, 912, 553)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1reo3"]
 texture = ExtResource("14_aa8cd")
+region_rect = Rect2(56, 235.25, 913, 556.5)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofv85"]
 texture = ExtResource("18_8sb1d")
@@ -54,6 +63,14 @@ region_rect = Rect2(33.7633, 287.083, 970.477, 455.22)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0yskp"]
 texture = ExtResource("19_lfimo")
 region_rect = Rect2(38.2985, 278.277, 951.693, 458.886)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6efoq"]
+texture = ExtResource("24_krjf8")
+region_rect = Rect2(52, 318, 920, 414)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u520u"]
+texture = ExtResource("25_8i64h")
+region_rect = Rect2(55, 299.25, 922.5, 426.75)
 
 [node name="Designer" type="Node2D"]
 script = ExtResource("1_bef0j")
@@ -80,23 +97,34 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -520.0
-offset_top = -180.0
-offset_right = -328.0
-offset_bottom = -116.0
+offset_left = -1870.0
+offset_top = -230.0
+offset_right = -1668.0
+offset_bottom = -166.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2vti6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/Panel"]
-layout_mode = 2
-offset_right = 192.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -32.0
+offset_right = 179.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 
 [node name="grid" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
 layout_mode = 2
@@ -119,10 +147,15 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6gme")
 
+[node name="undo" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Undo"
+
 [node name="PopupGrid" type="PopupPanel" parent="CanvasLayer"]
 initial_position = 3
 size = Vector2i(750, 500)
 current_screen = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vmhpi")
 
 [node name="gridControls" type="Control" parent="CanvasLayer/PopupGrid"]
 layout_mode = 3
@@ -131,10 +164,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 746.0
-offset_bottom = 496.0
+offset_right = 750.0
+offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -259,15 +290,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PopupLoad" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(1400, 800)
+size = Vector2i(1920, 1080)
 
 [node name="LoadGame" parent="CanvasLayer/PopupLoad" instance=ExtResource("12_8sb1d")]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 1396.0
-offset_bottom = 796.0
+offset_right = 1916.0
+offset_bottom = 1076.0
 
 [node name="accordion_menu" parent="CanvasLayer" instance=ExtResource("4_di20i")]
+offset_top = 25.0
+offset_bottom = 25.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
@@ -291,10 +324,10 @@ grow_vertical = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -420.0
+offset_left = -1770.0
 offset_top = 60.0
-offset_right = -373.0
-offset_bottom = 97.0
+offset_right = -1710.0
+offset_bottom = 80.0
 grow_horizontal = 0
 scale = Vector2(5, 5)
 size_flags_horizontal = 3
@@ -309,13 +342,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -420.0
-offset_top = 265.0
-offset_right = -385.0
-offset_bottom = 280.0
+offset_left = -395.0
+offset_top = 310.0
+offset_right = -363.0
+offset_bottom = 322.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(5, 5)
+scale = Vector2(10, 10)
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ofv85")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ofv85")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0yskp")
@@ -332,31 +365,45 @@ text = "Load"
 
 [node name="SavePopup" type="PopupPanel" parent="CanvasLayer"]
 initial_position = 1
-size = Vector2i(145, 101)
+size = Vector2i(250, 109)
+visible = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SavePopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 141.0
-offset_bottom = 97.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -50.5
+offset_right = 121.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="CanvasLayer/SavePopup/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("12_0yskp")
 text = "Enter Save Name:"
+horizontal_alignment = 1
 
 [node name="save_line_edit" type="LineEdit" parent="CanvasLayer/SavePopup/VBoxContainer"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SavePopup/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="confirmsave" type="Button" parent="CanvasLayer/SavePopup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "confirm"
+theme_override_fonts/font = ExtResource("12_0yskp")
+text = "Confirm"
 
 [node name="cancelsave" type="Button" parent="CanvasLayer/SavePopup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "cancel"
+theme_override_fonts/font = ExtResource("12_0yskp")
+text = "Cancel"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -374,6 +421,23 @@ region_rect = Rect2(35.0981, 78.9276, 948.979, 879.816)
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="background" type="NinePatchRect" parent="CanvasLayer"]
+offset_left = 73.0
+offset_top = 150.0
+offset_right = 723.0
+offset_bottom = 1025.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("23_vmhpi")
+
+[node name="return" type="Button" parent="CanvasLayer"]
+offset_left = 1670.0
+offset_top = 60.0
+offset_right = 1835.0
+offset_bottom = 135.0
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_6efoq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6efoq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u520u")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/grid" to="CanvasLayer" method="_on_grid_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Panel/HBoxContainer/settings" to="CanvasLayer" method="_on_settings_pressed"]
