@@ -3,7 +3,8 @@ extends Node2D
 
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var designer_camera: Camera2D = $DesignerCamera
-
+@onready var save_line_edit: LineEdit = $CanvasLayer/SavePopup/VBoxContainer/save_line_edit
+@onready var save_popup: PopupPanel = $CanvasLayer/SavePopup
 @onready var save_load = $CanvasLayer/SaveLoad
 @onready var designer_settings = $CanvasLayer/DesignerSettings
 @onready var grid_controls = $CanvasLayer/PopupGrid
@@ -150,11 +151,37 @@ func _on_play_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	DesignerState.save_to_file()
+	save_popup.show()
 
+func _on_save_confirmed():
+	var save_name = save_line_edit.text.strip_edges()
+
+	if save_name == "":
+		print("Invalid filename")
+		return
+
+	if not save_name.ends_with(".json"):
+		save_name += ".json"  # Optional: Auto-add .json if missing
+
+	var save_path = "res://saves/" + save_name
+
+	# Always overwrite for now
+	DesignerState.save_to_file(save_path)
+
+	save_popup.hide()  # Hide the popup after saving
+	
 
 func _on_load_pressed() -> void:
-	DesignerState.load_from_file()
+	clear_designer_objects()
+	
+	var recent_save = get_recent_save_filename()
+	
+	if recent_save == "":
+		print("No save files found.")
+		return
+	
+	var save_path = "res://saves/" + recent_save
+	DesignerState.load_from_file(save_path)
 
 func _on_button_pressed(button_name: String):
 	match button_name:
@@ -227,3 +254,46 @@ func _cycle_to_next_asset():
 		DesignerState.dragging_scene.global_position = mouse_pos
 
 		add_child(DesignerState.dragging_scene)
+
+func get_recent_save_filename() -> String:
+	var dir = DirAccess.open("res://saves/")
+	if not dir:
+		print("Cannot open saves folder")
+		return ""
+
+	var json_files = []
+	dir.list_dir_begin()
+
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir() and file_name.ends_with(".json"):
+			json_files.append(file_name)
+		file_name = dir.get_next()
+	dir.list_dir_end()
+
+	if json_files.is_empty():
+		return ""
+
+	# Correct sorting using the opened DirAccess instance
+	json_files.sort_custom(func(a, b):
+		return dir.get_modified_time("res://saves/" + b) < dir.get_modified_time("res://saves/" + a)
+	)
+
+	return json_files[0]  # Most recent
+	
+func prompt_save():
+	var recent_name = get_recent_save_filename()
+	if recent_name != "":
+		save_line_edit.text = recent_name
+	else:
+		save_line_edit.text = "new_save.json"
+
+	save_popup.popup_centered()
+	
+func _on_overwrite_confirmed(save_path):
+	DesignerState.save_to_file(save_path)
+
+func clear_designer_objects():
+	for child in get_children():
+		if child is Node2D and not (child == designer_camera or child == grid_display or child == canvas_layer):
+			child.queue_free()
