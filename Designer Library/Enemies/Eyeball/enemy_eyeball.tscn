@@ -4765,6 +4765,7 @@ debug_color = Color(0.961248, 0, 0.511433, 0.42)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_wsoel")
+max_health = 3.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("8_mb4vv")

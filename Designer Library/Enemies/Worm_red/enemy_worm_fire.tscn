@@ -4750,6 +4750,7 @@ shape = SubResource("CircleShape2D_yxkfs")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_ibp51")
+max_health = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
