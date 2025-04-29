@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=4 uid="uid://byuspu342y8uo"]
 
-[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
+[ext_resource type="Script" uid="uid://boaxbblx8k1cr" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/horizontal_menu.gd" id="1_hth00"]
 [ext_resource type="Texture2D" uid="uid://bd7ra07f4ysoi" path="res://Assets/settingsBg.png" id="1_q6nji"]
-[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://Addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
-[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://Addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
+[ext_resource type="Script" uid="uid://cmef0maps56yd" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="2_lydky"]
+[ext_resource type="PackedScene" uid="uid://dqm8hk0rif0jg" path="res://addons/collapsible_container/examples (OPTIONAL)/accordion_menu_example/collapsible_optional_button/collapsible_button.tscn" id="3_uv41v"]
 [ext_resource type="FontFile" uid="uid://cixerfqs2bbja" path="res://Assets/Fonts/IMFell.ttf" id="4_q6nji"]
 [ext_resource type="PackedScene" uid="uid://xlu81j53eu2g" path="res://UIElements/DesignerUI/asset_library.tscn" id="4_rvv21"]
 [ext_resource type="Texture2D" uid="uid://dhaxcmd0w81yt" path="res://Assets/sliderTrack2.png" id="6_eakrf"]
@@ -3940,7 +3940,7 @@ editor_description = "
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
 clip_contents = true
-custom_minimum_size = Vector2(650, 900)
+custom_minimum_size = Vector2(650, 810)
 layout_mode = 2
 script = ExtResource("2_lydky")
 sizing_constraint = 1

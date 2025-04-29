@@ -9,6 +9,7 @@ var scene_being_dragged: PackedScene = null
 var pending_objects: Array = []
 var grid_snap_enabled: bool = true
 var save_timestamp: String = ""
+var save_path_to_load := ""
 
 func clear():
 	pending_objects.clear()
@@ -135,7 +136,7 @@ func save_to_file(path: String = "user://designer_save.json") -> void:
 	file.store_string(JSON.stringify(save_data))
 	print("✅ Designer saved:", path)
 
-func load_from_file(path: String = "user://designer_save.json") -> void:
+func load_from_file(path: String = "res://saves/designer_save.json") -> void:
 	if not FileAccess.file_exists(path):
 		print("❌ Designer save file not found:", path)
 		return
@@ -154,40 +155,37 @@ func load_from_file(path: String = "user://designer_save.json") -> void:
 
 	var data = json.get_data()
 
-	if data is Dictionary and data.has("timestamp"):
-		save_timestamp = data["timestamp"]
-		if data.has("objects"):
-			data = data["objects"]
-	else:
-		save_timestamp = "Unknown"
+	if not (data is Dictionary and data.has("objects")):
+		print("❌ Invalid save format — expected 'objects' array.")
+		return
+
+	var objects = data["objects"]
+	save_timestamp = data.get("timestamp", "Unknown")
 
 	var scene_root = get_tree().get_current_scene()
 	if scene_root == null:
 		print("❌ Cannot load save: current scene is null.")
 		return
 
-	if data is Array:
-		for obj in data:
-			var preview_scene = load(obj["preview_path"]) as PackedScene
-			if preview_scene == null:
-				print("⚠ Failed to load preview:", obj["preview_path"])
-				continue
+	for obj in objects:
+		var preview_scene = load(obj["preview_path"]) as PackedScene
+		if preview_scene == null:
+			print("⚠ Failed to load preview:", obj["preview_path"])
+			continue
 
-			var instance = preview_scene.instantiate() as Node2D
-			instance.global_position = Vector2(obj["position"]["x"], obj["position"]["y"])
+		var instance = preview_scene.instantiate() as Node2D
+		instance.global_position = Vector2(obj["position"]["x"], obj["position"]["y"])
 
-			if "scale" in obj:
-				instance.scale = Vector2(obj["scale"]["x"], obj["scale"]["y"])
-			else:
-				instance.scale = Vector2(1, 1)
+		if "scale" in obj:
+			instance.scale = Vector2(obj["scale"]["x"], obj["scale"]["y"])
+		else:
+			instance.scale = Vector2(1, 1)
 
-			scene_root.add_child(instance)
+		scene_root.add_child(instance)
 
-			pending_objects.append({
-				"preview_path": obj["preview_path"],
-				"runtime_path": obj["runtime_path"],
-				"position": instance.global_position,
-				"scale": instance.scale
-			})
-	else:
-		print("❌ Invalid save data format.")
+		pending_objects.append({
+			"preview_path": obj["preview_path"],
+			"runtime_path": obj["runtime_path"],
+			"position": instance.global_position,
+			"scale": instance.scale
+		})

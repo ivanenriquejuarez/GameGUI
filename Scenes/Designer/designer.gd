@@ -30,7 +30,14 @@ const AssetLibraryData = preload("res://UIElements/DesignerUI/AssetLibraryData.g
 func _ready():
 	if Engine.is_editor_hint():
 		return
-	
+		
+	get_tree().current_scene = self
+
+	if DesignerState.save_path_to_load != "":
+		clear_designer_objects()
+		DesignerState.load_from_file(DesignerState.save_path_to_load)
+		DesignerState.save_path_to_load = ""  # Clear it after use
+		
 	create_fade_overlay()
 	start_fade_in_transition()
 	change_to_designer_music()

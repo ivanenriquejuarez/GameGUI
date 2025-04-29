@@ -219,20 +219,9 @@ func hide_dialog_with_fade():
 func _on_yes_pressed():
 	if current_save_file != "":
 		print("Loading game from file: " + current_save_file)
-		
-		# Fade out dialog with a faster transition
-		var tween = create_tween()
-		tween.tween_property($NinePatchRect, "modulate", Color(1, 1, 1, 0), 0.15)
-		tween.parallel().tween_property(overlay, "color", Color(0, 0, 0, 1), 0.3)
-		
-		# After full fade to black, change scene
-		tween.tween_callback(func():
-			var save_path = SAVE_DIR + current_save_file
-			get_tree().change_scene_to_file("res://Scenes/Designer/Designer.tscn")
-			
-			# Schedule loading of the save file after scene change
-			call_deferred("_load_after_scene_change", save_path)
-		)
+		var save_path = SAVE_DIR + current_save_file
+		DesignerState.save_path_to_load = save_path
+		get_tree().change_scene_to_file("res://Scenes/Designer/Designer.tscn")
 
 # Handler for "No" button on the confirmation dialog
 func _on_no_pressed():
