@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://iisifm3ukd50"]
+[gd_scene load_steps=20 format=3 uid="uid://cus03bsm5e0xt"]
 
 [ext_resource type="Script" uid="uid://dlnrtlcddul08" path="res://Scripts/video_settings.gd" id="1_o23mn"]
 [ext_resource type="Texture2D" uid="uid://dal7mtu2xr7b3" path="res://Assets/Map SpriteSheet.png" id="2_kwuid"]

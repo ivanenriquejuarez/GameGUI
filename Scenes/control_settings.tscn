@@ -285,9 +285,14 @@ offset_right = 148.0
 offset_bottom = 68.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 7
 
 [node name="MovementControls" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.882223, 0.646305, 0.509886, 1)
+theme_override_fonts/font = ExtResource("5_0hffn")
+theme_override_font_sizes/font_size = 20
 text = "Movement Controls"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
@@ -298,6 +303,7 @@ layout_mode = 2
 
 [node name="MoveForward" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Move Forward"
 
 [node name="Button" type="Button" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer"]
@@ -311,6 +317,7 @@ layout_mode = 2
 
 [node name="MoveBackward" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Move Backward"
 
 [node name="Button" type="Button" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer4"]
@@ -324,6 +331,7 @@ layout_mode = 2
 
 [node name="MoveLeft" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Move Left"
 
 [node name="Button" type="Button" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer3"]
@@ -337,6 +345,7 @@ layout_mode = 2
 
 [node name="MoveRight" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Move Right"
 
 [node name="Button" type="Button" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer2"]
@@ -344,6 +353,10 @@ layout_mode = 2
 
 [node name="MouseSettings" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.638323, 0.582836, 1)
+theme_override_fonts/font = ExtResource("5_0hffn")
+theme_override_font_sizes/font_size = 20
 text = "Mouse Settings"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
@@ -351,6 +364,7 @@ layout_mode = 2
 
 [node name="InvertMouse" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Invert Mouse Y-Axis"
 
 [node name="CheckBox" type="CheckBox" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer5"]
@@ -361,6 +375,7 @@ layout_mode = 2
 
 [node name="MouseSensitivity" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0hffn")
 text = "Mouse Sensitivity"
 
 [node name="HSlider" type="HSlider" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/HBoxContainer6"]
