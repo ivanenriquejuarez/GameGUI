@@ -12,12 +12,12 @@ const DESIGNER_MUSIC = "res://Assets/Audio/Infinity Crystal_ Awakening wavs/6 su
 @onready var save_line_edit: LineEdit = $CanvasLayer/SavePopup/VBoxContainer/save_line_edit
 @onready var save_popup: PopupPanel = $CanvasLayer/SavePopup
 @onready var save_load = $CanvasLayer/SaveLoad
-@onready var designer_settings = $CanvasLayer/DesignerSettings
 @onready var grid_controls = $CanvasLayer/PopupGrid
 @onready var grid_display: GridDisplay = $GridDisplay
 @onready var character_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu/CollapsibleContainer/MarginContainer/AssetLibrary
 @onready var tile_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu2/CollapsibleContainer/MarginContainer/AssetLibrary
 @onready var object_library: AssetLibrary = $CanvasLayer/accordion_menu/HorizontalMenu/MenuHolder/CollapsibleContainer/MarginContainer/VBoxContainer/SubMenu3/CollapsibleContainer/MarginContainer/AssetLibrary
+
 
 var grid_snap_enabled: bool = true
 var valid_scales: Array[int] = [16, 32, 64]
@@ -57,7 +57,6 @@ func _ready():
 
 	grid_controls.visible = false
 	save_load.visible = false
-	designer_settings.visible = false
 	apply_grid_settings()
 	reload_designer_objects()
 
@@ -171,7 +170,6 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		grid_controls.visible = false
 		save_load.visible = false
-		designer_settings.visible = false
 		if is_instance_valid(DesignerState.dragging_scene):
 			DesignerState.dragging_scene.queue_free()
 		DesignerState.dragging_scene = null
@@ -230,8 +228,6 @@ func _on_button_pressed(button_name: String):
 	match button_name:
 		"grid_controls":
 			grid_controls.visible = true
-		"designer_settings":
-			designer_settings.visible = true
 		"save_load":
 			save_load.visible = true
 
