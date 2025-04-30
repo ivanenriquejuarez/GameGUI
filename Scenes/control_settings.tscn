@@ -296,7 +296,7 @@ offset_right = 148.0
 offset_bottom = 68.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 2
 
 [node name="MovementControls" type="Label" parent="CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer"]
 layout_mode = 2

@@ -98,7 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1870.0
 offset_top = -230.0
-offset_right = -1668.0
+offset_right = -1720.0
 offset_bottom = -166.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -117,9 +117,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -71.0
+offset_left = -40.0
 offset_top = -32.0
-offset_right = 179.0
+offset_right = 160.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -145,10 +145,6 @@ size_flags_horizontal = 3
 theme_override_styles/hover = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7aako")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6gme")
-
-[node name="undo" type="Button" parent="CanvasLayer/MarginContainer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Undo"
 
 [node name="PopupGrid" type="PopupPanel" parent="CanvasLayer"]
 initial_position = 3
@@ -277,13 +273,13 @@ text = "Exit"
 
 [node name="PopupSettings" type="PopupPanel" parent="CanvasLayer"]
 auto_translate_mode = 1
-size = Vector2i(1280, 720)
+size = Vector2i(1920, 1080)
 
 [node name="Settings" parent="CanvasLayer/PopupSettings" instance=ExtResource("11_1reo3")]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 1276.0
-offset_bottom = 716.0
+offset_right = 1916.0
+offset_bottom = 1076.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -413,9 +409,9 @@ offset_bottom = 8.0
 
 [node name="background" type="NinePatchRect" parent="CanvasLayer"]
 offset_left = 73.0
-offset_top = 148.0
+offset_top = 152.0
 offset_right = 723.0
-offset_bottom = 1018.0
+offset_bottom = 1017.0
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("23_vmhpi")
 

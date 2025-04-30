@@ -6,6 +6,7 @@ extends Control
 @onready var music_slider = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/VBoxContainer/MusicSlider
 @onready var save_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/SaveButton
 @onready var exit_button = $CenterContainer/MapSettingPNG/popupMenu/baseMenu/NinePatchRect/MarginContainer/buttonContainer/topButtonContainer/ExitButton
+@onready var return_button = $ReturnButton  # Add reference to return button
 
 @onready var audio_tab = $CenterContainer/MapSettingPNG/Tab1
 @onready var video_tab = $CenterContainer/MapSettingPNG/Tab2
@@ -14,8 +15,25 @@ extends Control
 var original_master_volume: float
 var original_sfx_volume: float
 var original_music_volume: float
+var previous_scene: String = "res://Scenes/main_menu.tscn"  # Default to main menu if no previous scene
 
 func _ready():
+	# Try to get the previous scene from metadata if available
+	if get_tree().has_meta("previous_scene"):
+		previous_scene = get_tree().get_meta("previous_scene")
+		print("Previous scene found: ", previous_scene)
+	else:
+		print("No previous scene metadata found, using default: ", previous_scene)
+	
+	# Connect return button signal if it exists
+	if has_node("ReturnButton"):
+		$ReturnButton.pressed.connect(_on_return_button_pressed)
+		$ReturnButton.mouse_entered.connect(_on_button_hovered)
+		$ReturnButton.pressed.connect(_on_button_pressed)
+		print("Return button connected successfully")
+	else:
+		print("Return button not found in the scene")
+	
 	# Adjust scaling nicely based on screen size
 	if get_viewport().size.x < 1600:
 		map_settings_png.scale = Vector2(0.7, 0.7)
@@ -108,16 +126,37 @@ func _on_exit_button_pressed():
 	AudioManager.ensure_audio_state()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
+# Function for return button
+func _on_return_button_pressed():
+	print("Return button clicked! Returning to: ", previous_scene)
+	# Handle unsaved changes to audio settings
+	if AudioManager.master_volume != original_master_volume or \
+	   AudioManager.sfx_volume != original_sfx_volume or \
+	   AudioManager.music_volume != original_music_volume:
+		AudioManager.set_master_volume(original_master_volume, false)
+		AudioManager.set_sfx_volume(original_sfx_volume, false)
+		AudioManager.set_music_volume(original_music_volume, false)
+	AudioManager.ensure_audio_state()
+	
+	# Return to the previous scene
+	get_tree().change_scene_to_file(previous_scene)
+
 func _on_audio_button_pressed():
 	print("Audio button pressed!")
+	# Store current scene before changing to ensure we can return properly
+	get_tree().set_meta("previous_scene", "res://Scenes/settings.tscn")
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 func _on_video_button_pressed():
 	print("Video button pressed!")
+	# Store current scene before changing
+	get_tree().set_meta("previous_scene", "res://Scenes/settings.tscn")
 	get_tree().change_scene_to_file("res://Scenes/video_settings.tscn")
 
 func _on_control_button_pressed():
 	print("Control button pressed!")
+	# Store current scene before changing
+	get_tree().set_meta("previous_scene", "res://Scenes/settings.tscn")
 	get_tree().change_scene_to_file("res://Scenes/control_settings.tscn")
 
 func _on_button_hovered():

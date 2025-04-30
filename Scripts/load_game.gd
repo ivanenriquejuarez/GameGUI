@@ -5,8 +5,16 @@ const SAVE_DIR = "res://saves/"
 
 # Reference to overlay for fade effect
 var overlay: ColorRect
+var previous_scene: String = "res://Scenes/main_menu.tscn"  # Default to main menu if no previous scene
 
 func _ready():
+	# Try to get the previous scene from metadata if available
+	if get_tree().has_meta("previous_scene"):
+		previous_scene = get_tree().get_meta("previous_scene")
+		print("Previous scene found: ", previous_scene)
+	else:
+		print("No previous scene metadata found, using default: ", previous_scene)
+	
 	# Connect return button
 	$ReturnButton.pressed.connect(_on_ReturnButton_pressed)
 	
@@ -233,10 +241,10 @@ func _on_no_pressed():
 func _load_after_scene_change(save_path):
 	DesignerState.load_from_file(save_path)
 
-# Return button handler
+# Modified Return button handler
 func _on_ReturnButton_pressed():
-	print("Return button clicked!")
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	print("Return button clicked! Returning to: ", previous_scene)
+	get_tree().change_scene_to_file(previous_scene)
 
 func _on_button_mouse_entered(button):
 	var tween = create_tween()
