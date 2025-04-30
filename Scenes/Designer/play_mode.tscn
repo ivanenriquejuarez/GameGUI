@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cejosfijdm0b6"]
+[gd_scene load_steps=6 format=3 uid="uid://cejosfijdm0b6"]
 
 [ext_resource type="Script" uid="uid://dnawln7m2tyse" path="res://Scenes/Designer/play_mode.gd" id="1_ru153"]
+[ext_resource type="Texture2D" uid="uid://bi73wb5hjnexc" path="res://Assets/return_hover.png" id="2_m47j5"]
+[ext_resource type="Texture2D" uid="uid://lgxe03hb8dhe" path="res://Assets/return_button.png" id="3_vonqx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b1kh"]
+texture = ExtResource("2_m47j5")
+region_rect = Rect2(50, 313, 923, 422)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_slfgf"]
+texture = ExtResource("3_vonqx")
+region_rect = Rect2(49, 300, 927, 427)
 
 [node name="PlayMode" type="Node2D"]
 script = ExtResource("1_ru153")
@@ -8,8 +18,16 @@ script = ExtResource("1_ru153")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="returnButton" type="Button" parent="CanvasLayer"]
-offset_right = 61.0
-offset_bottom = 31.0
-text = "Return"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 60.0
+offset_right = -85.0
+offset_bottom = 135.0
+grow_horizontal = 0
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_4b1kh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4b1kh")
+theme_override_styles/normal = SubResource("StyleBoxTexture_slfgf")
 
 [connection signal="pressed" from="CanvasLayer/returnButton" to="." method="_on_return_button_pressed"]

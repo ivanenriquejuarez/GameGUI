@@ -304,6 +304,7 @@ theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_f3pyy")
 theme_override_font_sizes/font_size = 35
 text = "Resolution"
@@ -317,6 +318,7 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_f3pyy")
 theme_override_font_sizes/font_size = 30
 text = "Display Mode"
@@ -330,6 +332,7 @@ theme_override_constants/separation = 92
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_f3pyy")
 theme_override_font_sizes/font_size = 35
 text = "VSync"
@@ -343,6 +346,7 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_f3pyy")
 theme_override_font_sizes/font_size = 32
 text = "Refresh Rate"
